@@ -7,3 +7,5 @@ Author: Dave Coleman | davetcoleman@gmail.com
 New version of the controls for the robotic arm in the Correll Lab at the University of Colorado Boulder.
 
 Heavily based on the Crust Crust Crawler Smart Arm.
+
+NOTE: the smart_arm_description and smart_arm_kinematics do not work yet.
