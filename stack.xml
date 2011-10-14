@@ -1,0 +1,11 @@
+<stack>
+    <description brief="crustcrawler_smartarm">crustcrawler_smartarm</description>
+    <author>Maintained by Antons Rebguns</author>
+    <license>BSD</license>
+    <review status="unreviewed" notes=""/>
+    <url>http://ros.org/wiki/crustcrawler_smartarm</url>
+
+    <depend stack="ros" />
+    <depend stack="ros_comm" />
+    <depend stack="dynamixel_motor" />
+</stack>

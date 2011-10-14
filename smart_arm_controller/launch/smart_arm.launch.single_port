@@ -1,0 +1,36 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+    <!-- Start the Dynamixel motor manager to control all SmartArm servos -->
+    <node name="smartarm_motor_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+        <rosparam>
+            namespace: smartarm_motor_manager
+            diagnostics_rate: 1
+            serial_ports:
+                smart_arm:
+                    port_name: "/dev/ttyUSB0"
+                    baud_rate: 1000000
+                    min_motor_id: 0
+                    max_motor_id: 7
+                    update_rate: 1
+        </rosparam>
+    </node>
+
+    <!-- Load joint controller configuration from YAML file to parameter server -->
+    <rosparam file="$(find smart_arm_controller)/config/smart_arm.yaml" command="load"/>
+
+    <!-- Start all SmartArm joint controllers -->
+    <node name="smartarm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=smartarm_motor_manager
+                --port=smart_arm
+                --type=simple
+                shoulder_pan_controller
+                shoulder_pitch_controller
+                elbow_roll_controller
+		elbow_pitch_controller
+                wrist_roll_controller
+                wrist_pitch_controller
+		gripper_roll_controller
+                gripper_grip_controller"
+          output="screen"/>
+</launch>

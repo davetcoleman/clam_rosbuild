@@ -1,0 +1,16 @@
+material SmartArm/GunMetalBrushedAluminum
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.75 0.75 0.75
+      cull_hardware none
+      cull_software none
+      texture_unit
+      {
+        texture gun_metal_brushed_aluminum.jpg
+      }
+    }
+  }
+}

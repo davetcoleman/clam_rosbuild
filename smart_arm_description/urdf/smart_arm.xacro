@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+
+<!--
+* Software License Agreement (BSD License)
+*
+* Copyright (c) 2010, Antons Rebguns. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+*  * Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*  * Redistributions in binary form must reproduce the above
+*    copyright notice, this list of conditions and the following
+*    disclaimer in the documentation and/or other materials provided
+*    with the distribution.
+*  * Neither the name of University of Arizona nor the names of its
+*    contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+* FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+* COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+* LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+* ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+* POSSIBILITY OF SUCH DAMAGE.
+
+* Author: Antons Rebguns
+-->
+
+<robot
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+    
+    <include filename="$(find smart_arm_description)/urdf/materials.urdf.xacro" />
+
+    <macro name="smart_arm" params="parent *origin">
+        <!-- ****** JOINT DEFINITIONS ****** -->
+        
+        <!-- Arm's base joint -->
+        <joint name="arm_base_joint" type="fixed">
+            <insert_block name="origin" /> 
+            <parent link="${parent}"/>
+            <child link="arm_base_link"/>
+        </joint>
+        
+        <!-- Shoulder pan joint -->
+        <joint name="shoulder_pan_joint" type="revolute" >
+            <origin xyz="-0.0075 0 0.025" rpy="0 0 0" />
+            <parent link="arm_base_link" />
+            <child link="arm_shoulder_pan_link"/>
+            
+            <axis xyz="0 0 1"/>
+            <limit  lower="-1.22" upper="1.22" effort="300" velocity="1.17" />
+            <safety_controller k_position="100" k_velocity="15.0" soft_lower_limit="${-1.22+0.1}" soft_upper_limit="${1.22-0.1}" />
+            <dynamics damping="50" friction="1"/>
+        </joint>
+        
+        <!-- Shoulder tilt joint -->
+        <joint name="shoulder_pitch_joint" type="revolute">
+            <origin xyz="${0.105 - 0.01 - 0.03085/2} 0 ${0.01 + 0.05 - 0.031/2}" rpy="0 0 0" />
+            <parent link="arm_shoulder_pan_link"/>
+            <child link="arm_shoulder_pitch_link" />
+            
+            <axis xyz="0 -1 0"/>
+            <limit  lower="-1.04719755" upper="1.972222" effort="300" velocity="1.17" />
+            <safety_controller k_position="100" k_velocity="15.0" soft_lower_limit="${-1.04719755+0.1}" soft_upper_limit="${1.972222-0.1}" />
+            <dynamics damping="50" friction="1"/>
+        </joint>
+        
+        <!-- Elbow tilt joint -->
+        <joint name="elbow_flex_joint" type="revolute">
+            <origin xyz="${0.04 - 0.01 + 0.0015 + 0.105 + 0.055 - 0.01} 0 0" rpy="0 0 0" />
+            <parent link="arm_shoulder_pitch_link"/>
+            <child link="arm_elbow_flex_link" />
+            
+            <axis xyz="0 -1 0"/>
+            <!-- From -113 to 108 degrees -->
+            <limit  lower="-1.972222" upper="1.8849556" effort="300" velocity="1.17" />
+            <dynamics damping="50" friction="1"/>
+            <safety_controller k_position="100" k_velocity="15.0" soft_lower_limit="${-1.972222+0.1}" soft_upper_limit="${1.8849556-0.1}" />
+        </joint>
+        
+        <!-- Wrist rotate joint -->
+        <joint name="wrist_roll_joint" type="revolute">
+            <origin xyz="${0.08 - 0.01} 0 ${0.05 - 0.0115 - 0.0155}" rpy="0 0 0" />
+            <parent link="arm_elbow_flex_link"/>
+            <child link="arm_wrist_roll_link" />
+            
+            <axis xyz="-1 0 0"/>
+            <!-- From -150 to 150 degrees -->
+            <limit  lower="-2.6179939" upper="2.6179939" effort="300" velocity="1.17" />
+            <dynamics damping="50" friction="1"/>
+            <safety_controller k_position="100" k_velocity="15.0" soft_lower_limit="${-2.6179939+0.1}" soft_upper_limit="${2.6179939-0.1}" />
+        </joint>
+        
+        <!-- Gripper right finger joint -->
+        <joint name="right_finger_joint" type="revolute">
+            <origin xyz="${0.0015 + 0.05 - 0.01} ${-0.035/2} 0" rpy="0 0 0" />
+            <parent link="arm_wrist_roll_link"/>
+            <child link="arm_right_finger_link" />
+            
+            <axis xyz="0 0 1"/>
+            <!-- From 14 to -45 degrees -->
+            <limit  lower="-0.838576116" upper="0.245436912" effort="300" velocity="1.17" />
+            <dynamics damping="50" friction="1"/>
+            <safety_controller k_position="100" k_velocity="15.0" soft_lower_limit="${-0.838576116+0.1}" soft_upper_limit="${0.245436912-0.1}" />
+        </joint>
+        
+        <!-- Gripper left finger joint -->
+        <joint name="left_finger_joint" type="revolute">
+            <origin xyz="${0.0015 + 0.05 - 0.01} ${0.035/2} 0" rpy="0 0 0" />
+            <parent link="arm_wrist_roll_link"/>
+            <child link="arm_left_finger_link" />
+            
+            <axis xyz="0 0 1"/>
+            <!-- From -14 to 45 degrees -->
+            <limit  lower="-0.240323643" upper="0.843689385" effort="300" velocity="1.17" />
+            <dynamics damping="50" friction="1"/>
+            <safety_controller k_position="100" k_velocity="15.0" soft_lower_limit="${-0.240323643+0.1}" soft_upper_limit="${0.843689385-0.1}" />
+        </joint>
+        
+        <!-- ****** LINK DEFINITIONS ****** -->
+        
+        <link name="arm_base_link">
+            <inertial>
+                <mass value="0.125" />
+                <origin xyz="0 0 0.00893364" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_base.dae"/>
+                </geometry>
+                <material name="Green" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_base.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <link name="arm_shoulder_pan_link">
+            <inertial>
+                <mass value="0.405" />
+                <origin xyz="0.02988871 0 0.02056699" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.005" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_shoulder_pan.dae"/>
+                </geometry>
+                <material name="Grey" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_shoulder_pan.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <link name="arm_shoulder_pitch_link">
+            <inertial>
+                <mass value="0.18" />
+                <origin xyz="0.13999458 0 0.00064711" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_shoulder_pitch.dae"/>
+                </geometry>
+                <material name="Blue" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_shoulder_pitch.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <link name="arm_elbow_flex_link">
+            <inertial>
+                <mass value="0.12" />
+                <origin xyz="0.04463361 0 0.00720194" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_elbow_flex.dae"/>
+                </geometry>
+                <material name="Green" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_elbow_flex.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <link name="arm_wrist_roll_link">
+            <inertial>
+                <mass value="0.13" />
+                <origin xyz="0.02539960 0 0" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_wrist_roll.dae"/>
+                </geometry>
+                <material name="Grey" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_wrist_roll.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <link name="arm_right_finger_link">
+            <inertial>
+                <mass value="0.0225" />
+                <origin xyz="0.03058625 -0.01804371 -0.00941599" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_right_finger.dae"/>
+                </geometry>
+                <material name="Blue" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_right_finger.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <link name="arm_left_finger_link">
+            <inertial>
+                <mass value="0.0225" />
+                <origin xyz="0.03058625 0.01804371 -0.00941599" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                         iyy="1.0" iyz="0.0" 
+                         izz="1.0" />
+            </inertial>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_left_finger.dae"/>
+                </geometry>
+                <material name="Green" />
+            </visual>
+            
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://smart_arm_description/meshes/collada/arm_left_finger.dae"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <!-- ****** TRANSMISSION DEFINITIONS ****** -->
+        
+        <transmission type="pr2_mechanism_model/SimpleTransmission" name="shoulder_pan_trans">
+            <actuator name="shoulder_pan_motor" />
+            <joint name="shoulder_pan_joint" />
+            <mechanicalReduction>1.0</mechanicalReduction>
+        </transmission>
+        
+        <transmission type="pr2_mechanism_model/SimpleTransmission" name="shoulder_pitch_trans">
+            <actuator name="shoulder_pitch_motor" />
+            <joint name="shoulder_pitch_joint" />
+            <mechanicalReduction>1.0</mechanicalReduction>
+        </transmission>
+        
+        <transmission type="pr2_mechanism_model/SimpleTransmission" name="elbow_flex_trans">
+            <actuator name="elbow_flex_motor" />
+            <joint name="elbow_flex_joint" />
+            <mechanicalReduction>1.0</mechanicalReduction>
+        </transmission>
+        
+        <transmission type="pr2_mechanism_model/SimpleTransmission" name="wrist_roll_trans">
+            <actuator name="wrist_roll_motor" />
+            <joint name="wrist_roll_joint" />
+            <mechanicalReduction>1.0</mechanicalReduction>
+        </transmission>
+        
+        <transmission type="pr2_mechanism_model/SimpleTransmission" name="right_finger_trans">
+            <actuator name="right_finger_motor" />
+            <joint name="right_finger_joint" />
+            <mechanicalReduction>1.0</mechanicalReduction>
+        </transmission>
+        
+        <transmission type="pr2_mechanism_model/SimpleTransmission" name="left_finger_trans">
+            <actuator name="left_finger_motor" />
+            <joint name="left_finger_joint" />
+            <mechanicalReduction>1.0</mechanicalReduction>
+        </transmission>
+        
+        <!-- ****** MATERIAL DEFINITIONS ****** -->
+        
+        <gazebo reference="arm_base_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+        </gazebo>
+        
+        <gazebo reference="arm_shoulder_pan_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+        </gazebo>
+        
+        <gazebo reference="arm_shoulder_pitch_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+        </gazebo>
+        
+        <gazebo reference="arm_elbow_flex_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+        </gazebo>
+        
+        <gazebo reference="arm_wrist_roll_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+        </gazebo>
+        
+        <gazebo reference="arm_right_finger_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+            <mu1 value="500.0" />
+            <mu2 value="500.0" />
+            <kp value="1000000.0" />
+            <kd value="1.0" />
+        </gazebo>
+        
+        <gazebo reference="arm_left_finger_link">
+            <material>SmartArm/GunMetalBrushedAluminum</material>
+            <turnGravityOff>true</turnGravityOff>
+            <mu1 value="500.0" />
+            <mu2 value="500.0" />
+            <kp value="1000000.0" />
+            <kd value="1.0" />
+        </gazebo>
+        
+        <gazebo reference="shoulder_pan_joint">
+            <stopKd value="1.0" />
+            <stopKp value="1000000.0" />
+            <fudgeFactor value="0.5" />
+        </gazebo>
+        
+        <gazebo reference="shoulder_pitch_joint">
+            <stopKd value="1.0" />
+            <stopKp value="1000000.0" />
+            <fudgeFactor value="0.5" />
+        </gazebo>
+        
+        <gazebo reference="elbow_flex_joint">
+            <stopKd value="1.0" />
+            <stopKp value="1000000.0" />
+            <fudgeFactor value="0.5" />
+        </gazebo>
+        
+        <gazebo reference="wrist_roll_joint">
+            <stopKd value="1.0" />
+            <stopKp value="1000000.0" />
+            <fudgeFactor value="0.5" />
+        </gazebo>
+        
+        <gazebo reference="right_finger_joint">
+            <stopKd value="1.0" />
+            <stopKp value="1000000.0" />
+            <fudgeFactor value="1.0" />
+        </gazebo>
+        
+        <gazebo reference="left_finger_joint">
+            <stopKd value="1.0" />
+            <stopKp value="1000000.0" />
+            <fudgeFactor value="1.0" />
+        </gazebo>
+    </macro>
+</robot>

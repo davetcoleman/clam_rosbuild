@@ -1,0 +1,48 @@
+shoulder_pan_controller:
+  type: robot_mechanism_controllers/JointPositionController
+  joint: shoulder_pan_joint
+  pid:
+    p: 80.0
+    i: 10.0
+    d: 50.0
+
+shoulder_pitch_controller:
+  type: robot_mechanism_controllers/JointPositionController
+  joint: shoulder_tilt_joint
+  pid:
+    p: 80.0
+    i: 10.0
+    d: 50.0
+
+elbow_flex_controller:
+  type: robot_mechanism_controllers/JointPositionController
+  joint: elbow_tilt_joint
+  pid:
+    p: 80.0
+    i: 10.0
+    d: 50.0
+
+wrist_roll_controller:
+  type: robot_mechanism_controllers/JointPositionController
+  joint: wrist_rotate_joint
+  pid:
+    p: 80.0
+    i: 10.0
+    d: 50.0
+
+left_finger_controller:
+  type: robot_mechanism_controllers/JointPositionController
+  joint: left_finger_joint
+  pid:
+    p: 80.0
+    i: 10.0
+    d: 50.0
+
+right_finger_controller:
+  type: robot_mechanism_controllers/JointPositionController
+  joint: right_finger_joint
+  pid:
+    p: 80.0
+    i: 10.0
+    d: 50.0
+

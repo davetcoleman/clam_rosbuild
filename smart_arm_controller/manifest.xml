@@ -1,0 +1,16 @@
+<package>
+    <description brief="Crust Crawler AX-12+ Smart Arm controller">
+        Crust Crawler AX-12+ Smart Arm controller that uses dynamixel_controllers for motor control.
+    </description>
+    
+    <author>Antons Rebguns</author>
+    <license>BSD</license>
+    <review status="unreviewed" notes=""/>
+    <url>http://ros.org/wiki/smart_arm_controller</url>
+    
+    <depend package="rospy"/>
+    <depend package="dynamixel_controllers"/>
+    <depend package="std_msgs"/>
+</package>
+
+

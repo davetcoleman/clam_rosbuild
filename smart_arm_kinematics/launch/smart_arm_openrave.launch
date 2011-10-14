@@ -1,0 +1,6 @@
+<launch>
+    <node name="openrave_smart_arm" pkg="openrave" type="openrave-bin"
+          args="$(find smart_arm_kinematics)/openrave_description/smart_arm_robot.xml" output="screen">
+          <env name="OPENRAVE_DATA" value="$(find smart_arm_description)/meshes/iv" />
+    </node>
+</launch>
