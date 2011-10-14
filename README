@@ -1,0 +1,9 @@
+CLAM 2
+Correll Lab Arm Manipulator | correll.cs.colorado.edu
+ROS Stack | ros.org
+
+Author: Dave Coleman | davetcoleman@gmail.com
+
+New version of the controls for the robotic arm in the Correll Lab at the University of Colorado Boulder.
+
+Heavily based on the Crust Crust Crawler Smart Arm.
