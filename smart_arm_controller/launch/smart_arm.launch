@@ -8,13 +8,13 @@
             diagnostics_rate: 1
             serial_ports:
                 port_ttl:
-                    port_name: "/dev/ttyUSB1"
+                    port_name: "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A8005jPB-if00-port0"
                     baud_rate: 1000000
                     min_motor_id: 0
                     max_motor_id: 7
                     update_rate: 1
                 port_rs485:
-                    port_name: "/dev/ttyUSB0"
+                    port_name: "/dev/serial/by-id/usb-Dynamixel_AX12_A9SI8OUC-if00-port0"
                     baud_rate: 1000000
                     min_motor_id: 0
                     max_motor_id: 7

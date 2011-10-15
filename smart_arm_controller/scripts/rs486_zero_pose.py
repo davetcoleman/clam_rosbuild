@@ -40,24 +40,21 @@ import time
 import rospy
 from std_msgs.msg import Float64
 
-joint_names = ('shoulder_pan_controller',
+joint_names = (
                'shoulder_pitch_controller',
                'elbow_roll_controller',
                'elbow_pitch_controller',
                'wrist_roll_controller',
-               'wrist_pitch_controller',
-               'gripper_roll_controller',
-               'gripper_grip_controller')
-               
-joint_commands = (0.0, 2, 0.0, -0.3, 0.0, 0.0, 0.0, 1.0)
+               'wrist_pitch_controller')
+                              
+joint_commands = (0.0, 0.0, 0.0, 0.0, 0.0)
 
 
 if __name__ == '__main__':
     pubs = [rospy.Publisher(name + '/command', Float64) for name in joint_names]
-    rospy.init_node('make_cobra_pose', anonymous=True)
+    rospy.init_node('rs485_zero_pose', anonymous=True)
     
     for i in range(len(pubs)):
-        pubs[len(pubs)-1-i].publish(joint_commands[len(pubs)-1-i])
+        pubs[i].publish(joint_commands[i])
         time.sleep(.5)
         print "Sending command"
-        

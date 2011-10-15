@@ -49,7 +49,7 @@ joint_names = ('shoulder_pan_controller',
                'gripper_roll_controller',
                'gripper_grip_controller')
                
-joint_commands = (0.0, 0.0, 0.0, 0.0, -3.0, 1.5, 0.0, 1.4)
+joint_commands = (0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 0.0, 1.4)
 
 
 if __name__ == '__main__':

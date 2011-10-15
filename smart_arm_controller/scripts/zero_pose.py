@@ -58,5 +58,5 @@ if __name__ == '__main__':
     
     for i in range(len(pubs)):
         pubs[i].publish(joint_commands[i])
-        time.sleep(2)
-        
+        time.sleep(.5)
+        print "Sending command"

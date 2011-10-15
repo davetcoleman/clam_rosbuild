@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 #
 # Software License Agreement (BSD License)
@@ -41,23 +42,41 @@ import rospy
 from std_msgs.msg import Float64
 
 joint_names = ('shoulder_pan_controller',
-               'shoulder_pitch_controller',
-               'elbow_roll_controller',
-               'elbow_pitch_controller',
-               'wrist_roll_controller',
-               'wrist_pitch_controller',
                'gripper_roll_controller',
                'gripper_grip_controller')
                
-joint_commands = (0.0, 2, 0.0, -0.3, 0.0, 0.0, 0.0, 1.0)
+joint_commands  = (0.5, 0.5, -1.0)
+joint_commands2  = (0.0, 0.0, 0.0)
 
 
-if __name__ == '__main__':
+def main():
+
     pubs = [rospy.Publisher(name + '/command', Float64) for name in joint_names]
-    rospy.init_node('make_cobra_pose', anonymous=True)
+    rospy.init_node('animate_ttl', anonymous=True)
     
-    for i in range(len(pubs)):
-        pubs[len(pubs)-1-i].publish(joint_commands[len(pubs)-1-i])
-        time.sleep(.5)
-        print "Sending command"
+    while(True):
+        for i in range(len(pubs)):
+            pubs[i].publish(joint_commands[i])
+            print 'sending command'
+            time.sleep(5)
+
+        print ' -------------------------------'
+        time.sleep(2)
+
+        for i in range(len(pubs)):
+            pubs[i].publish(joint_commands2[i])
+            print 'sending command'
+            time.sleep(5)
         
+
+
+# Where the program starts                                                                                          
+if __name__ == "__main__":
+    try:
+        main()
+    # Now attempt to prevent the robot from falling limp                                                            
+    except KeyboardInterrupt:
+        print "done"
+    except Exception as e:
+        traceback.print_exc(e)
+        print "done"
