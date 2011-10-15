@@ -1,4 +1,4 @@
-<Robot name="smart_arm">
+<Robot name="pdArm">
 	<KinBody>
         <RotationAxis>0 1 0 180</RotationAxis>
         <RotationAxis>1 0 0 90</RotationAxis>
