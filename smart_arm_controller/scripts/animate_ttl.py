@@ -41,12 +41,11 @@ import time
 import rospy
 from std_msgs.msg import Float64
 
-joint_names = ('shoulder_pan_controller',
-               'gripper_roll_controller',
+joint_names = ('gripper_roll_controller',
                'gripper_grip_controller')
                
-joint_commands  = (0.5, 0.5, -1.0)
-joint_commands2  = (0.0, 0.0, 0.0)
+joint_commands  = (1.0, -1.0)
+joint_commands2  = (-1.0, 0.0)
 
 
 def main():
@@ -58,15 +57,14 @@ def main():
         for i in range(len(pubs)):
             pubs[i].publish(joint_commands[i])
             print 'sending command'
-            time.sleep(5)
+            time.sleep(2)
 
         print ' -------------------------------'
-        time.sleep(2)
 
         for i in range(len(pubs)):
             pubs[i].publish(joint_commands2[i])
             print 'sending command'
-            time.sleep(5)
+            time.sleep(2)
         
 
 
