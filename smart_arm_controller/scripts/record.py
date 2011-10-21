@@ -48,6 +48,9 @@ if __name__ == '__main__':
             print "Service call failed: %s"%e
             
     # begin recording joint angles
+    
+    time.sleep(5)
+
     print '-----------------------------------------------'
     print 'Listening'
     print '-----------------------------------------------'

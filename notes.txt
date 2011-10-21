@@ -436,7 +436,7 @@ TODO:
 	DONE Switch out usb0 and usb1 names
 	Understand compliance margin
 	Learn rviz
-	Start documenting
+	DONE Start documenting
 	Reply to forum post
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
