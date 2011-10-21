@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_ik.cpp
+cmath
+-
+vector
+-
+limits
+-
+algorithm
+-
+complex
+-
+stdexcept
+-
+sstream
+-
+stdio.h
+-
+stdlib.h
+-
+

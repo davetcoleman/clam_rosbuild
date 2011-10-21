@@ -7,5 +7,5 @@
 
     <depend stack="ros" />
     <depend stack="ros_comm" />
-    <depend stack="dynamixel_motor" />
+    <!--depend stack="dynamixel_motor" /-->
 </stack>

@@ -11,11 +11,16 @@ NOTE: the smart_arm_description and smart_arm_kinematics do not work yet.
 
 TO INSTALL:
 
-1) Build the stack
-   rosmake clam2
-   ??
+1) Install Stack Dependencies
+   Package dynamixel_motor: 
+   	   www.ros.org/wiki/dynamixel_motor
+   Package control_msgs: 
+   	   www.ros.org/wiki/control_msgs
 
-2) Setup the Dynamixel2USB controllers
+2) Build the stack
+   rosmake clam2
+
+3) Setup the Dynamixel2USB controllers
    - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/
    - Disable a conflicting system udev rule if necessary located at /lib/udev/rules.d/95-upower-wup.rules
 

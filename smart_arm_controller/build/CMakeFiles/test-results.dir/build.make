@@ -32,15 +32,15 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/correlllab/ros/smart_arm_controller
+CMAKE_SOURCE_DIR = /home/correlllab/ros/clam2/smart_arm_controller
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/correlllab/ros/smart_arm_controller/build
+CMAKE_BINARY_DIR = /home/correlllab/ros/clam2/smart_arm_controller/build
 
 # Utility rule file for test-results.
 
 CMakeFiles/test-results:
-	/opt/ros/diamondback/ros/tools/rosunit/scripts/summarize_results.py --nodeps smart_arm_controller
+	/opt/ros/electric/ros/tools/rosunit/scripts/summarize_results.py --nodeps smart_arm_controller
 
 test-results: CMakeFiles/test-results
 test-results: CMakeFiles/test-results.dir/build.make
@@ -55,6 +55,6 @@ CMakeFiles/test-results.dir/clean:
 .PHONY : CMakeFiles/test-results.dir/clean
 
 CMakeFiles/test-results.dir/depend:
-	cd /home/correlllab/ros/smart_arm_controller/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/correlllab/ros/smart_arm_controller /home/correlllab/ros/smart_arm_controller /home/correlllab/ros/smart_arm_controller/build /home/correlllab/ros/smart_arm_controller/build /home/correlllab/ros/smart_arm_controller/build/CMakeFiles/test-results.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/correlllab/ros/clam2/smart_arm_controller/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/correlllab/ros/clam2/smart_arm_controller /home/correlllab/ros/clam2/smart_arm_controller /home/correlllab/ros/clam2/smart_arm_controller/build /home/correlllab/ros/clam2/smart_arm_controller/build /home/correlllab/ros/clam2/smart_arm_controller/build/CMakeFiles/test-results.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/test-results.dir/depend
 

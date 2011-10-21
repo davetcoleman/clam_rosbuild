@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <NXUSTREAM2>
+    <NxuPhysicsCollection id="beshon" sdkVersion="244" nxuVersion="100">
+      <NxPhysicsSDKDesc id="SDK">
+        <hwPageSize>65536</hwPageSize>
+        <hwPageMax>256</hwPageMax>
+        <hwConvexMax>2048</hwConvexMax>
+      </NxPhysicsSDKDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_0">
+    <points>
+      0.090750001 -0.019577 0.014  0.090750001 -0.018479001 -0.0155  0.090750001 0 0.0155  0.040375002 0 0.014  
+      0.040375002 -0.019979 -0.0155  0.040375002 -0.016979 0.0155  0.040375002 -0.019934 0.013021  0.090750001 -0.019979 -0.0155  
+      0.040375002 0 0.0155  0.090750001 -0.016979 0.0155  0.040375002 -0.018479001 -0.0155  0.090750001 0 0.014  
+    </points>
+    <triangles>
+      0 1 2  3 4 5  6 0 5  6 5 4  
+      7 0 6  7 6 4  7 4 1  7 1 0  
+      8 5 2  8 2 3  8 3 5  9 0 2  
+      9 2 5  9 5 0  10 1 4  10 4 3  
+      10 3 1  11 2 1  11 1 3  11 3 2  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_1">
+    <points>
+      0.090750001 0 0.014  0.090750001 0.019979 -0.0155  0.090750001 0.016979 0.0155  0.040375002 0.019595679 0.013959936  
+      0.040375002 0.018479001 -0.0155  0.040375002 0 0.0155  0.090750001 0.019934 0.013021  0.040375002 0.019979 -0.0155  
+      0.090750001 0 0.0155  0.040375002 0.017023036 0.015496111  0.090750001 0.018479001 -0.0155  0.040375002 0 0.014  
+    </points>
+    <triangles>
+      0 1 2  3 4 5  6 2 1  6 3 2  
+      7 3 6  7 6 1  7 1 4  7 4 3  
+      8 0 2  8 2 5  8 5 0  9 5 2  
+      9 2 3  9 3 5  10 0 4  10 4 1  
+      10 1 0  11 4 0  11 0 5  11 5 4  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_2">
+    <points>
+      0.031500001 -0.0274895 -0.0155  0.003159 -0.021478999 -0.0155  0.040375002 -0.018479001 -0.0155  0.040375002 -0.019577 0.014  
+      0.031500001 -0.0274895 0.0155  0.040375002 0 0.0155  0.029999999 0 0.0155  -0.009001 -0.019979 -0.007263  
+      -0.006154 -0.019979 0.011559  0.001436 -0.021478999 0.01537  -0.009888 -0.021478999 0.003931  -0.001887 -0.019979 -0.01445  
+    </points>
+    <triangles>
+      0 1 2  3 4 0  3 0 2  3 2 5  
+      3 5 4  6 7 8  6 4 5  6 5 2  
+      9 4 6  9 6 8  10 4 9  10 8 7  
+      10 9 8  10 0 4  10 1 0  10 7 1  
+      11 2 1  11 6 2  11 1 7  11 7 6  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_3">
+    <points>
+      0.031500001 0.0274895 -0.0155  0.031500001 0.0274895 0.0155  0.040375002 0.019979 -0.0155  0.003159 0.019979 -0.0155  
+      0.040375002 0.019595679 0.013959936  0.040375002 0 0.0155  0.029999999 0 0.014  -0.009001 0.019979 -0.007263  
+      -0.006154 0.019979 0.011559  0.001436 0.019979 0.01537  -0.004861 0.021478999 -0.012706  -0.009888 0.021478999 0.003931  
+    </points>
+    <triangles>
+      0 1 2  0 2 3  4 2 1  4 1 5  
+      4 5 2  6 3 2  6 2 5  7 3 6  
+      7 6 8  9 8 6  9 6 5  9 5 1  
+      9 1 8  10 0 3  10 3 7  11 7 8  
+      11 10 7  11 8 1  11 1 0  11 0 10  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_4">
+    <points>
+      0.031500001 0.054979 -0.0155  0.031500001 0.054979 0.0155  0.031500001 0.0274895 0.0155  -0.009888 0.054979 0.003931  
+      -0.001887 0.054979 -0.01445  0.0285 0.0274895 -0.0155  -0.000255 0.054979 0.015018  -0.009001 0.053479001 -0.007263  
+      0.031500001 0.0274895 -0.0155  -0.007287 0.053479001 0.010255  0.0285 0.0274895 0.0155  -0.009001 0.054979 -0.007263  
+    </points>
+    <triangles>
+      0 1 2  0 3 1  4 3 0  4 0 5  
+      6 1 3  7 4 5  8 2 5  8 5 0  
+      8 0 2  9 3 7  9 6 3  10 6 9  
+      10 9 7  10 5 2  10 7 5  10 2 1  
+      10 1 6  11 3 4  11 4 7  11 7 3  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_5">
+    <points>
+      0.031500001 -0.0274895 -0.0155  0.031500001 -0.054979 -0.0155  0.003159 -0.054979 -0.0155  0.031500001 -0.0274895 0.0155  
+      0.031500001 -0.054979 0.0155  -0.006154 -0.054979 0.011559  0.001436 -0.054979 0.01537  -0.003431 -0.053479001 -0.013674  
+      -0.009001 -0.053479001 -0.007263  -0.01 -0.054979 -0.002207  -0.009553 -0.053479001 0.005626  0.0285 -0.0274895 0.0155  
+    </points>
+    <triangles>
+      0 1 2  1 0 3  4 2 1  4 1 3  
+      5 2 4  6 5 4  7 0 2  7 8 0  
+      9 5 10  9 10 8  9 8 7  9 7 2  
+      9 2 5  11 0 8  11 8 10  11 3 0  
+      11 10 5  11 5 6  11 4 3  11 6 4  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_6">
+    <points>
+      0.090750001 0.016979 0.0155  0.137999997 0 0.0155  0.141124994 0.053479999 0.0155  0.090750001 0 0.014  
+      0.090750001 0.018479001 -0.0155  0.137999997 0.018479001 -0.0155  0.141124994 0.053479999 -0.0155  0.141124994 0.02148 -0.0155  
+      0.136500001 0.053479999 0.0155  0.136500001 0.053479999 -0.0155  0.090750001 0.019934 0.013021  0.141124994 0.02148 0.0155  
+    </points>
+    <triangles>
+      0 1 2  3 1 0  3 0 4  5 1 3  
+      5 3 4  5 4 6  7 1 5  7 5 6  
+      7 6 2  8 0 2  8 2 6  9 6 4  
+      9 8 6  10 8 9  10 9 4  10 4 0  
+      10 0 8  11 2 1  11 1 7  11 7 2  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_7">
+    <points>
+      0.090750001 0 0.014  0.090750001 -0.018005 0.015319  0.137999997 0 0.0155  0.090750001 -0.018479001 -0.0155  
+      0.137999997 -0.018479001 -0.0155  0.136500001 -0.053479999 -0.0155  0.141124994 -0.053479999 -0.0155  0.141124994 -0.053479999 0.0155  
+      0.141124994 -0.02148 -0.0155  0.136500001 -0.053479999 0.0155  0.141124994 -0.02148 0.0155  0.090750001 -0.019979 0.0125  
+    </points>
+    <triangles>
+      0 1 2  0 3 1  4 3 0  4 0 2  
+      4 5 3  6 7 5  6 5 4  8 4 2  
+      8 6 4  8 7 6  9 7 2  9 2 1  
+      9 5 7  10 2 7  10 7 8  10 8 2  
+      11 3 5  11 5 9  11 1 3  11 9 1  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_8">
+    <points>
+      0.141124994 -0.053479999 0.0155  0.141124994 -0.053479999 -0.0155  0.191348001 -0.053479999 0.007236  0.141124994 -0.02148 -0.0155  
+      0.181500003 -0.02148 0.0155  0.187928006 -0.02148 -0.01316  0.141124994 -0.02148 0.0155  0.184919998 -0.053479999 -0.014897  
+      0.191348001 -0.02148 0.007236  0.183236003 -0.053479999 0.015348  0.190897003 -0.053479999 -0.00892  0.191348001 -0.02148 -0.007236  
+    </points>
+    <triangles>
+      0 1 2  3 1 0  3 4 5  6 0 4  
+      6 4 3  6 3 0  7 1 3  7 3 5  
+      7 2 1  8 5 4  9 2 8  9 8 4  
+      9 4 0  9 0 2  10 2 7  10 7 5  
+      11 8 2  11 2 10  11 5 8  11 10 5  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_9">
+    <points>
+      0.141124994 0.02148 0.0155  0.141124994 0.02148 -0.0155  0.191348001 0.02148 0.007236  0.141124994 0.053479999 -0.0155  
+      0.181500003 0.053479999 0.0155  0.187928006 0.053479999 -0.01316  0.141124994 0.053479999 0.0155  0.184919998 0.02148 -0.014897  
+      0.191348001 0.053479999 0.007236  0.183236003 0.02148 0.015348  0.190897003 0.02148 -0.00892  0.191348001 0.053479999 -0.007236  
+    </points>
+    <triangles>
+      0 1 2  3 1 0  3 4 5  6 0 4  
+      6 4 3  6 3 0  7 1 3  7 3 5  
+      7 2 1  8 5 4  9 2 8  9 8 4  
+      9 4 0  9 0 2  10 2 7  10 7 5  
+      11 8 2  11 2 10  11 5 8  11 10 5  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxSceneDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch">
+        <filterBool>false</filterBool>
+        <filterOp0>NX_FILTEROP_AND</filterOp0>
+        <filterOp1>NX_FILTEROP_AND</filterOp1>
+        <filterOp2>NX_FILTEROP_AND</filterOp2>
+        <NxGroupsMask id="groupMask0" bits0="0" bits1="0" bits2="0" bits3="0"/>
+        <NxGroupsMask id="groupMask1" bits0="0" bits1="0" bits2="0" bits3="0"/>
+        <gravity>0 -9.800000191 0</gravity>
+        <maxTimestep>0.016666668</maxTimestep>
+        <maxIter>8</maxIter>
+        <timeStepMethod>NX_TIMESTEP_FIXED</timeStepMethod>
+        <maxBounds>FLT_MIN FLT_MIN FLT_MIN  FLT_MAX FLT_MAX FLT_MAX</maxBounds>
+        <NxSceneLimits id="limits">
+          <maxNbActors>0</maxNbActors>
+          <maxNbBodies>0</maxNbBodies>
+          <maxNbStaticShapes>0</maxNbStaticShapes>
+          <maxNbDynamicShapes>0</maxNbDynamicShapes>
+          <maxNbJoints>0</maxNbJoints>
+        </NxSceneLimits>
+        <simType>NX_SIMULATION_SW</simType>
+        <groundPlane>true</groundPlane>
+        <boundsPlanes>false</boundsPlanes>
+        <NxSceneFlags id="flags">
+          <NX_SF_DISABLE_SSE>false</NX_SF_DISABLE_SSE>
+          <NX_SF_DISABLE_COLLISIONS>false</NX_SF_DISABLE_COLLISIONS>
+          <NX_SF_SIMULATE_SEPARATE_THREAD>true</NX_SF_SIMULATE_SEPARATE_THREAD>
+          <NX_SF_ENABLE_MULTITHREAD>false</NX_SF_ENABLE_MULTITHREAD>
+        </NxSceneFlags>
+        <internalThreadCount>0</internalThreadCount>
+        <backgroundThreadCount>0</backgroundThreadCount>
+        <threadMask>1431655764</threadMask>
+        <backgroundThreadMask>1431655764</backgroundThreadMask>
+        <NxMaterialDesc id="Material_0" userProperties="" hasSpring="false" materialIndex="0">
+          <dynamicFriction>0.5</dynamicFriction>
+          <staticFriction>0.5</staticFriction>
+          <restitution>0</restitution>
+          <dynamicFrictionV>0</dynamicFrictionV>
+          <staticFrictionV>0</staticFrictionV>
+          <frictionCombineMode>NX_CM_AVERAGE</frictionCombineMode>
+          <restitutionCombineMode>NX_CM_AVERAGE</restitutionCombineMode>
+          <dirOfAnisotropy>1 0 0</dirOfAnisotropy>
+          <NxMaterialFlag id="flags">
+            <NX_MF_ANISOTROPIC>false</NX_MF_ANISOTROPIC>
+            <NX_MF_DISABLE_FRICTION>false</NX_MF_DISABLE_FRICTION>
+            <NX_MF_DISABLE_STRONG_FRICTION>false</NX_MF_DISABLE_STRONG_FRICTION>
+          </NxMaterialFlag>
+        </NxMaterialDesc>
+    <NxActorDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch" userProperties="" hasBody="true" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch">
+      <globalPose>1 0 0    0 1 0    0 0 1    0 0 0 </globalPose>
+			<NxBodyDesc>
+        <mass>1</mass>
+        <linearDamping>0</linearDamping>
+        <angularDamping>0</angularDamping>
+        <solverIterationCount>32</solverIterationCount>
+        <NxBodyFlag id="flags">
+          <NX_BF_POSE_SLEEP_TEST>true</NX_BF_POSE_SLEEP_TEST>
+          <NX_AF_DISABLE_COLLISION>false</NX_AF_DISABLE_COLLISION>
+        </NxBodyFlag>
+      </NxBodyDesc>
+      <name>Bip01 Pelvis</name>
+      <NxConvexShapeDesc id="Shape_0" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_0">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_1" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_1">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_2" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_2">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_3" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_3">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_4" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_4">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_5" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_5">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_6" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_6">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_7" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_7">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_8" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_8">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_9" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch_9">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+    </NxActorDesc>
+  </NxSceneDesc>
+	 <NxSceneInstance id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_shoulder_pitch">
+	 	 <sceneName>beshon</sceneName>
+	 	 <NxuUserProperties></NxuUserProperties>
+	 	 <rootNode>1	0	0	0	1	0	0	0	1	0	0 0</rootNode>
+	 	 <newScene>false</newScene>
+	 	 <ignorePlane>true</ignorePlane>
+	 	 <numSceneInstances>0</numSceneInstances>
+	 </NxSceneInstance>
+  </NxuPhysicsCollection>
+</NXUSTREAM2>

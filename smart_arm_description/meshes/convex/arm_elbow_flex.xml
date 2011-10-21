@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <NXUSTREAM2>
+    <NxuPhysicsCollection id="beshon" sdkVersion="244" nxuVersion="100">
+      <NxPhysicsSDKDesc id="SDK">
+        <hwPageSize>65536</hwPageSize>
+        <hwPageMax>256</hwPageMax>
+        <hwConvexMax>2048</hwConvexMax>
+      </NxPhysicsSDKDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_0">
+    <points>
+      0.029999999 -0.054979 0.0155  -0.006317 -0.054979 0.011731  0.002088 -0.054979 -0.0155  0.029999999 -0.019979 -0.0155  
+      -0.009484 -0.019979 -0.006379  0.029999999 -0.019979 0.0155  0.029999999 -0.054979 -0.0155  -0.003856 -0.019979 0.013671  
+      -0.009484 -0.054979 -0.006379  0.000529 -0.019979 -0.015321  -0.009484 -0.019979 0.006379  0.002088 -0.054979 0.0155  
+    </points>
+    <triangles>
+      0 1 2  3 4 5  3 5 0  6 0 2  
+      6 2 3  6 3 0  7 5 4  8 2 1  
+      9 2 8  9 8 4  9 4 3  9 3 2  
+      10 4 8  10 8 1  10 1 7  10 7 4  
+      11 1 0  11 7 1  11 0 5  11 5 7  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_1">
+    <points>
+      0.031500001 0.054979 -0.0155  0.031500001 0.054979 0.0155  0.029999999 0.019979 0.0155  -0.006317 0.054979 0.011731  
+      -0.006317 0.019979 0.011731  0.002088 0.019979 -0.0155  0.029999999 0.019979 -0.0155  -0.005146 0.054979 -0.012777  
+      -0.009484 0.019979 -0.006379  -0.01 0.054979 -0.003288  0.002088 0.054979 0.0155  0.002088 0.019979 0.0155  
+    </points>
+    <triangles>
+      0 1 2  0 3 1  4 5 2  6 2 5  
+      6 5 0  6 0 2  7 3 0  7 0 5  
+      8 5 4  8 7 5  9 3 7  9 7 8  
+      9 4 3  9 8 4  10 3 4  10 2 1  
+      10 1 3  11 4 2  11 2 10  11 10 4  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_2">
+    <points>
+      0.029999999 0.0274895 -0.0155  0.029999999 -0.054979 -0.0155  0.029999999 0.0274895 0.0155  0.068000004 0.021478999 -0.0155  
+      0.068000004 -0.021478999 -0.0155  0.031500001 -0.054979 0.0155  0.029999999 -0.009979 0.034499999  0.064999998 -0.018069001 0.030378001  
+      0.029999999 0.014519 0.033410002  0.064999998 0.009979 0.034499999  0.068000004 0.021478999 0.0155  0.07 -0.001646 0.032864001  
+    </points>
+    <triangles>
+      0 1 2  0 2 3  0 3 1  4 1 3  
+      4 5 1  6 2 1  6 1 5  7 6 5  
+      7 5 4  8 9 2  8 2 6  8 6 9  
+      10 2 9  10 3 2  11 4 3  11 3 10  
+      11 7 4  11 10 9  11 9 6  11 6 7  
+    </triangles>
+  </NxConvexMeshDesc>
+  <NxSceneDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex">
+        <filterBool>false</filterBool>
+        <filterOp0>NX_FILTEROP_AND</filterOp0>
+        <filterOp1>NX_FILTEROP_AND</filterOp1>
+        <filterOp2>NX_FILTEROP_AND</filterOp2>
+        <NxGroupsMask id="groupMask0" bits0="0" bits1="0" bits2="0" bits3="0"/>
+        <NxGroupsMask id="groupMask1" bits0="0" bits1="0" bits2="0" bits3="0"/>
+        <gravity>0 -9.800000191 0</gravity>
+        <maxTimestep>0.016666668</maxTimestep>
+        <maxIter>8</maxIter>
+        <timeStepMethod>NX_TIMESTEP_FIXED</timeStepMethod>
+        <maxBounds>FLT_MIN FLT_MIN FLT_MIN  FLT_MAX FLT_MAX FLT_MAX</maxBounds>
+        <NxSceneLimits id="limits">
+          <maxNbActors>0</maxNbActors>
+          <maxNbBodies>0</maxNbBodies>
+          <maxNbStaticShapes>0</maxNbStaticShapes>
+          <maxNbDynamicShapes>0</maxNbDynamicShapes>
+          <maxNbJoints>0</maxNbJoints>
+        </NxSceneLimits>
+        <simType>NX_SIMULATION_SW</simType>
+        <groundPlane>true</groundPlane>
+        <boundsPlanes>false</boundsPlanes>
+        <NxSceneFlags id="flags">
+          <NX_SF_DISABLE_SSE>false</NX_SF_DISABLE_SSE>
+          <NX_SF_DISABLE_COLLISIONS>false</NX_SF_DISABLE_COLLISIONS>
+          <NX_SF_SIMULATE_SEPARATE_THREAD>true</NX_SF_SIMULATE_SEPARATE_THREAD>
+          <NX_SF_ENABLE_MULTITHREAD>false</NX_SF_ENABLE_MULTITHREAD>
+        </NxSceneFlags>
+        <internalThreadCount>0</internalThreadCount>
+        <backgroundThreadCount>0</backgroundThreadCount>
+        <threadMask>1431655764</threadMask>
+        <backgroundThreadMask>1431655764</backgroundThreadMask>
+        <NxMaterialDesc id="Material_0" userProperties="" hasSpring="false" materialIndex="0">
+          <dynamicFriction>0.5</dynamicFriction>
+          <staticFriction>0.5</staticFriction>
+          <restitution>0</restitution>
+          <dynamicFrictionV>0</dynamicFrictionV>
+          <staticFrictionV>0</staticFrictionV>
+          <frictionCombineMode>NX_CM_AVERAGE</frictionCombineMode>
+          <restitutionCombineMode>NX_CM_AVERAGE</restitutionCombineMode>
+          <dirOfAnisotropy>1 0 0</dirOfAnisotropy>
+          <NxMaterialFlag id="flags">
+            <NX_MF_ANISOTROPIC>false</NX_MF_ANISOTROPIC>
+            <NX_MF_DISABLE_FRICTION>false</NX_MF_DISABLE_FRICTION>
+            <NX_MF_DISABLE_STRONG_FRICTION>false</NX_MF_DISABLE_STRONG_FRICTION>
+          </NxMaterialFlag>
+        </NxMaterialDesc>
+    <NxActorDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex" userProperties="" hasBody="true" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex">
+      <globalPose>1 0 0    0 1 0    0 0 1    0 0 0 </globalPose>
+			<NxBodyDesc>
+        <mass>1</mass>
+        <linearDamping>0</linearDamping>
+        <angularDamping>0</angularDamping>
+        <solverIterationCount>32</solverIterationCount>
+        <NxBodyFlag id="flags">
+          <NX_BF_POSE_SLEEP_TEST>true</NX_BF_POSE_SLEEP_TEST>
+          <NX_AF_DISABLE_COLLISION>false</NX_AF_DISABLE_COLLISION>
+        </NxBodyFlag>
+      </NxBodyDesc>
+      <name>Bip01 Pelvis</name>
+      <NxConvexShapeDesc id="Shape_0" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_0">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_1" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_1">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+      <NxConvexShapeDesc id="Shape_2" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_2">
+      <NxShapeDesc>
+        <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
+        <skinWidth>0</skinWidth>
+      </NxShapeDesc>
+      </NxConvexShapeDesc>
+    </NxActorDesc>
+  </NxSceneDesc>
+	 <NxSceneInstance id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex">
+	 	 <sceneName>beshon</sceneName>
+	 	 <NxuUserProperties></NxuUserProperties>
+	 	 <rootNode>1	0	0	0	1	0	0	0	1	0	0 0</rootNode>
+	 	 <newScene>false</newScene>
+	 	 <ignorePlane>true</ignorePlane>
+	 	 <numSceneInstances>0</numSceneInstances>
+	 </NxSceneInstance>
+  </NxuPhysicsCollection>
+</NXUSTREAM2>
