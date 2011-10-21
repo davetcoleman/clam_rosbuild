@@ -4,7 +4,7 @@ shoulder_pan_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: shoulder_pan_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 0
         init: 512
@@ -17,7 +17,7 @@ shoulder_pitch_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: shoulder_pitch_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 1
         init: 2048
@@ -30,7 +30,7 @@ elbow_roll_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: elbow_roll_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 2
         init: 512
@@ -43,7 +43,7 @@ elbow_pitch_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: elbow_pitch_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 3
         init: 512
@@ -56,7 +56,7 @@ wrist_roll_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: wrist_roll_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 4
         init: 512
@@ -69,7 +69,7 @@ wrist_pitch_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: wrist_pitch_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 5
         init: 512
@@ -82,7 +82,7 @@ gripper_roll_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: gripper_roll_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 6
         init: 512
@@ -95,7 +95,7 @@ gripper_grip_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: gripper_grip_joint
-    joint_speed: .5
+    joint_speed: 1
     motor:
         id: 7
         init: 424

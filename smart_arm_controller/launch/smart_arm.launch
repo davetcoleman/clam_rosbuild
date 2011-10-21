@@ -8,11 +8,17 @@
             diagnostics_rate: 1
             serial_ports:
                 port_ttl:
-                    port_name: "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A8005jPB-if00-port0"
+                    port_name: "/dev/dynamixel_rs485"
                     baud_rate: 1000000
                     min_motor_id: 0
                     max_motor_id: 7
-                    update_rate: 1
+                    update_rate: 10
+                port_rs485:
+                    port_name: "/dev/dynamixel_ttl"
+                    baud_rate: 1000000
+                    min_motor_id: 0
+                    max_motor_id: 7
+                    update_rate: 10
         </rosparam>
     </node>
 
@@ -27,6 +33,17 @@
 		shoulder_pan_controller
  		gripper_roll_controller
                 gripper_grip_controller"
+          output="screen"/>
+
+    <node name="smartarm_controller_spawner_rs485" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=smartarm_motor_manager
+                --port=port_rs485
+                --type=simple
+                shoulder_pitch_controller
+                elbow_roll_controller
+		elbow_pitch_controller
+                wrist_roll_controller
+                wrist_pitch_controller"
           output="screen"/>
 
 </launch>
