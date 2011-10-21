@@ -8,17 +8,17 @@
             diagnostics_rate: 1
             serial_ports:
                 port_ttl:
-                    port_name: "/dev/dynamixel_rs485"
-                    baud_rate: 1000000
-                    min_motor_id: 0
-                    max_motor_id: 7
-                    update_rate: 10
-                port_rs485:
                     port_name: "/dev/dynamixel_ttl"
                     baud_rate: 1000000
                     min_motor_id: 0
                     max_motor_id: 7
-                    update_rate: 10
+                    update_rate: 2
+                port_rs485:
+                    port_name: "/dev/dynamixel_rs485"
+                    baud_rate: 1000000
+                    min_motor_id: 0
+                    max_motor_id: 7
+                    update_rate: 2
         </rosparam>
     </node>
 

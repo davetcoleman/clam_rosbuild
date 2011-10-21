@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_msgs/msg
+END
+MotorStateList.msg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_msgs/msg/MotorStateList.msg
+END
+JointStateList.msg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_msgs/msg/JointStateList.msg
+END
+MotorState.msg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_msgs/msg/MotorState.msg
+END
+JointState.msg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_msgs/msg/JointState.msg
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1412/stacks/dynamixel_motor/trunk/dynamixel_driver/scripts
+END
+set_torque.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_driver/scripts/set_torque.py
+END
+set_servo_config.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/1412/stacks/dynamixel_motor/trunk/dynamixel_driver/scripts/set_servo_config.py
+END
+info_dump.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1410/stacks/dynamixel_motor/trunk/dynamixel_driver/scripts/info_dump.py
+END
+change_id.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_driver/scripts/change_id.py
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_driver/scripts/README
+END

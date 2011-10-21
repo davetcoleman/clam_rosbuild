@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1469/stacks/dynamixel_motor/trunk/dynamixel_controllers
+END
+manifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1428/stacks/dynamixel_motor/trunk/dynamixel_controllers/manifest.xml
+END
+mainpage.dox
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1394/stacks/dynamixel_motor/trunk/dynamixel_controllers/mainpage.dox
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_controllers/CMakeLists.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_controllers/Makefile
+END

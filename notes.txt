@@ -1,0 +1,472 @@
+Independent Study: Robotic Manipulation Notes
+8/31/2011 onward
+
+
+OBSERVATION WITH ROBOT ----------------------------------------------------------------
+Joint 5 has serious noise issues. No noise when in max angle position
+Lots of serial communication issues
+Need to fix wires
+the min and maxes are not all safe
+response packet has data issues...?
+
+
+MISC NOTES ----------------------------------------------------------------------
+
+ROS
+Webbots
+Slim
+C++
+Openrave
+
+TESTING SAVE 
+
+ARI MEETING 1 --------------------------------------------------------------------
+
+Kinex API
+	cloud of dots
+	web cam
+
+SLAM algorithm
+zigby triangulation
+
+
+MEETING WITH CORREL Sept 6th ----------------------------------------------------
+
+Thicker wires
+Change power supply
+Tech report on open rave
+Care Robot
+Prarie Dog
+Roten Arrows
+TurtleBot
+
+Velocuty Screw speed rotaiton
+rviz
+
+Aton rubix cubes - ME
+	designed entire arm
+	how to make it btter
+
+THINGS TO TALK ABOUT WITH CORREL AT NEXT MEETING --------------------------------
+
+Inform that working on my own branch along with ARI - the dynamics
+Issues with serial communication, etc
+What should I read to get up to date?
+What are the expectations of the report?
+Can I use the kinect?
+	PCL Point Cloud Library, OpenCV
+Looking into other things than OpenRave - what does PR2 use?
+How to work in Swarm Intelligence project?
+
+Robotis website - talk to them about the serial connection
+Bryan - electrical engineers
+
+Get something on paper about constructing
+Proposal for workshop
+Rapidly Exploring Random Tree
+
+
+
+
+NOTES ON ROBOTIC PARTS -----------------------------------------------
+
+USB2Dynamixel Device
+	TTL Communication Method
+	3 Pin Port for AX Series, AX-S1, erc
+
+Servos On Arm:	Act Volt	Comm Proto	Rec Volt
+	0 AX-12 J0	9.6V		TTL		11.1V
+	1 EX-106	14.8V		RS485		14.8V
+	2 RX-64	18V		RS485		18V
+	3 RX-64	
+	4 RX-28	14.8V		RS485		14.8V
+	5 RX-28
+	6 AX-12+	9.6V		TTL		11.1V
+	7 AX-12+
+	
+	
+Dynamixel SDK for Linux
+http://support.robotis.com/en/software/dynamixel_sdk/usb2dynamixel/usb2dxl_linux.htm
+
+Using Linux GCC
+http://support.robotis.com/en/software/dynamixel_sdk/usb2dynamixel/linux/gcc.htm
+
+FTDI's FT232RL is used for USB2Dynamixel Driver
+	http://www.sparkfun.com/datasheets/IC/FT232R_v104.pdf
+	FTDI USB to UART IC
+	Data transfer rates from 300 baud to 3 Megabaud  
+	(RS422 / RS485 and at TTL levels) and 300 baud to 1 Megabaud (RS232).
+
+	VPC Drivers - for use with Dynamixel
+	Included in 2.6.31 linux kernel and later
+
+More about TTL:
+	http://www.rs232-converters.com/articles/what_is_ttl.htm
+About RS 485
+	http://www.lvr.com/rs-485_circuits.htm
+
+EMAIL TO CORRELL --------------------------------------------
+
+However, I have been doing some investigation today about the communication erros and noise and see a potential problem with the robot arm. I took an inventory of which servos were used for which joints and it looks like we have 3 different series of servos: AX, EX and RX, see here.
+
+The problem is that the AX series uses the "TTL" communication protocol and the others use RS485. I'm not entirely sure the difference - TTL is a class of digital circuits - but I do know the USB2Dynamixel adapter has a switch for use in either TTL or RS485, but not both. Currently the USB adapter is set to TTL but in the python code there is reference to RS485 switch needing to be activated.
+
+From my research today it looks like TTL is 0 to 5 Volts and RS485 is -7 to +12 Volts. According to one source in reference to RS485 and TLL - "signal degradation and interference are much more likely to render a TTL signal unusable". 
+
+Other ideas - I read online, in reference to RS485, that "Most links use twisted pairs because of their ability to cancel magnetically and electromagnetically coupled noise." Our robot cables are not twisted pairs. I also read that it is common to add terminating resistors to the output RS-485 line to "reduce voltage reflections that could cause the receiver to misread logic levels". I don't know much about electronics but this seems like it might be a good idea. Specifically, they advocate adding 2 grounded 560 Ohm and 2 120 Ohm resistors connected in parallel.
+
+The two different wiring configurations for the RX and AX series are linked below:
+http://support.robotis.com/en/product/dynamixel/dxl_rx_main.htm
+http://support.robotis.com/en/product/dynamixel/dxl_ax_main.htm
+
+Based on this info, I'm surprised it communicates at all. But there must be something I'm missing. When you get a chance let's chat about this and if you want, I can contact robotis for more information about our situation.
+
+
+NOTES ON PR2 -------------------------------------------
+	motion_planning_common
+	rviz - used for displaying robot model and visualize joint paths
+	simulated robot in gazebo?
+	
+
+INVERSE KINEMATICS --------------------------------------
+	A decent looking textbook:
+	http://www.amazon.com/Theory-Applied-Robotics-Kinematics-Dynamics/dp/1441917497/ref=sr_1_1?s=books&ie=UTF8&qid=1316132200&sr=1-1
+
+
+ROS INVERSE KINEMATICS EXAMPLES-------------------------
+	Based on PR2 but adapted for Dynamixs servos:
+	http://www.ros.org/wiki/arm_navigation/Tutorials/Running%20arm%20navigation%20on%20non-PR2%20arm
+
+	Crust Crawler AX-12+ Thing Recommended by Correl
+		
+
+
+CORRELL MEETING SEPT 21 ------------------------------
+
+Things to talk about:
+	I cleaned up the robot cables and made demo video
+	What should I read to get up to date?
+	I'm going to have to do some vision stuff
+	What are the expectations of the report?
+	Robotis website - talk to them about the serial connection
+	Consturction Paper
+	UROP Application, Fullbright
+	Video
+
+
+Do you get more errors on the EX and RX servos than one the TTL-based
+ones? 
+	The TTL based ones always have their error bit activated when you request their status, but I am not sure…
+
+What happens when you change to RS485? 
+	You can't do this easily, because it is a different connector
+
+What does robotis say about mixing AX, EX and RX on a single bus? 
+	Question Posted here:
+	http://www.robotis.com/xe/qna_en/79109
+
+Notes from correll:
+OPen rave can only solve 3 or 6
+JJ has done vision project in class last time
+NDSEG NDSEC DOD
+NSF
+
+
+TODO -------------------------------------------------
+	Learn openrave
+	Start with vision aspect
+	Checkout Crust Crawler controller
+	
+
+CRUST CRAWLER CONVERSTION NOTES -----------------------
+Need to install gazebo
+xacro
+urdf
+model = robot_description
+smart_arm_description/meshes
+	meshes file type .stl	
+	somehow is a collada file?
+	this is where the robot model is saved
+collada folder:
+	file type .dae
+	uses VCGLab? MeshLab?
+also uses openrave:
+	
+EMACS NOTES ------------------------------------------------------
+		 Tab block of text: CTRL-c-SHIFT->
+
+ROS COMMANDS USED FOR CRUST CRAWLER ARM THING ---------------------
+
+$ rostopic pub -1 /wrist_roll_controller/command std_msgs/Float64 -- 2
+$ rostopic pub -1 /elbow_flex_controller/command std_msgs/Float64 -- -3
+
+$ rosservice call /wrist_roll_controller/torque_enable 1
+$ rosservice call /shoulder_pitch_controller/set_speed 2.5
+/restart_controller/ttyUSB0
+/start_..
+/stop_..
+
+
+Verified ----
+
+	roslaunch smart_arm_controller smart_arm.launch
+	rostopic echo /motor_states/port_ttl
+
+TTL COMMANDS:
+	rostopic pub -1 /shoulder_pan_controller/command std_msgs/Float64 -- -1.4
+	rostopic echo -c /shoulder_pan_controller/state
+RS485 COMMANDS:
+	rostopic pub -1 /elbow_roll_controller/command std_msgs/Float64 -- -1.4
+	rostopic echo -c /elbow_roll_controller/state
+
+SEE ALL AVAILABLE COMMANDS:
+    	rostopic list
+
+OTHER COMMANDS:
+      rostopic echo -c /motor_states/port_rs485
+      python set_torque.py --port=/dev/ttyUSB0 --baud=1000000 1 Off
+
+Search with grep: 
+       grep -R -i -n 'search term' *
+
+ANGLE CONVERSIONS wrist_pitch  ------------------------------------------------------
+
+RX-28
+ID = 5
+encoder resolution 1024
+range_degrees 300
+
+parameter server:
+	  rosparam get /wrist_pitch_controller/motor/min 0 
+	  rosparam get /wrist_pitch_controller/motor/max 1023
+	  rosparam get /wrist_pitch_controller/motor/init 512
+	 
+          this is set from
+	       self.dxl_io.get_angle_limits(motor_id)
+
+	  dyanamixel/port_rs485/5/radians_per_encoder_tick
+	  
+rosparam get /dynamixel/port_rs485/5/
+	 {
+	 degrees_per_encoder_tick: 0.29296875, 
+	 encoder_resolution: 1024, 
+	 encoder_ticks_per_degree: 3.4133333333333336,
+  	 encoder_ticks_per_radian: 195.56959407132098, 
+	 max_angle: 1023, 
+	 max_torque: 2.4712758,
+  	 max_velocity: 6.062424735405405, 
+	 min_angle: 0, 
+	 model_name: RX-28, 
+	 model_number: 28,
+  	 radians_per_encoder_tick: 0.0051132692929521375, 
+	 radians_second_per_encoder_tick: 0.0059261238860267886,
+  	 range_degrees: 300.0, 
+	 range_radians: 5.235987755982989, 
+	 torque_per_volt: 0.196133,
+  	 velocity_per_volt: 0.4811448202702702
+	 }
+
+driver_io
+	set_angle_limit_cw
+	set_angle_limit_ccw
+
+set_servo_config.py
+	__name__
+
+import dynamixel_driver import dynamixel_io
+	dxl_io = dynamixel_io.DynamixelIO(port, baudrate)
+	dxl_io.get_angle_limits(motor_id)
+
+dynamixel_driver/src/.../dynamixel_io.py
+	set_position(servo_id, position)
+		position - must be positive
+	set_multi_position([mcv])
+
+dynamixel_controller/../joint_position_controller.py
+	rad_to_raw(angle, initial_positon_raw, flipped, encoder_ticker_per_radian)
+	process_command
+
+
+position: 573
+
+
+ANGLE CONVERSIONS --------------------------------------------------------
+
+shoulder_pan_controller/state 
+	+/-2.6 RADIANS
+	+/-149 DEGREES
+
+Robotis Documentation for AX-12
+	Running Degree: 0 to 300 DEGREES
+	Goal Position: 0 to 1023, unit is .29 degree
+	300 D = 1024
+	150 D = 512
+	0 D = 0
+	
+GRIPPER ANGLE -------------------------------------------------------------
+Degrees:
+	min 45
+	max 130
+Radians: 
+	min .785
+ 	max 2.268
+
+DRIVER COMMUNICATION WORK WITH MAC ----------------------------------------
+Installed 2.2.16 driver from http://www.ftdichip.com/Drivers/VCP.htm
+Installed Mac Dynamixel Monitor from http://www.lucs.lu.se/Downloads/DynamixelMonitor.zip
+
+/dev/tty.usbserial-A9SI8OUC
+/dev/tty.usbserial-A8005jPB
+
+lsof lists ports being used
+/dev/ttyS0
+
+
+USB Notes ---------------------------------------------------------------------
+
+lsusb
+dmesg
+sudo dmesg -c
+sudo su
+echo -1 >/sys/module/usbcore/parameters/autosuspend
+
+Errors:
+	device descriptor read/64, error -110
+	device descriptor read/8, error -110
+	unable to enumerate USB device on port 3
+
+Remove module:
+	sudo rmmod ehci_hcd
+Add:
+	sudo modprobe ehci_hcd
+
+reloading the module "usbcore" with the option "autosuspend=-1.
+
+echo -1 >/sys/module/usbcore/parameters/autosuspend
+
+echo Y > /sys/module/usbcore/parameters/old_scheme_first
+echo Y | sudo tee /sys/module/usbcore/parameters/old_scheme_first
+
+in /etc/modprobe.d/user_usbcore.modconf (create the file if it does not exist)
+add the line : options usbcore old_scheme_first=1
+restart computer
+
+reboot, at boot menu edit kernal options add irqpoll.
+
+
+AWESOME FORUMN POST ABOUT MY PROBS -----------------------------------------
+http://forums.trossenrobotics.com/showthread.php?4583-Stress-testing-and-debugging-AX-12-servos
+
+DEVICE BUSY PROBLEM --------------------------------------------------------
+Seems there is a device conflcict with upowerd
+Related article: http://help.lockergnome.com/linux/Bug-586751-upowerd-grab-USB-Serial-adapter-due-udev-rule--ftopict522083.html
+
+SEE THE CONFLICT:
+    sudo lsof /dev/ttyUSB1
+
+KILL PROCESS:
+     sudo pkill upowerd
+          /usr/lib/UPower/UPowerd
+
+USEFUL SHORTCUT TO SERIAL:
+       /dev/serial/by-id/...
+
+LIST OF SERIAL NAMES:
+     http://www.linux-usb.org/usb.ids
+
+KILL EVERYTHING
+sudo pkill -9 -u correlllab
+
+KILL
+ps aux | grep python
+
+ADD UDEV RULES ----------------------------------------------------------
+
+I created new rule in /etc/udev/rules.d named "50-usb-serial.rules"
+
+udevadm info --attribute-walk --path=/sys/bus/usb-serial/devices/ttyUSB0
+
+Add something like:
+SUBSYSTEMS=="usb-serial",DRIVERS=="cp210x",ATTRS{port_number}=="0",SYMLINK+="aag-weather"
+
+Apply the change:
+sudo udevadm trigger
+
+
+Current Objectives ------------------------------------------------------
+1. Ensure reliability of TTL
+2. Update Firmware on drivers
+3. Speed up movement and data read rate
+
+SSH Config So I can use Two Monitors -----------------------------------
+e /etc/ssh/sshd_config
+sudo /etc/init.d/ssh restart
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+NOTES OCTOBER 18th 2011
+
+TODO:
+Make TTL More Reliable
+     Check if buffer is overloading
+     What is max voltage?
+     
+Convert Solidwork files to correct format for RVIZ Install Solidworks
+
+---------------------------------------------------------------------------------------------------
+Good Tutorial for RViz:
+http://www.pirobot.org/blog/0018/
+
+---------------------------------------------------------------------------------------------------
+Correll Meeting Oct 19th
+
+- Progress on AX-12+
+- Unblocked Robotis
+- Solidworks
+
+udev rules!!!
+
+
+---------------------------------------------------------------------------------------------------
+OCTOBER 21st, 2011
+
+TODO:
+	Figure out why it dies when error is high
+	DONE Switch out usb0 and usb1 names
+	Understand compliance margin
+	Learn rviz
+	Start documenting
+	Reply to forum post
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+

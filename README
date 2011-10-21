@@ -4,8 +4,26 @@ ROS Stack | ros.org
 
 Author: Dave Coleman | davetcoleman@gmail.com
 
-New version of the controls for the robotic arm in the Correll Lab at the University of Colorado Boulder.
-
-Heavily based on the Crust Crust Crawler Smart Arm.
+New version of the controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Heavily based on the Crust Crust Crawler Smart Arm by Antons Rebguns.
 
 NOTE: the smart_arm_description and smart_arm_kinematics do not work yet.
+
+
+TO INSTALL:
+
+1) Build the stack
+   rosmake clam2
+   ??
+
+2) Setup the Dynamixel2USB controllers
+   - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/
+   - Disable a conflicting system udev rule if necessary located at /lib/udev/rules.d/95-upower-wup.rules
+
+
+TO RUN:
+from stack root:
+. /scripts/autostart.h
+
+testing commands are located at:
+roscd smart_arm_controller/scripts
+python animate_all.py

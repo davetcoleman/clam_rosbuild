@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/1469/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers
+END
+joint_trajectory_action_controller.py
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/1428/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/joint_trajectory_action_controller.py
+END
+joint_torque_controller_dual_motor.py
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/1469/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/joint_torque_controller_dual_motor.py
+END
+joint_position_controller.py
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/!svn/ver/1410/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/joint_position_controller.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/1388/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/__init__.py
+END
+joint_position_controller_dual_motor.py
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/1405/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/joint_position_controller_dual_motor.py
+END
+joint_torque_controller.py
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/1469/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/joint_torque_controller.py
+END
+joint_controller.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/1405/stacks/dynamixel_motor/trunk/dynamixel_controllers/src/dynamixel_controllers/joint_controller.py
+END

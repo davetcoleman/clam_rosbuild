@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1431/stacks/dynamixel_motor/trunk/dynamixel_controllers/nodes
+END
+controller_manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1431/stacks/dynamixel_motor/trunk/dynamixel_controllers/nodes/controller_manager.py
+END
+controller_spawner.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1428/stacks/dynamixel_motor/trunk/dynamixel_controllers/nodes/controller_spawner.py
+END

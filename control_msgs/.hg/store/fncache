@@ -1,0 +1,12 @@
+data/.hgignore.i
+data/.hgtags.i
+data/CMakeLists.txt.i
+data/Makefile.i
+data/control_msgs/CMakeLists.txt.i
+data/control_msgs/Makefile.i
+data/control_msgs/action/FollowJointTrajectory.action.i
+data/control_msgs/action/PointHeadAction.action.i
+data/control_msgs/mainpage.dox.i
+data/control_msgs/manifest.xml.i
+data/control_msgs/msg/JointTolerance.msg.i
+data/stack.xml.i
