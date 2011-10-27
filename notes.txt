@@ -434,10 +434,15 @@ OCTOBER 21st, 2011
 TODO:
 	Figure out why it dies when error is high
 	DONE Switch out usb0 and usb1 names
-	Understand compliance margin
-	Learn rviz
 	DONE Start documenting
-	Reply to forum post
+	DONE Reply to forum post
+	
+TODO
+	1. Understand compliance margin
+	2. Fix joint compliance
+	3. Rviz
+	Kinect: Nick Farrow
+
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
