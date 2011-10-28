@@ -67,14 +67,14 @@ def main():
             time.sleep(.5)
 
         print ' -------------------------------'
-        time.sleep(5);
+        time.sleep(4);
 
         for i in range(len(pubs)):
             pubs[i].publish(joint_commands2[i])
             print 'sending command'
             time.sleep(.5)
 
-        time.sleep(5);        
+        time.sleep(4);
 
 
 # Where the program starts                                                                                          

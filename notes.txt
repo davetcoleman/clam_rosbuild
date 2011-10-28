@@ -436,12 +436,40 @@ TODO:
 	DONE Switch out usb0 and usb1 names
 	DONE Start documenting
 	DONE Reply to forum post
-	
+
+
+---------------------------------------------------------------------------------------------------
+10/27/11
+
+Made tool for reading all parameters from servos
+Tool is called "clam_status.py"
+Features to add:
+	Add more data: compliance slope, compliance punch, compliance margin, torque limit, torque enabled, speed
+	Convert motor data to radians....?
+
+Installed arm_navigation package
+
+Learned new trick: rosrun runtime_monitor monitor
+
 TODO
-	1. Understand compliance margin
-	2. Fix joint compliance
-	3. Rviz
-	Kinect: Nick Farrow
+	DONE Update velocity of all servos
+	DONE Understand compliance slope
+	DONE compliance slope
+	DONE compliance margin
+	- Fix joint compliance for EX-106 shoulder_pitch
+	- Rviz
+	DONE Kinect: Nick Farrow
+	- setup arm_navigation package
+		http://www.ros.org/wiki/arm_navigation
+	- install new C++ dynamixel_hardware_interface
+	http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
+	- do this tutorial:
+	http://www.ros.org/wiki/arm_navigation/Tutorials/Running%20arm%20navigation%20on%20non-PR2%20arm
+	- step up monitors/diagnostics:
+	http://www.ros.org/wiki/robot_monitor
+	http://www.ros.org/wiki/diagnostics/Tutorials/Starting%20the%20Runtime%20Monitor
+	-  meshlab under windows to convert my stls to collada dae format.
+
 
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------

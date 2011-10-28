@@ -22,8 +22,13 @@ def format_num(num):
     Will truncate floats into ints!"""
 
     try:
-        inum = int(num)
-        return locale.format("%.*f", (0, inum), True)
+        #inum = int(num)
+        #return locale.format("%.*f", (0, inum), True)
+        stringy = str(num)
+        if(len(stringy) > 11):
+            return stringy[:(-1*(len(stringy) - 11))]
+        else:
+            return stringy
 
     except (ValueError, TypeError):
         return str(num)
