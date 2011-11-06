@@ -16,12 +16,12 @@
   <link name="base_link">
     <visual>
       <geometry>
-	<mesh filename="package://clam_description/mesh/" />
+	<mesh filename="package://clam_description/meshes/" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-	<mesh filename="package://clam_description/mesh/" />
+	<mesh filename="package://clam_description/meshes/" />
       </geometry>
     </collision>      
     <inertial>
