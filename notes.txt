@@ -462,7 +462,20 @@ TODO
 ---------------------------------------------------------------------------------------------------
 11/4/2011
 
+URDF - Unified Robot Description Format
+    
+Made a description located at clam2/clam_urdf/clam_urdf.xml
+     To outup and test the tree structure:
+     rosrun urdf_parser check_urdf clam_urdf.xml
+
+     To visualize the tree structure:
+     rosrun urdf_parser urdf_to_graphiz clam_urdf.xml
+
+---------------------------------------------------------------------------------------------------
+11/6/2011
+
 TODO
+
 	- Add dimensions to urdf file
 	  http://www.ros.org/wiki/urdf/Tutorials/Create%20your%20own%20urdf%20file
 	- Fix joint compliance for EX-106 shoulder_pitch
@@ -478,13 +491,6 @@ TODO
 	http://www.ros.org/wiki/diagnostics/Tutorials/Starting%20the%20Runtime%20Monitor
 	-  meshlab under windows to convert my stls to collada dae format.
 
-URDF - Unified Robot Description Format
-    
-Made a description located at clam2/clam_urdf/clam_urdf.xml
-     To outup the tree structure:
-     rosrun urdf_parser check_urdf clam_urdf.xml
-
----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------

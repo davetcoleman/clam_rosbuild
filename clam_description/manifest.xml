@@ -1,0 +1,17 @@
+<package>
+  <description brief="clam_description">
+
+     clam_description
+
+  </description>
+  <author>Dave Coleman</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/clam_description</url>
+  <depend package="roscpp"/>
+  <depend package="tf"/>
+  <depend package="geometry_msgs"/>
+
+</package>
+
+
