@@ -16,6 +16,7 @@
   <link name="base_link">
     <visual>
       <geometry>
+	<!--mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL"  /-->
 	<cylinder length="0.6" radius="0.2" />
       </geometry>
     </visual>
@@ -68,7 +69,8 @@
   <link name="wrist_pitch_link">
     <visual>
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/wrist_pitch_link.stl"  />
+	<!--mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_pitch_link.STL"  /-->
+	<cylinder length="0.6" radius="0.2" />
       </geometry>
     </visual>
   </link>
@@ -88,8 +90,6 @@
       </geometry>
     </visual>
   </link>
-
-<!-- JOINTS --------------------------------------------- -->
 
   <!-- J0 -->
   <joint name="shoulder_pan_joint" type="revolute">
