@@ -16,12 +16,12 @@
   <link name="base_link">
     <visual>
       <geometry>
-	<mesh filename="package://clam_description/meshes/" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/wrist_pitch_link.stl" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-	<mesh filename="package://clam_description/meshes/" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/wrist_pitch_link.stl" />
       </geometry>
     </collision>      
     <inertial>
@@ -33,7 +33,7 @@
   <link name="shoulder_pan_link" >
     <visual>
       <geometry>
-	<mesh filename="package://clam_description/urdf/arm1.wrl" />
+	<cylinder length="0.6" radius="0.2" />
       </geometry>
     </visual>
   </link>
