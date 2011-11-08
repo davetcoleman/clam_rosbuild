@@ -499,7 +499,7 @@ TODO
 
 
 TODO
-
+	- Rename smart_arm_motor_manager to clam_motor_manager
 	- Convert design files to .stl, .mesh or .dae files
 	  - I think stl is easiest
  	  -  meshlab under windows to convert my stls to collada dae format.
