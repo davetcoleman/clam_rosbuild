@@ -476,10 +476,19 @@ Made a description located at clam2/clam_urdf/clam_urdf.xml
 
 TODO
 
-	- Add dimensions to urdf file
+	- Add robot arm design to Git
+	- Setup git on windows machine
+	- Convert design files to .stl, .mesh or .dae files
+	  - I think stl is easiest
+	  - check email from Anton about his advice on this
+  	- Setup clam_description autolauncher based on 'urdf_tutorial'
+ 	- Tweak all parameters in urdf file
+	- Setup robot_state_publisher to convert actual node data to TF transform
+	http://www.ros.org/wiki/robot_state_publisher/Tutorials/Using%20the%20robot%20state%20publisher%20on%20your%20own%20robot
+	- Setup joint_state_publisher gui
+	DONE Add dimensions to urdf file
 	  http://www.ros.org/wiki/urdf/Tutorials/Create%20your%20own%20urdf%20file
 	- Fix joint compliance for EX-106 shoulder_pitch
-	- Rviz
 	- setup arm_navigation package
 		http://www.ros.org/wiki/arm_navigation
 	- install new C++ dynamixel_hardware_interface
