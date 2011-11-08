@@ -489,6 +489,17 @@ TODO
 	DONE Setup git on windows machine
   	DONE Setup clam_description autolauncher based on 'urdf_tutorial'
 
+---------------------------------------------------------------------------------------------------
+11/8/2011
+	Units Documentation:
+	http://www.ros.org/reps/rep-0103.html
+
+	So all of the modeling will be done in meters?
+
+
+
+TODO
+
 	- Convert design files to .stl, .mesh or .dae files
 	  - I think stl is easiest
  	  -  meshlab under windows to convert my stls to collada dae format.
@@ -510,7 +521,6 @@ TODO
 	http://www.ros.org/wiki/diagnostics/Tutorials/Starting%20the%20Runtime%20Monitor
 
 
----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
