@@ -32,7 +32,7 @@ ros/service_traits.h
 geometry_msgs/PointStamped.h
 ../srv_gen/cpp/include/smart_arm_kinematics/geometry_msgs/PointStamped.h
 
-/home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_ik.cpp
+/home/dave/ros/clam/smart_arm_kinematics/src/smart_arm_ik.cpp
 cmath
 -
 vector
@@ -52,7 +52,7 @@ stdio.h
 stdlib.h
 -
 
-/home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_node.cpp
+/home/dave/ros/clam/smart_arm_kinematics/src/smart_arm_node.cpp
 ros/ros.h
 -
 tf/tf.h
@@ -64,7 +64,7 @@ urdf/model.h
 smart_arm_kinematics/SmartArmIK.h
 -
 smart_arm_ik.cpp
-/home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_ik.cpp
+/home/dave/ros/clam/smart_arm_kinematics/src/smart_arm_ik.cpp
 
 /opt/ros/electric/stacks/bullet/include/LinearMath/btMatrix3x3.h
 btVector3.h
@@ -903,6 +903,8 @@ ros/service_client.h
 /opt/ros/electric/stacks/ros_comm/clients/cpp/roscpp/include/ros/ros/service_client.h
 ros/timer.h
 /opt/ros/electric/stacks/ros_comm/clients/cpp/roscpp/include/ros/ros/timer.h
+ros/rate.h
+/opt/ros/electric/stacks/ros_comm/clients/cpp/roscpp/include/ros/ros/rate.h
 ros/wall_timer.h
 /opt/ros/electric/stacks/ros_comm/clients/cpp/roscpp/include/ros/ros/wall_timer.h
 ros/advertise_options.h

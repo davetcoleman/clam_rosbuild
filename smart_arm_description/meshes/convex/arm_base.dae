@@ -48,26 +48,26 @@
       </effect>
    </library_effects>
   <library_geometries>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Position">
-          <float_array count="24" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Position">
+          <float_array count="24" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Position-array">
             0.028750001 -0.028750001 0.025  0.028750001 0.028750001 0.023499999  0.028750001 0.028750001 0.025  -0.028750001 0.028750001 0.025  
             0.028750001 -0.028750001 0.023499999  -0.028750001 -0.028750001 0.023499999  -0.028750001 0.028750001 0.023499999  -0.028750001 -0.028750001 0.025  
           </float_array>
           <technique_common>
-            <accessor count="8" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Position-array" stride="3">
+            <accessor count="8" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Position"/>
 				</vertices>
 				<triangles material="Material" count="12">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Vertex"/>
            <p>
              0 1 2  3 2 1  3 0 2  4 0 5  
              4 5 1  4 1 0  6 1 5  6 5 3  
@@ -76,27 +76,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Position-array">
             -0.028750001 0.028750001 0.023499999  -0.028750001 0.057500001 -0.025  -0.028750001 0.055500001 0.025  -0.057232 0.028750001 0.024  
             -0.057500001 0.028750001 -0.025  -0.056786001 0.057032 0.023  -0.057032 0.056786001 -0.025  -0.028750001 0.057500001 0.023  
             -0.055500001 0.055500001 0.025  -0.028750001 0.028750001 0.025  -0.056000002 0.028750001 -0.025  -0.028750001 0.056000002 -0.025  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Vertex"/>
            <p>
              0 1 2  3 4 0  5 4 3  6 1 4  
              6 4 5  6 5 1  7 2 1  7 1 5  
@@ -107,27 +107,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Position-array">
             -0.028750001 -0.057267427 0.023923846  -0.028750001 -0.056000002 -0.025  -0.028750001 -0.028750001 0.025  -0.057500001 -0.028750001 -0.025  
             -0.056499999 -0.057232 -0.025  -0.057232 -0.055500001 0.024  -0.057232 -0.028750001 0.024  -0.055500001 -0.057500001 0.023  
             -0.028750001 -0.057500001 -0.025  -0.055500001 -0.056499999 0.024731999  -0.028750001 -0.055500001 0.025  -0.056000002 -0.028750001 -0.025  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Vertex"/>
            <p>
              0 1 2  3 1 4  5 3 4  6 2 3  
              6 3 5  7 5 4  8 0 7  8 7 4  
@@ -138,27 +138,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Position-array">
             0.028750001 -0.028750001 0.023499999  0.055500001 -0.028750001 0.025  0.057500001 -0.028750001 -0.025  0.028750001 -0.057500001 -0.025  
             0.028750001 -0.055500001 0.025  0.057032 -0.056786001 -0.025  0.055500001 -0.057232 0.024  0.057500001 -0.055500001 0.023  
             0.028750001 -0.057500001 0.023  0.057500001 -0.028750001 0.023  0.028750001 -0.028750001 0.025  0.056499999 -0.055500001 0.024731999  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Vertex"/>
            <p>
              0 1 2  0 2 3  0 3 4  5 6 3  
              5 3 2  7 6 5  7 5 2  8 4 3  
@@ -169,27 +169,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Position-array">
             0.028750001 0.055500001 0.025  0.055500001 0.028750001 0.025  0.055500001 0.055500001 0.025  0.056786001 0.057032 -0.025  
             0.056000002 0.028750001 -0.025  0.028750001 0.056000002 -0.025  0.028750001 0.028750001 0.023499999  0.057500001 0.028750001 0.023  
             0.028750001 0.057500001 0.023  0.057500001 0.055500001 0.023  0.055500001 0.057500001 0.023  0.057500001 0.028750001 -0.025  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Vertex"/>
            <p>
              0 1 2  3 4 5  6 1 0  6 0 5  
              6 5 4  6 4 1  7 1 4  7 2 1  
@@ -200,27 +200,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Position-array">
             -0.028750001 -0.028750001 0.025  -0.057232 -0.028750001 0.024  -0.057500001 -0.028750001 -0.025  -0.057500001 0.028750001 0.023  
             -0.056000002 0.028750001 -0.025  -0.028750001 0.028750001 0.025  -0.055500001 0.028750001 0.025  -0.057500001 0.028750001 -0.025  
             -0.056000002 -0.028750001 -0.025  -0.055847 -0.028750001 0.024970001  -0.028750001 -0.028750001 0.023499999  -0.028750001 0.028750001 0.023499999  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Vertex"/>
            <p>
              0 1 2  3 2 1  4 3 5  6 5 3  
              6 3 1  6 0 5  7 2 3  7 3 4  
@@ -231,27 +231,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Position-array">
             0.028750001 0.028750001 0.023499999  0.028750001 0.057500001 -0.025  0.028750001 0.055500001 0.025  -0.028750001 0.057232 0.024  
             -0.028750001 0.056000002 -0.025  -0.028750001 0.028750001 0.025  0.028750001 0.057500001 0.023  -0.028750001 0.057500001 -0.025  
             0.028750001 0.028750001 0.025  0.028750001 0.056000002 -0.025  -0.028750001 0.055500001 0.025  -0.028750001 0.028750001 0.023499999  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Vertex"/>
            <p>
              0 1 2  3 4 5  6 2 1  6 3 2  
              7 3 6  7 6 1  7 1 4  7 4 3  
@@ -262,27 +262,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Position-array">
             0.028750001 -0.057232 0.024  0.028750001 -0.056000002 -0.025  0.028750001 -0.028750001 0.025  -0.028750001 -0.028750001 0.023499999  
             -0.028750001 -0.057500001 -0.025  -0.028750001 -0.055500001 0.025  -0.028750001 -0.057500001 0.023  0.028750001 -0.057500001 -0.025  
             -0.028750001 -0.028750001 0.025  -0.028750001 -0.056000002 -0.025  0.028750001 -0.055500001 0.025  0.028750001 -0.028750001 0.023499999  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Vertex"/>
            <p>
              0 1 2  3 4 5  6 0 5  6 5 4  
              7 0 6  7 6 4  7 4 1  7 1 0  
@@ -293,27 +293,27 @@
 				</triangles>
       </convex_mesh>
 		</geometry>
-    <geometry id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Mesh" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Mesh">
+    <geometry id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Mesh" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Mesh">
       <convex_mesh>
-        <source id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Position">
-          <float_array count="36" id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Position-array">
+        <source id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Position">
+          <float_array count="36" id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Position-array">
             0.055500001 -0.028750001 0.025  0.028750001 -0.028750001 0.023499999  0.056000002 -0.028750001 -0.025  0.056000002 0.028750001 -0.025  
             0.028750001 0.028750001 0.023499999  0.055500001 0.028750001 0.025  0.057500001 0.028750001 0.023  0.057500001 -0.028750001 0.023  
             0.057500001 0.028750001 -0.025  0.057500001 -0.028750001 -0.025  0.028750001 0.028750001 0.025  0.028750001 -0.028750001 0.025  
           </float_array>
           <technique_common>
-            <accessor count="12" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Position-array" stride="3">
+            <accessor count="12" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Position-array" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
     		   </technique_common>
 				 </source>
-   		 <vertices id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Vertex">
-					<input semantic="POSITION" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Position"/>
+   		 <vertices id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Vertex">
+					<input semantic="POSITION" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Position"/>
 				</vertices>
 				<triangles material="Material" count="20">
-					<input offset="0" semantic="VERTEX" source="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Vertex"/>
+					<input offset="0" semantic="VERTEX" source="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Vertex"/>
            <p>
              0 1 2  3 2 1  4 5 3  4 3 1  
              6 3 5  6 5 0  7 0 2  7 6 0  
@@ -327,7 +327,7 @@
   </library_geometries>
   <library_visual_scenes>
 	  <visual_scene id="Scene0-Visual" name="Scene0-Visual">
-      <node id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base-Node" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base" type="NODE">
+      <node id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base-Node" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base" type="NODE">
         <translate>0 0 0</translate>
         <rotate>1 0 0  0</rotate>
       </node>
@@ -344,7 +344,7 @@
   </library_physics_materials>
   <library_physics_models>
     <physics_model id="Scene0-PhysicsModel">
-      <rigid_body sid="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base-RigidBody" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base">
+      <rigid_body sid="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base-RigidBody" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base">
         <technique_common>
           <instance_physics_material url="#pmat0_0-PhysicsMaterial"/>
          <shape>
@@ -357,7 +357,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_0-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_0-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -369,7 +369,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_1-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_1-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -381,7 +381,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_2-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_2-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -393,7 +393,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_3-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_3-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -405,7 +405,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_4-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_4-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -417,7 +417,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_5-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_5-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -429,7 +429,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_6-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_6-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -441,7 +441,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_7-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_7-Mesh"/>
          </shape>
          <shape>
             <translate>0 0 0</translate>
@@ -453,7 +453,7 @@
                <skinWidth>0</skinWidth>
               </technique>
             </extra>
-            <instance_geometry url="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base_8-Mesh"/>
+            <instance_geometry url="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base_8-Mesh"/>
          </shape>
         <dynamic>true</dynamic>
         <mass>1</mass>
@@ -476,7 +476,7 @@
   <library_physics_scenes>
     <physics_scene id="Scene0-Physics">
       <instance_physics_model url="#Scene0-PhysicsModel">
-        <instance_rigid_body target="#/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base-Node" body="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base-RigidBody"/>
+        <instance_rigid_body target="#/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base-Node" body="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base-RigidBody"/>
       <extra>
         <technique profile="PhysX">
         </technique>

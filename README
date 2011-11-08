@@ -1,18 +1,18 @@
-CLAM 2
+CLA
 Correll Lab Arm Manipulator | correll.cs.colorado.edu
 ROS Stack | ros.org
 
 Author: Dave Coleman | davetcoleman@gmail.com
 
-New version of the controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Heavily based on the Crust Crust Crawler Smart Arm by Antons Rebguns.
+Controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Heavily based on the Crust Crust Crawler Smart Arm by Antons Rebguns.
 
 NOTE: the smart_arm_description and smart_arm_kinematics do not work yet.
 
 
 TO INSTALL:
 
-1) Download CLAM2
-   git clone https://waffleguy4@github.com/waffleguy4/CLAM2.git
+1) Download CLAM
+   git clone https://waffleguy4@github.com/waffleguy4/CLAM.git
 
 2) Install Stack Dependencies
    Package dynamixel_motor: 
@@ -21,7 +21,7 @@ TO INSTALL:
    	   www.ros.org/wiki/control_msgs
 
 3) Build the stack
-   rosmake clam2
+   rosmake clam
 
 4) Setup the Dynamixel2USB controllers
    - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/

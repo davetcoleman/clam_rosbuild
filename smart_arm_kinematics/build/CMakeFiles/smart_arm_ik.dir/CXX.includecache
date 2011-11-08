@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_ik.cpp
+/home/dave/ros/clam/smart_arm_kinematics/src/smart_arm_ik.cpp
 cmath
 -
 vector

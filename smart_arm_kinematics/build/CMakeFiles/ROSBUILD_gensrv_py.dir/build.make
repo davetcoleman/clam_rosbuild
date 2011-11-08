@@ -32,19 +32,19 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/correlllab/ros/clam2/smart_arm_kinematics
+CMAKE_SOURCE_DIR = /home/dave/ros/clam/smart_arm_kinematics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/correlllab/ros/clam2/smart_arm_kinematics/build
+CMAKE_BINARY_DIR = /home/dave/ros/clam/smart_arm_kinematics/build
 
 # Utility rule file for ROSBUILD_gensrv_py.
 
 CMakeFiles/ROSBUILD_gensrv_py: ../src/smart_arm_kinematics/srv/__init__.py
 
 ../src/smart_arm_kinematics/srv/__init__.py: ../src/smart_arm_kinematics/srv/_SmartArmIK.py
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/correlllab/ros/clam2/smart_arm_kinematics/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_kinematics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/smart_arm_kinematics/srv/__init__.py"
-	/opt/ros/electric/stacks/ros_comm/clients/rospy/scripts/gensrv_py.py --initpy /home/correlllab/ros/clam2/smart_arm_kinematics/srv/SmartArmIK.srv
+	/opt/ros/electric/stacks/ros_comm/clients/rospy/scripts/gensrv_py.py --initpy /home/dave/ros/clam/smart_arm_kinematics/srv/SmartArmIK.srv
 
 ../src/smart_arm_kinematics/srv/_SmartArmIK.py: ../srv/SmartArmIK.srv
 ../src/smart_arm_kinematics/srv/_SmartArmIK.py: /opt/ros/electric/stacks/ros_comm/clients/rospy/scripts/gensrv_py.py
@@ -104,9 +104,9 @@ CMakeFiles/ROSBUILD_gensrv_py: ../src/smart_arm_kinematics/srv/__init__.py
 ../src/smart_arm_kinematics/srv/_SmartArmIK.py: /opt/ros/electric/stacks/common_msgs/sensor_msgs/srv_gen/generated
 ../src/smart_arm_kinematics/srv/_SmartArmIK.py: /opt/ros/electric/stacks/geometry/tf/msg_gen/generated
 ../src/smart_arm_kinematics/srv/_SmartArmIK.py: /opt/ros/electric/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/correlllab/ros/clam2/smart_arm_kinematics/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_kinematics/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/smart_arm_kinematics/srv/_SmartArmIK.py"
-	/opt/ros/electric/stacks/ros_comm/clients/rospy/scripts/gensrv_py.py --noinitpy /home/correlllab/ros/clam2/smart_arm_kinematics/srv/SmartArmIK.srv
+	/opt/ros/electric/stacks/ros_comm/clients/rospy/scripts/gensrv_py.py --noinitpy /home/dave/ros/clam/smart_arm_kinematics/srv/SmartArmIK.srv
 
 ROSBUILD_gensrv_py: CMakeFiles/ROSBUILD_gensrv_py
 ROSBUILD_gensrv_py: ../src/smart_arm_kinematics/srv/__init__.py
@@ -123,6 +123,6 @@ CMakeFiles/ROSBUILD_gensrv_py.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_gensrv_py.dir/clean
 
 CMakeFiles/ROSBUILD_gensrv_py.dir/depend:
-	cd /home/correlllab/ros/clam2/smart_arm_kinematics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/correlllab/ros/clam2/smart_arm_kinematics /home/correlllab/ros/clam2/smart_arm_kinematics /home/correlllab/ros/clam2/smart_arm_kinematics/build /home/correlllab/ros/clam2/smart_arm_kinematics/build /home/correlllab/ros/clam2/smart_arm_kinematics/build/CMakeFiles/ROSBUILD_gensrv_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dave/ros/clam/smart_arm_kinematics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dave/ros/clam/smart_arm_kinematics /home/dave/ros/clam/smart_arm_kinematics /home/dave/ros/clam/smart_arm_kinematics/build /home/dave/ros/clam/smart_arm_kinematics/build /home/dave/ros/clam/smart_arm_kinematics/build/CMakeFiles/ROSBUILD_gensrv_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_gensrv_py.dir/depend
 

@@ -1,4 +1,4 @@
-solid MYSOLID created by IVCON, original data in /home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_convex.obj
+solid MYSOLID created by IVCON, original data in /home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_convex.obj
   facet normal 0.000000 -1.000000 0.000000
     outer loop
       vertex 0.030000 -0.054979 0.015500

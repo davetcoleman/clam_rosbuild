@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/correlllab/ros/clam2/smart_arm_kinematics
+CMAKE_SOURCE_DIR = /home/dave/ros/clam/smart_arm_kinematics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/correlllab/ros/clam2/smart_arm_kinematics/build
+CMAKE_BINARY_DIR = /home/dave/ros/clam/smart_arm_kinematics/build
 
 # Utility rule file for rospack_gensrv.
 
@@ -54,6 +54,6 @@ CMakeFiles/rospack_gensrv.dir/clean:
 .PHONY : CMakeFiles/rospack_gensrv.dir/clean
 
 CMakeFiles/rospack_gensrv.dir/depend:
-	cd /home/correlllab/ros/clam2/smart_arm_kinematics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/correlllab/ros/clam2/smart_arm_kinematics /home/correlllab/ros/clam2/smart_arm_kinematics /home/correlllab/ros/clam2/smart_arm_kinematics/build /home/correlllab/ros/clam2/smart_arm_kinematics/build /home/correlllab/ros/clam2/smart_arm_kinematics/build/CMakeFiles/rospack_gensrv.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dave/ros/clam/smart_arm_kinematics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dave/ros/clam/smart_arm_kinematics /home/dave/ros/clam/smart_arm_kinematics /home/dave/ros/clam/smart_arm_kinematics/build /home/dave/ros/clam/smart_arm_kinematics/build /home/dave/ros/clam/smart_arm_kinematics/build/CMakeFiles/rospack_gensrv.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rospack_gensrv.dir/depend
 

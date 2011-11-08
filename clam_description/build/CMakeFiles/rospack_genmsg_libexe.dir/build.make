@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dave/ros/clam2/clam_description
+CMAKE_SOURCE_DIR = /home/dave/ros/clam/clam_description
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dave/ros/clam2/clam_description/build
+CMAKE_BINARY_DIR = /home/dave/ros/clam/clam_description/build
 
 # Utility rule file for rospack_genmsg_libexe.
 
@@ -54,6 +54,6 @@ CMakeFiles/rospack_genmsg_libexe.dir/clean:
 .PHONY : CMakeFiles/rospack_genmsg_libexe.dir/clean
 
 CMakeFiles/rospack_genmsg_libexe.dir/depend:
-	cd /home/dave/ros/clam2/clam_description/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dave/ros/clam2/clam_description /home/dave/ros/clam2/clam_description /home/dave/ros/clam2/clam_description/build /home/dave/ros/clam2/clam_description/build /home/dave/ros/clam2/clam_description/build/CMakeFiles/rospack_genmsg_libexe.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dave/ros/clam/clam_description/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dave/ros/clam/clam_description /home/dave/ros/clam/clam_description /home/dave/ros/clam/clam_description/build /home/dave/ros/clam/clam_description/build /home/dave/ros/clam/clam_description/build/CMakeFiles/rospack_genmsg_libexe.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rospack_genmsg_libexe.dir/depend
 

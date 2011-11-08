@@ -3,8 +3,8 @@
 
 CMakeFiles/smart_arm_ik_service.dir/src/smart_arm_node.o
  ../srv_gen/cpp/include/smart_arm_kinematics/SmartArmIK.h
- /home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_ik.cpp
- /home/correlllab/ros/clam2/smart_arm_kinematics/src/smart_arm_node.cpp
+ /home/dave/ros/clam/smart_arm_kinematics/src/smart_arm_ik.cpp
+ /home/dave/ros/clam/smart_arm_kinematics/src/smart_arm_node.cpp
  /opt/ros/electric/stacks/bullet/include/LinearMath/btMatrix3x3.h
  /opt/ros/electric/stacks/bullet/include/LinearMath/btMinMax.h
  /opt/ros/electric/stacks/bullet/include/LinearMath/btQuadWord.h

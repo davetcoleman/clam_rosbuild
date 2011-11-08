@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/correlllab/ros/clam2/smart_arm_kinematics
+CMAKE_SOURCE_DIR = /home/dave/ros/clam/smart_arm_kinematics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/correlllab/ros/clam2/smart_arm_kinematics/build
+CMAKE_BINARY_DIR = /home/dave/ros/clam/smart_arm_kinematics/build
 
 # Utility rule file for ROSBUILD_gensrv_lisp.
 
@@ -101,9 +101,9 @@ CMakeFiles/ROSBUILD_gensrv_lisp: ../srv_gen/lisp/_package_SmartArmIK.lisp
 ../srv_gen/lisp/SmartArmIK.lisp: /opt/ros/electric/stacks/common_msgs/sensor_msgs/srv_gen/generated
 ../srv_gen/lisp/SmartArmIK.lisp: /opt/ros/electric/stacks/geometry/tf/msg_gen/generated
 ../srv_gen/lisp/SmartArmIK.lisp: /opt/ros/electric/stacks/geometry/tf/srv_gen/generated
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/correlllab/ros/clam2/smart_arm_kinematics/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_kinematics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../srv_gen/lisp/SmartArmIK.lisp, ../srv_gen/lisp/_package.lisp, ../srv_gen/lisp/_package_SmartArmIK.lisp"
-	/opt/ros/electric/stacks/ros_comm/clients/roslisp/scripts/genmsg_lisp.py /home/correlllab/ros/clam2/smart_arm_kinematics/srv/SmartArmIK.srv
+	/opt/ros/electric/stacks/ros_comm/clients/roslisp/scripts/genmsg_lisp.py /home/dave/ros/clam/smart_arm_kinematics/srv/SmartArmIK.srv
 
 ../srv_gen/lisp/_package.lisp: ../srv_gen/lisp/SmartArmIK.lisp
 
@@ -125,6 +125,6 @@ CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean
 
 CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend:
-	cd /home/correlllab/ros/clam2/smart_arm_kinematics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/correlllab/ros/clam2/smart_arm_kinematics /home/correlllab/ros/clam2/smart_arm_kinematics /home/correlllab/ros/clam2/smart_arm_kinematics/build /home/correlllab/ros/clam2/smart_arm_kinematics/build /home/correlllab/ros/clam2/smart_arm_kinematics/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dave/ros/clam/smart_arm_kinematics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dave/ros/clam/smart_arm_kinematics /home/dave/ros/clam/smart_arm_kinematics /home/dave/ros/clam/smart_arm_kinematics/build /home/dave/ros/clam/smart_arm_kinematics/build /home/dave/ros/clam/smart_arm_kinematics/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend
 

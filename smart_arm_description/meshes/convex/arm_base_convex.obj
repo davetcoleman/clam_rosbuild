@@ -1,5 +1,5 @@
 ########################################################################
-# Approximate convex decomposition for triangle mesh /home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_base.obj
+# Approximate convex decomposition for triangle mesh /home/dave/ros/clam/smart_arm_description/meshes/convex/arm_base.obj
 # Input Mesh has 1020 vertices and 1937 triangles.
 # Recursion depth: 5
 # Concavity Threshold Percentage: 5.00

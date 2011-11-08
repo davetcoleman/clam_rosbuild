@@ -6,7 +6,7 @@
         <hwPageMax>256</hwPageMax>
         <hwConvexMax>2048</hwConvexMax>
       </NxPhysicsSDKDesc>
-  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_0">
+  <NxConvexMeshDesc id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_0">
     <points>
       0.029999999 -0.054979 0.0155  -0.006317 -0.054979 0.011731  0.002088 -0.054979 -0.0155  0.029999999 -0.019979 -0.0155  
       -0.009484 -0.019979 -0.006379  0.029999999 -0.019979 0.0155  0.029999999 -0.054979 -0.0155  -0.003856 -0.019979 0.013671  
@@ -20,7 +20,7 @@
       11 1 0  11 7 1  11 0 5  11 5 7  
     </triangles>
   </NxConvexMeshDesc>
-  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_1">
+  <NxConvexMeshDesc id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_1">
     <points>
       0.031500001 0.054979 -0.0155  0.031500001 0.054979 0.0155  0.029999999 0.019979 0.0155  -0.006317 0.054979 0.011731  
       -0.006317 0.019979 0.011731  0.002088 0.019979 -0.0155  0.029999999 0.019979 -0.0155  -0.005146 0.054979 -0.012777  
@@ -34,7 +34,7 @@
       10 1 3  11 4 2  11 2 10  11 10 4  
     </triangles>
   </NxConvexMeshDesc>
-  <NxConvexMeshDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_2">
+  <NxConvexMeshDesc id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_2">
     <points>
       0.029999999 0.0274895 -0.0155  0.029999999 -0.054979 -0.0155  0.029999999 0.0274895 0.0155  0.068000004 0.021478999 -0.0155  
       0.068000004 -0.021478999 -0.0155  0.031500001 -0.054979 0.0155  0.029999999 -0.009979 0.034499999  0.064999998 -0.018069001 0.030378001  
@@ -48,7 +48,7 @@
       11 7 4  11 10 9  11 9 6  11 6 7  
     </triangles>
   </NxConvexMeshDesc>
-  <NxSceneDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex">
+  <NxSceneDesc id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex">
         <filterBool>false</filterBool>
         <filterOp0>NX_FILTEROP_AND</filterOp0>
         <filterOp1>NX_FILTEROP_AND</filterOp1>
@@ -95,7 +95,7 @@
             <NX_MF_DISABLE_STRONG_FRICTION>false</NX_MF_DISABLE_STRONG_FRICTION>
           </NxMaterialFlag>
         </NxMaterialDesc>
-    <NxActorDesc id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex" userProperties="" hasBody="true" name="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex">
+    <NxActorDesc id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex" userProperties="" hasBody="true" name="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex">
       <globalPose>1 0 0    0 1 0    0 0 1    0 0 0 </globalPose>
 			<NxBodyDesc>
         <mass>1</mass>
@@ -108,19 +108,19 @@
         </NxBodyFlag>
       </NxBodyDesc>
       <name>Bip01 Pelvis</name>
-      <NxConvexShapeDesc id="Shape_0" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_0">
+      <NxConvexShapeDesc id="Shape_0" meshData="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_0">
       <NxShapeDesc>
         <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
         <skinWidth>0</skinWidth>
       </NxShapeDesc>
       </NxConvexShapeDesc>
-      <NxConvexShapeDesc id="Shape_1" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_1">
+      <NxConvexShapeDesc id="Shape_1" meshData="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_1">
       <NxShapeDesc>
         <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
         <skinWidth>0</skinWidth>
       </NxShapeDesc>
       </NxConvexShapeDesc>
-      <NxConvexShapeDesc id="Shape_2" meshData="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex_2">
+      <NxConvexShapeDesc id="Shape_2" meshData="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex_2">
       <NxShapeDesc>
         <localPose>1 0 0    0 1 0    0 0 1    0 0 0 </localPose>
         <skinWidth>0</skinWidth>
@@ -128,7 +128,7 @@
       </NxConvexShapeDesc>
     </NxActorDesc>
   </NxSceneDesc>
-	 <NxSceneInstance id="/home/correlllab/ros/clam2/smart_arm_description/meshes/convex/arm_elbow_flex">
+	 <NxSceneInstance id="/home/dave/ros/clam/smart_arm_description/meshes/convex/arm_elbow_flex">
 	 	 <sceneName>beshon</sceneName>
 	 	 <NxuUserProperties></NxuUserProperties>
 	 	 <rootNode>1	0	0	0	1	0	0	0	1	0	0 0</rootNode>

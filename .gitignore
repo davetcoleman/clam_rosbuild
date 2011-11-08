@@ -1,3 +1,7 @@
 *.pyc
 \#*#
 *~
+Debug/
+Release/
+build/
+bin/
