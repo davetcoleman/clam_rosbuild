@@ -11,6 +11,7 @@
     <depend package="rospy"/>
     <depend package="dynamixel_controllers"/>
     <depend package="std_msgs"/>
+    <depend package="sensor_msgs"/>
 </package>
 
 

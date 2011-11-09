@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/dave/ros/clam/smart_arm_controller/build
 # Target rules for target CMakeFiles/ROSBUILD_genmsg_cpp.dir
 
 # All Build rule for target.
-CMakeFiles/ROSBUILD_genmsg_cpp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
+CMakeFiles/ROSBUILD_genmsg_cpp.dir/all:
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -84,7 +84,7 @@ clean: CMakeFiles/ROSBUILD_genmsg_cpp.dir/clean
 # Target rules for target CMakeFiles/ROSBUILD_genmsg_lisp.dir
 
 # All Build rule for target.
-CMakeFiles/ROSBUILD_genmsg_lisp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
+CMakeFiles/ROSBUILD_genmsg_lisp.dir/all:
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_lisp.dir/build.make CMakeFiles/ROSBUILD_genmsg_lisp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_lisp.dir/build.make CMakeFiles/ROSBUILD_genmsg_lisp.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -115,7 +115,7 @@ clean: CMakeFiles/ROSBUILD_genmsg_lisp.dir/clean
 # Target rules for target CMakeFiles/ROSBUILD_gensrv_cpp.dir
 
 # All Build rule for target.
-CMakeFiles/ROSBUILD_gensrv_cpp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
+CMakeFiles/ROSBUILD_gensrv_cpp.dir/all:
 	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_cpp.dir/build.make CMakeFiles/ROSBUILD_gensrv_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_cpp.dir/build.make CMakeFiles/ROSBUILD_gensrv_cpp.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -146,7 +146,7 @@ clean: CMakeFiles/ROSBUILD_gensrv_cpp.dir/clean
 # Target rules for target CMakeFiles/ROSBUILD_gensrv_lisp.dir
 
 # All Build rule for target.
-CMakeFiles/ROSBUILD_gensrv_lisp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
+CMakeFiles/ROSBUILD_gensrv_lisp.dir/all:
 	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_lisp.dir/build.make CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_lisp.dir/build.make CMakeFiles/ROSBUILD_gensrv_lisp.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -205,10 +205,45 @@ clean: CMakeFiles/clean-test-results.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/joint_state_publisher.dir
+
+# All Build rule for target.
+CMakeFiles/joint_state_publisher.dir/all:
+	$(MAKE) -f CMakeFiles/joint_state_publisher.dir/build.make CMakeFiles/joint_state_publisher.dir/depend
+	$(MAKE) -f CMakeFiles/joint_state_publisher.dir/build.make CMakeFiles/joint_state_publisher.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
+	@echo "Built target joint_state_publisher"
+.PHONY : CMakeFiles/joint_state_publisher.dir/all
+
+# Include target in all.
+all: CMakeFiles/joint_state_publisher.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/joint_state_publisher.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/joint_state_publisher.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 0
+.PHONY : CMakeFiles/joint_state_publisher.dir/rule
+
+# Convenience name for target.
+joint_state_publisher: CMakeFiles/joint_state_publisher.dir/rule
+.PHONY : joint_state_publisher
+
+# clean rule for target.
+CMakeFiles/joint_state_publisher.dir/clean:
+	$(MAKE) -f CMakeFiles/joint_state_publisher.dir/build.make CMakeFiles/joint_state_publisher.dir/clean
+.PHONY : CMakeFiles/joint_state_publisher.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/joint_state_publisher.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/rosbuild_precompile.dir
 
 # All Build rule for target.
-CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg_libexe.dir/all
+CMakeFiles/rosbuild_precompile.dir/all:
 	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/depend
 	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -270,8 +305,7 @@ clean: CMakeFiles/rosbuild_premsgsrvgen.dir/clean
 # Target rules for target CMakeFiles/rospack_genmsg.dir
 
 # All Build rule for target.
-CMakeFiles/rospack_genmsg.dir/all: CMakeFiles/ROSBUILD_genmsg_lisp.dir/all
-CMakeFiles/rospack_genmsg.dir/all: CMakeFiles/ROSBUILD_genmsg_cpp.dir/all
+CMakeFiles/rospack_genmsg.dir/all:
 	$(MAKE) -f CMakeFiles/rospack_genmsg.dir/build.make CMakeFiles/rospack_genmsg.dir/depend
 	$(MAKE) -f CMakeFiles/rospack_genmsg.dir/build.make CMakeFiles/rospack_genmsg.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -333,8 +367,7 @@ clean: CMakeFiles/rospack_genmsg_libexe.dir/clean
 # Target rules for target CMakeFiles/rospack_gensrv.dir
 
 # All Build rule for target.
-CMakeFiles/rospack_gensrv.dir/all: CMakeFiles/ROSBUILD_gensrv_lisp.dir/all
-CMakeFiles/rospack_gensrv.dir/all: CMakeFiles/ROSBUILD_gensrv_cpp.dir/all
+CMakeFiles/rospack_gensrv.dir/all:
 	$(MAKE) -f CMakeFiles/rospack_gensrv.dir/build.make CMakeFiles/rospack_gensrv.dir/depend
 	$(MAKE) -f CMakeFiles/rospack_gensrv.dir/build.make CMakeFiles/rospack_gensrv.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -365,7 +398,7 @@ clean: CMakeFiles/rospack_gensrv.dir/clean
 # Target rules for target CMakeFiles/test.dir
 
 # All Build rule for target.
-CMakeFiles/test.dir/all: CMakeFiles/tests.dir/all
+CMakeFiles/test.dir/all:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/depend
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -427,7 +460,7 @@ clean: CMakeFiles/test-future.dir/clean
 # Target rules for target CMakeFiles/test-results.dir
 
 # All Build rule for target.
-CMakeFiles/test-results.dir/all: CMakeFiles/test-results-run.dir/all
+CMakeFiles/test-results.dir/all:
 	$(MAKE) -f CMakeFiles/test-results.dir/build.make CMakeFiles/test-results.dir/depend
 	$(MAKE) -f CMakeFiles/test-results.dir/build.make CMakeFiles/test-results.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 
@@ -489,7 +522,7 @@ clean: CMakeFiles/test-results-run.dir/clean
 # Target rules for target CMakeFiles/tests.dir
 
 # All Build rule for target.
-CMakeFiles/tests.dir/all: CMakeFiles/clean-test-results.dir/all
+CMakeFiles/tests.dir/all:
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/depend
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/dave/ros/clam/smart_arm_controller/build/CMakeFiles 

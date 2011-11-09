@@ -7,6 +7,6 @@ echo "-----------------------------------";
 echo "Checking serial connections:";
 cd /dev;
 find dynamixel_**;
-cd ~/ros/clam2/scripts/;
+cd ~/ros/clam/scripts/;
 read -p "Press any key to continue";
 roslaunch smart_arm_controller smart_arm.launch;
