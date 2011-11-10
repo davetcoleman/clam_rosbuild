@@ -46,4 +46,9 @@
                 wrist_pitch_controller"
           output="screen"/>
 
+                                                                                                                                    
+    <!-- set the torque to arm to off initially 
+    <node name="set_all_torque" pkg="smart_arm_controller" type="set_all_torque.py" args=" 0" output="screen"/>
+    -->
+
 </launch>

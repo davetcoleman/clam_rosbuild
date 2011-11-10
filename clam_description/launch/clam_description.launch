@@ -1,9 +1,18 @@
+<!-- -*- mode: XML -*- -->
+
 <launch>
-	<!-- send erratic robot XML to param server -->
+	<!-- Startup the arm controller -->
+	<include file="$(find smart_arm_controller)/launch/smart_arm.launch" />
+
+	<!-- send robot XML description to param server -->
         <param name="robot_description" command="cat $(find clam_description)/urdf/clam_urdf_generated.xml" />
 
-        <param name="use_gui" value="TRUE"/>
-        <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node-->
+        <node name="joint_states_publisher" pkg="smart_arm_controller" type="joint_states_publisher.py" />
+
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
         <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clam_description)/launch/rviz.vcg" />
+
+
+	<!-- set the torque to arm to off initially -->
+	<node name="set_all_torque" pkg="smart_arm_controller" type="scripts/set_all_torque.py" args="0" />
 </launch>

@@ -19,7 +19,6 @@ joint_names = ('shoulder_pan_controller',
 
 if __name__ == '__main__':
 
-
     if len(sys.argv) != 2:
         print 'Usage: set_all_torque.py <0,1>\n'
         print 'Controls if the motors are activated and have torque\n'
