@@ -1,0 +1,9 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <node pkg="arm_kinematics" type="arm_kinematics" name="arm_kinematics" >
+    <param name="maxIterations" value="1000" />
+    <param name="root_name" value="base_link" />
+    <param name="tip_name" value="gripper_grip_link" />
+  </node>
+</launch>
