@@ -29,8 +29,8 @@
         <color rgba="1.0 1.0 1.0 1.0"/>
     </material>
 
-    <material name="GunMetalBrushedAluminum">
+    <!--material name="GunMetalBrushedAluminum">
         <texture filename="package://smart_arm_description/Media/materials/textures/gun_metal_brushed_aluminum.jpg" />
-    </material>
+    </material-->
 
 </robot>

@@ -1,0 +1,17 @@
+<package>
+    <description brief="CLAM arm manipulator controller">
+        8 degree-of-freedom robotic arm controller that uses dynamixel_controllers for motor control.
+    </description>
+    
+    <author>Dave Coleman</author>
+    <license>BSD</license>
+    <review status="unreviewed" notes=""/>
+    <url>http://ros.org/wiki/clam_controller</url>
+    
+    <depend package="rospy"/>
+    <depend package="dynamixel_controllers"/>
+    <depend package="std_msgs"/>
+    <depend package="sensor_msgs"/>
+</package>
+
+
