@@ -506,8 +506,14 @@ TODO
 		http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
 		Tried and it didn't work
 	DONE tweak motor speeds
-	- This tutorial
+	DONE This tutorial
 	http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Description%20Configuration%20Wizard
+
+	roslaunch clam_robot_arm_navigation clam_robot_arm_navigation.launch 
+	roslaunch clam_description clam_description.launch 
+	  
+	Fix black color in URDF
+	sudo apt-get install ros-electric-arm-navigation
 	- And this
 	http://www.ros.org/wiki/arm_navigation/Tutorials
 	- make arm initialize with no torque

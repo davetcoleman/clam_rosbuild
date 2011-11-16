@@ -1,0 +1,4 @@
+<launch>
+    <param name="robot_description" textfile="$(find clam_description)//urdf/clam_urdf_generated.xml" />
+    <rosparam command="load" ns="robot_description_planning" file="$(find clam_robot_arm_navigation)/config/clam_robot_planning_description.yaml" />
+</launch>

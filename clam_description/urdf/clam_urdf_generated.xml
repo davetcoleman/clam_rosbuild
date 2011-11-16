@@ -21,7 +21,7 @@
 -->
 <robot name="clam_robot">
   <material name="Black">
-    <color rgba="0.0 0.0 0.0 1.0"/>
+    <color rgba="0.1 0.0 0.0 1.0"/>
   </material>
   <material name="Blue">
     <color rgba="0.0 0.0 0.8 1.0"/>
@@ -40,9 +40,6 @@
   </material>
   <material name="White">
     <color rgba="1.0 1.0 1.0 1.0"/>
-  </material>
-  <material name="GunMetalBrushedAluminum">
-    <texture filename="package://smart_arm_description/Media/materials/textures/gun_metal_brushed_aluminum.jpg"/>
   </material>
   <!-- BASE LINK -->
   <link name="base_link">

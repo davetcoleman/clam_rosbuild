@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find clam_robot_arm_navigation)/launch/move_Arm.launch" />
+    <include file="$(find clam_robot_arm_navigation)/launch/move_Gripper.launch" />
+    <include file="$(find clam_robot_arm_navigation)/launch/move_clam_arm.launch" />
+</launch>
