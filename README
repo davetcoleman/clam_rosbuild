@@ -3,7 +3,7 @@ Correll Lab Arm Manipulator | correll.cs.colorado.edu
 
 Author: Dave Coleman | davetcoleman@gmail.com
 
-Controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Heavily based on the Crust Crust Crawler Smart Arm by Antons Rebguns.
+Controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Special thanks to Antons Rebguns and his similar work at the University of Arizona.
 
 
 TO INSTALL:
@@ -12,10 +12,12 @@ TO INSTALL:
    git clone https://waffleguy4@github.com/waffleguy4/CLAM.git
 
 2) Install Stack Dependencies
-   Package dynamixel_motor: 
-   	   www.ros.org/wiki/dynamixel_motor
+   Package dynamixel_hardware_interface
+   	   http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
    Package control_msgs: 
    	   www.ros.org/wiki/control_msgs
+   Package gearbox
+   	   http://www.ros.org/browse/details.php?name=gearbox
 
 3) Build the stack
    rosmake clam

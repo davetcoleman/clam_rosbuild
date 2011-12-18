@@ -52,29 +52,51 @@ joint_names = ('shoulder_pan_controller',
                
 joint_commands = (-1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0)
 joint_commands2 = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-
-
+joint_commands3 = (0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 0.0, -1)
+joint_commands4 = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+joint_commands5 = (0.0, 2, 0.0, -0.3, 0.0, 0.0, 0.0, 1.0)
 
 def main():
 
     pubs = [rospy.Publisher(name + '/command', Float64) for name in joint_names]
-    rospy.init_node('animate_ttl', anonymous=True)
+    rospy.init_node('pose_animate', anonymous=True)
     
     while(True):
         for i in range(len(pubs)):
             pubs[i].publish(joint_commands[i])
             print 'sending command'
-            time.sleep(.5)
+            time.sleep(.1)
 
         print ' -------------------------------'
-        time.sleep(4);
+        time.sleep(2);
 
         for i in range(len(pubs)):
             pubs[i].publish(joint_commands2[i])
             print 'sending command'
-            time.sleep(.5)
+            time.sleep(.1)
 
-        time.sleep(4);
+        time.sleep(2);
+
+        for i in range(len(pubs)):
+            pubs[i].publish(joint_commands3[i])
+            print 'sending command'
+            time.sleep(.1)
+
+        time.sleep(2);
+
+        for i in range(len(pubs)):
+            pubs[i].publish(joint_commands4[i])
+            print 'sending command'
+            time.sleep(.1)
+
+        time.sleep(2);
+
+        for i in range(len(pubs)):
+            pubs[i].publish(joint_commands4[i])
+            print 'sending command'
+            time.sleep(.1)
+
+        time.sleep(2);
 
 
 # Where the program starts                                                                                          

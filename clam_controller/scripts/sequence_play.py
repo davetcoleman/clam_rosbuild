@@ -38,7 +38,7 @@ def main():
 
         pubs[coor[0]].publish(coor[1])
         print 'sending command', coor[1]
-        time.sleep(.1)
+        time.sleep(1)
 
     print 'COMPLETE ---------------------------- '
 

@@ -46,8 +46,8 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.025"/>
       <geometry>
-        <!--mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL"  /-->
-        <box size="0.1 0.1 0.05"/>
+        <mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL"/>
+        <!--box size="0.1 0.1 0.05" /-->
       </geometry>
       <material name="Black"/>
     </visual>

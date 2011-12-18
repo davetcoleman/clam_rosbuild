@@ -502,11 +502,23 @@ TODO
 TODO
 	DONE Rename smart_arm_motor_manager to clam_motor_manager
 	DONE Setup robot_state_publisher to convert actual node data to TF transform
-	SKIPPED install new C++ dynamixel_hardware_interface
-		http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
-		Tried and it didn't work
 	DONE tweak motor speeds
 	DONE This tutorial
+
+---------------------------------------------------------------------------------------------------
+12/18/2011
+
+TODO
+	DONE install new C++ dynamixel_hardware_interface
+		http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
+
+	- Convert design files to .stl, .mesh or .dae files
+	  - I think stl is easiest
+ 	  -  meshlab under windows to convert my stls to collada dae format.
+  	  - http://answers.ros.org/question/2266/how-to-generate-stl-files
+ 	- Tweak all parameters in urdf file
+
+
 	http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Description%20Configuration%20Wizard
 
 	roslaunch clam_robot_arm_navigation clam_robot_arm_navigation.launch 
@@ -524,11 +536,6 @@ TODO
 	- Kinect
 	- Camera
 	- update website
-	- Convert design files to .stl, .mesh or .dae files
-	  - I think stl is easiest
- 	  -  meshlab under windows to convert my stls to collada dae format.
-  	  - http://answers.ros.org/question/2266/how-to-generate-stl-files
- 	- Tweak all parameters in urdf file
 	- Fix joint compliance for EX-106 shoulder_pitch
 	- step up monitors/diagnostics:
 	http://www.ros.org/wiki/robot_monitor

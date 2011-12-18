@@ -7,6 +7,6 @@ echo "-----------------------------------";
 echo "Checking serial connections:";
 cd /dev;
 find dynamixel_**;
-cd ~/ros/clam/scripts/;
+cd /home/share/ros/clam/scripts/;
 read -p "Press any key to continue";
 roslaunch clam_description clam_description.launch

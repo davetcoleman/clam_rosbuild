@@ -20,8 +20,8 @@ joint_names = ('shoulder_pan_controller',
 coords = []   # store an array of coordinates over time
 
 def callback(data):
-
-    # print data.motor_ids[0]+' = '+data.current_pos
+    print data
+#    print data.motor_ids[0], data.current_pos
     coords.append(  [data.motor_ids[0], data.current_pos]   )
 
 
@@ -49,7 +49,7 @@ if __name__ == '__main__':
             
     # begin recording joint angles
     
-    time.sleep(5)
+    time.sleep(1)
 
     print '-----------------------------------------------'
     print 'Listening'
