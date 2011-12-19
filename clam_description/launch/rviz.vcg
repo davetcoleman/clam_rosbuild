@@ -46,7 +46,7 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.33559 0.192615 0.287287 0.0656432 0.125164 0.0724659
+Camera\ Config=3.11559 3.38261 0.371693 0.00886121 0.107387 -0.0131067
 Property\ Grid\ State=selection=.Global StatusTopStatus;expanded=.Global Options,Grid.Enabled,Robot Model.Enabled;scrollpos=0,0;splitterpos=223,462;ispageselected=1
 [Display0]
 Name=Grid

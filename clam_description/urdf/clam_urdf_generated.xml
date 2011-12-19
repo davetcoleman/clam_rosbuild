@@ -53,7 +53,7 @@
         <mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL" scale=".001 .001 .001"/>
         <!--box size="0.1 0.1 0.05" /-->
       </geometry>
-      <material name="Black"/>
+      <material name="Grey"/>
     </visual>
     <!--collision>
       <origin />
@@ -68,7 +68,7 @@
   <joint name="shoulder_pan_joint" type="revolute">
     <parent link="base_link"/>
     <child link="shoulder_pan_link"/>
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.05"/>
+    <origin rpy="0 0 0" xyz="0 0 0.05"/>
     <axis xyz="0 0 1"/>
     <limit effort="300" lower="-2.61799387799" upper="1.98394848567" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -82,143 +82,6 @@
         <!--cylinder length="0.046" radius="0.03" /-->
       </geometry>
       <material name="Red"/>
-    </visual>
-  </link>
-  <!-- J1 -->
-  <joint name="shoulder_pitch_joint" type="revolute">
-    <parent link="shoulder_pan_link"/>
-    <child link="shoulder_pitch_link"/>
-    <origin rpy="0 0 0" xyz="0 0.0 0.046"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.19962513147" upper="1.89994105047" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <!-- SHOULDER PITCH LINK -->
-  <link name="shoulder_pitch_link">
-    <visual>
-      <origin rpy="1.5708 3.1416 1.5708" xyz="-0.006 0 -0.005"/>
-      <geometry>
-        <mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pitch_link.STL" scale=".001 .001 .001"/>
-        <!--cylinder length="0.117" radius="0.02" /-->
-      </geometry>
-      <material name="Grey"/>
-    </visual>
-  </link>
-  <!-- J2 -->
-  <joint name="elbow_roll_joint" type="revolute">
-    <parent link="shoulder_pitch_link"/>
-    <child link="elbow_roll_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.152"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="300" lower="-2.61799387799" upper="0.705631162427" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <!-- ELBOW ROLL LINK -->
-  <link name="elbow_roll_link">
-    <visual>
-      <origin rpy="1.5708 3.1416 0" xyz="-0.006 0 0.0"/>
-      <geometry>
-        <mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_roll_link.STL" scale=".001 .001 .001"/>
-        <!--cylinder length="0.039" radius="0.02" /-->
-      </geometry>
-      <material name="Black"/>
-    </visual>
-  </link>
-  <!-- J3 -->
-  <joint name="elbow_pitch_joint" type="revolute">
-    <parent link="elbow_roll_link"/>
-    <child link="elbow_pitch_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.0"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.5953400194" upper="1.93281579274" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <!-- ELBOW PITCH LINK -->
-  <link name="elbow_pitch_link">
-    <visual>
-      <origin rpy="1.5708 3.1416 4.7124" xyz="-0.004 0 0.0"/>
-      <geometry>
-        <mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_pitch_link.STL" scale=".001 .001 .001"/>
-        <!--cylinder length="0.215" radius="0.02" /-->
-      </geometry>
-      <material name="Red"/>
-    </visual>
-  </link>
-  <!-- J4 -->
-  <joint name="wrist_roll_joint" type="revolute">
-    <parent link="elbow_pitch_link"/>
-    <child link="wrist_roll_link"/>
-    <origin rpy="0 0 0" xyz="0 0.0 0.248"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <!-- WRIST ROLL LINK -->
-  <link name="wrist_roll_link">
-    <visual>
-      <origin rpy="-1.5708 0 0" xyz="-0.004 -0.008 0"/>
-      <geometry>
-        <mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_roll_link.STL" scale=".001 .001 .001"/>
-        <!--cylinder length="0.033" radius="0.02" /-->
-      </geometry>
-      <material name="Black"/>
-    </visual>
-  </link>
-  <!-- J5 -->
-  <joint name="wrist_pitch_joint" type="revolute">
-    <parent link="wrist_roll_link"/>
-    <child link="wrist_pitch_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.0"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.5953400194" upper="1.98394848567" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <!-- WRIST PITCH LINK -->
-  <link name="wrist_pitch_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.001 -0.008 0.059"/>
-      <geometry>
-        <mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_pitch_link.STL" scale=".001 .001 .001"/>
-        <!--cylinder length="0.081" radius="0.02" /-->
-      </geometry>
-      <material name="Grey"/>
-    </visual>
-  </link>
-  <!-- J6 -->
-  <joint name="gripper_roll_joint" type="revolute">
-    <parent link="wrist_pitch_link"/>
-    <child link="gripper_roll_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.081"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <!-- GRIPPER ROLL LINK -->
-  <link name="gripper_roll_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.02"/>
-      <geometry>
-        <cylinder length="0.040" radius="0.025"/>
-      </geometry>
-      <material name="Red"/>
-    </visual>
-  </link>
-  <!-- J7 -->
-  <joint name="gripper_grip_joint" type="revolute">
-    <parent link="gripper_roll_link"/>
-    <child link="gripper_grip_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.04"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-0.940841549903" upper="0.0" velocity="1"/>
-    <dynamics damping="50" friction="1"/>
-  </joint>
-  <link name="gripper_grip_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.03"/>
-      <geometry>
-        <box size="0.03 0.02 0.060"/>
-      </geometry>
-      <material name="Grey"/>
     </visual>
   </link>
 </robot>
