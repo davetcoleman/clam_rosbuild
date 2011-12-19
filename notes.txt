@@ -507,7 +507,11 @@ Did lots of tutorials and reading
 	DONE figured out how to scale mesh files
 	DONE seperated arm assembly into sub assemblies
 ---------------------------------------------------------------------------------------------------
+12/19/2011
 
+	Center base_link and shoulder_pan_link in z axis
+	Simplify geometry
+	center wrist_roll joint and elbow_pitch_link
 TODO
 	- Convert design files to .stl, .mesh or .dae files
 	  - I think stl is easiest
