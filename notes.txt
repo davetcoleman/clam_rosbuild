@@ -408,7 +408,7 @@ sudo /etc/init.d/ssh restart
 NOTES OCTOBER 18th 2011
 
 TODO:
-Make TTL More Reliable
+     Make TTL More Reliable
      Check if buffer is overloading
      What is max voltage?
      
@@ -431,7 +431,6 @@ udev rules!!!
 ---------------------------------------------------------------------------------------------------
 OCTOBER 21st, 2011
 
-TODO:
 	Figure out why it dies when error is high
 	DONE Switch out usb0 and usb1 names
 	DONE Start documenting
@@ -451,8 +450,6 @@ Installed arm_navigation package
 
 Learned new trick: rosrun runtime_monitor monitor
 
-
-TODO
 	DONE Update velocity of all servos
 	DONE Understand compliance slope
 	DONE compliance slope
@@ -477,13 +474,11 @@ Made a description located at clam2/clam_urdf/clam_urdf.xml
 Worked all sunday
 Did lots of tutorials and reading
 
-TODO
 	DONE Add dimensions to urdf file
 
 ---------------------------------------------------------------------------------------------------
 11/7/2011
 
-TODO
 
 	DONE Add robot arm design to Git
 	DONE Setup git on windows machine
@@ -499,7 +494,6 @@ TODO
 ---------------------------------------------------------------------------------------------------
 11/9/2011
 
-TODO
 	DONE Rename smart_arm_motor_manager to clam_motor_manager
 	DONE Setup robot_state_publisher to convert actual node data to TF transform
 	DONE tweak motor speeds
@@ -508,10 +502,13 @@ TODO
 ---------------------------------------------------------------------------------------------------
 12/18/2011
 
-TODO
 	DONE install new C++ dynamixel_hardware_interface
 		http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
+	DONE figured out how to scale mesh files
+	DONE seperated arm assembly into sub assemblies
+---------------------------------------------------------------------------------------------------
 
+TODO
 	- Convert design files to .stl, .mesh or .dae files
 	  - I think stl is easiest
  	  -  meshlab under windows to convert my stls to collada dae format.
