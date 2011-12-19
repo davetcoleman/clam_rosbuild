@@ -44,13 +44,18 @@
   <!-- BASE LINK -->
   <link name="base_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <!-- rotate PI/2 -->
       <geometry>
-        <mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL"/>
+        <mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL" scale=".001 .001 .001"/>
         <!--box size="0.1 0.1 0.05" /-->
       </geometry>
       <material name="Black"/>
     </visual>
+    <!--collision>
+      <origin />
+      <geometry />
+    </collision-->
     <inertial>
       <mass value="25"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
