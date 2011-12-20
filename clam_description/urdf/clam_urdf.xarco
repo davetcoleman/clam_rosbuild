@@ -16,7 +16,7 @@
      http://www.ros.org/wiki/xacro
 
 -->
-<robot name="clam_robot">
+<robot name="clam">
 
   <include filename="$(find clam_description)/urdf/materials.urdf.xacro" />
 
@@ -63,7 +63,7 @@
 	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pan_link.STL" scale=".001 .001 .001" />
 	<!--cylinder length="0.046" radius="0.03" /-->
       </geometry>
-      <material name="Red" />
+      <material name="Orange" />
     </visual>
   </link>
 
@@ -136,7 +136,7 @@
 	<mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_pitch_link.STL" scale=".001 .001 .001" />
 	<!--cylinder length="0.215" radius="0.02" /-->
       </geometry>
-      <material name="Red" />
+      <material name="Orange" />
     </visual>
   </link>
 
@@ -201,7 +201,7 @@
       <geometry>
 	<cylinder length="0.040" radius="0.025" />
       </geometry>
-      <material name="Red" />
+      <material name="Orange" />
     </visual>
   </link>
 
@@ -221,7 +221,7 @@
       <geometry>
 	<box size="0.03 0.02 0.060" />
       </geometry>
-      <material name="Grey" />
+      <material name="Black" />
     </visual>
   </link>  
 

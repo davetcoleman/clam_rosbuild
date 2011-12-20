@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="move_arm" type="move_arm_simple_action" name="clam_move_clam_chain">
+        <param name="group" type="string" value="clam_chain" />
+        <remap from="arm_ik" to="clam_clam_chain_kinematics/get_constraint_aware_ik" />
+        <param name="controller_action_name" type="string" value="clam_chain_controller/follow_joint_trajectory" />
+    </node>
+</launch>

@@ -2,7 +2,7 @@
 <robot>
 
     <material name="Black">
-        <color rgba="0.1 0.0 0.0 1.0"/>
+        <color rgba="0.0 0.0 0.0 1.0"/>
     </material>
 
     <material name="Blue">
@@ -14,11 +14,11 @@
     </material>
 
     <material name="Grey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        <color rgba="0.2 0.2 0.2 1.0"/>
     </material>
 
-    <material name="Grey2">
-        <color rgba="0.9 0.9 0.9 1.0"/>
+    <material name="Orange">
+        <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
     </material>
 
     <material name="Red">

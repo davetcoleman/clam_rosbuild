@@ -1,7 +1,0 @@
-<launch>
-    <include file="$(find clam_robot_arm_navigation)/launch/clam_robot_planning_environment.launch" />
-    <node pkg="ompl_ros_interface" type="ompl_ros" name="ompl_planning">
-        <param name="default_planner_config" type="string" value="SBLkConfig1" />
-        <rosparam command="load" file="$(find clam_robot_arm_navigation)/config/ompl_planning.yaml" />
-    </node>
-</launch>
