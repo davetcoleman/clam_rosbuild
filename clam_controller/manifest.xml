@@ -7,8 +7,10 @@
     <license>BSD</license>
     <review status="unreviewed" notes=""/>
     <url>http://ros.org/wiki/clam_controller</url>
+
     
     <depend package="rospy"/>
+    <depend package="roscpp"/>
     <depend package="dynamixel_controllers"/>
     <depend package="std_msgs"/>
     <depend package="sensor_msgs"/>

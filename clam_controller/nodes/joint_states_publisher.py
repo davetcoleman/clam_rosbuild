@@ -51,7 +51,7 @@ class JointStatesPublisher():
         self.joint_states = {}
                              
         for controller in self.controllers:
-            joint_name = rospy.get_param(controller + '/joint_name')
+            joint_name = rospy.get_param(controller + '/joint')
             self.joint_states[joint_name] = DynamixelJointState(name=joint_name)
             
         # Start controller state subscribers
