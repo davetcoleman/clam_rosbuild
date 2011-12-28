@@ -1,15 +1,18 @@
-CLAM
-Correll Lab Arm Manipulator | correll.cs.colorado.edu
-
-Author: Dave Coleman | davetcoleman@gmail.com
+CLAM Arm Manipulator
+==========
+* Author: Dave Coleman <davetcoleman@gmail.com>
+* Website: correll.cs.colorado.edu
+* License: GNU General Public License, version 3 (GPL-3.0)
+* Date: 12/27/2011
 
 Controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Special thanks to Antons Rebguns and his similar work at the University of Arizona.
 
 
-TO INSTALL:
+BUILDING
+---------
 
 1) Download CLAM
-   git clone https://waffleguy4@github.com/waffleguy4/CLAM.git
+   	    git clone git@github.com:DaveTColeman/CLAM.git
 
 2) Install Stack Dependencies
    Package dynamixel_hardware_interface
@@ -20,17 +23,19 @@ TO INSTALL:
    	   http://www.ros.org/browse/details.php?name=gearbox
 
 3) Build the stack
-   rosmake clam
+   	    rosmake clam
 
 4) Setup the Dynamixel2USB controllers
    - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/
    - Disable a conflicting system udev rule if necessary located at /lib/udev/rules.d/95-upower-wup.rules
 
 
-TO RUN:
-roslaunch clam_description clam_description.launch
+RUN
+---------
+		roslaunch clam_description clam_description.launch
 
 
-TO TEST:
-$ roscd clam_controller/scripts
-$ python animate_all.py
+TEST
+---------
+		roscd clam_controller/scripts
+		python animate_all.py
