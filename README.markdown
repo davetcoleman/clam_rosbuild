@@ -16,9 +16,10 @@ BUILDING
 		git clone git@github.com:DaveTColeman/CLAM.git
 
 **2) Install Stack Dependencies**
+
    Package dynamixel_hardware_interface:
 
-   	   http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
+   	   www.ros.org/browse/details.php?name=dynamixel_hardware_interface
 
    Package control_msgs: 
 
@@ -26,7 +27,7 @@ BUILDING
 
    Package gearbox:
 
-   	   http://www.ros.org/browse/details.php?name=gearbox
+   	   www.ros.org/browse/details.php?name=gearbox
 
 **3) Build the stack**
 
