@@ -11,22 +11,31 @@ Controls for the robotic arm in the Correll Lab at the University of Colorado Bo
 BUILDING
 ---------
 
-1) Download CLAM
-   	    git clone git@github.com:DaveTColeman/CLAM.git
+**1) Download CLAM**
 
-2) Install Stack Dependencies
-   Package dynamixel_hardware_interface
+		git clone git@github.com:DaveTColeman/CLAM.git
+
+**2) Install Stack Dependencies**
+   Package dynamixel_hardware_interface:
+
    	   http://www.ros.org/browse/details.php?name=dynamixel_hardware_interface
+
    Package control_msgs: 
+
    	   www.ros.org/wiki/control_msgs
-   Package gearbox
+
+   Package gearbox:
+
    	   http://www.ros.org/browse/details.php?name=gearbox
 
-3) Build the stack
-   	    rosmake clam
+**3) Build the stack**
 
-4) Setup the Dynamixel2USB controllers
+		rosmake clam
+
+**4) Setup the Dynamixel2USB controllers**
+
    - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/
+
    - Disable a conflicting system udev rule if necessary located at /lib/udev/rules.d/95-upower-wup.rules
 
 
