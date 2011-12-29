@@ -44,6 +44,15 @@
 #elif defined(__PATHSCALE__)
 # define COMPILER_ID "PathScale"
 
+#elif defined(_CRAYC)
+# define COMPILER_ID "Cray"
+
+#elif defined(__TI_COMPILER_VERSION__)
+# define COMPILER_ID "TI_DSP"
+
+#elif defined(__SCO_VERSION__)
+# define COMPILER_ID "SCO"
+
 #elif defined(__GNUC__)
 # define COMPILER_ID "GNU"
 
@@ -76,7 +85,7 @@
    getting matched.  Store it in a pointer rather than an array
    because some compilers will just produce instructions to fill the
    array rather than assigning a pointer to a static array.  */
-char* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";
+char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";
 
 /* Identify known platforms by name.  */
 #if defined(__linux) || defined(__linux__) || defined(linux)
@@ -163,7 +172,7 @@ char* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";
 #endif
 
 /* For windows compilers MSVC and Intel we can determine
-   the architecture of the compiler being used.  This is becase
+   the architecture of the compiler being used.  This is because
    the compilers do not have flags that can change the architecture,
    but rather depend on which compiler is being used
 */
@@ -189,8 +198,8 @@ char* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";
    getting matched.  Store it in a pointer rather than an array
    because some compilers will just produce instructions to fill the
    array rather than assigning a pointer to a static array.  */
-char* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";
-char* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
+char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";
+char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
 
 
 

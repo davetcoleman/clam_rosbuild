@@ -1,0 +1,3 @@
+dynamixel_hardware_interface:
+   ubuntu: |
+      echo "svn checkout http://ua-ros-pkg.googlecode.com/svn/trunk/arrg/ua_experimental/dynamixel_hardware_interface ~/ros"

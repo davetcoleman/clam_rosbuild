@@ -13,7 +13,7 @@
   <depend package="geometry_msgs"/>
   <depend package="urdf"/>
   <depend package="rviz" />
-  <depend package="xarco" />
+  <depend package="xacro" />
 
 
 </package>

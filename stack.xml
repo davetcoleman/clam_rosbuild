@@ -7,5 +7,9 @@
 
     <depend stack="ros" />
     <depend stack="ros_comm" />
-    <!--depend stack="dynamixel_motor" /-->
+    <depend package="clam_description" />
+    <depend package="clam_controller" />
+    <depend package="clam_arm_navigation" />
+    <depend package="dynamixel_hardware_interface" />
+
 </stack>
