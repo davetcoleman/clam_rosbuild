@@ -532,7 +532,36 @@ http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Components%20V
 
 
 ---------------------------------------------------------------------------------------------------
+12/29/2011
 
+***Make ubuntu gui work with virtualbox after Ubuntu 11.10 upgrade:
+
+Install guest additions vm:
+	sudo apt-get install virtualbox-ose-guest-utils
+Re-run setup:
+        cd /etc/init.d/
+        sudo ./vboxadd setup
+Start the gui:
+	startx
+
+***Trying to get rviz to work with virtualbox, very tough.
+
+debug info:
+       glxinfo
+
+toggle this setting:
+       export LIBGL_ALWAYS_INDIRECT=1 # make opengl stuff work in virtualbox                    
+
+compare this between vms:
+	Loading general config from [/home/dave/.rviz/config]
+	Loading display config from [/home/dave/.rviz/display_config]
+
+If you have a problem and want to try another "RTT mode", run rviz with the environment variable OGRE_RTT_MODE set to either "Copy", "PBuffer", or "FBO". For example:
+
+        export OGRE_RTT_MODE=Copy   <== WORKS!!!
+
+
+---------------------------------------------------------------------------------------------------
 TODO
 	Investigate "    operation: disable  # Adjacent in collision" in clam_planning_description.yaml
 
@@ -572,7 +601,7 @@ TODO
 	http://www.ros.org/wiki/diagnostics/Tutorials/Starting%20the%20Runtime%20Monitor
 
 
----------------------------------------------------------------------------------------------------
+
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
