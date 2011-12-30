@@ -516,6 +516,10 @@ Did lots of tutorials and reading
  	  -  meshlab under windows to convert my stls to collada dae format.
   	  - http://answers.ros.org/question/2266/how-to-generate-stl-files
  	DONE Tweak all parameters in urdf file
+	DONE setup arm_navigation package
+		http://www.ros.org/wiki/arm_navigation
+	DONE  do this tutorial:
+	www.ros.org/wiki/arm_navigation/Tutorials/Running%20arm%20navigation%20on%20non-PR2%20arm
 
 	Notes on converting SolidWorks to stl files:
 	I used the stl files and did not end up using dae collada files because they seemed buggy
@@ -529,6 +533,7 @@ Save package from wizard to:
 
 Testing IK Stuff:
 http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Components%20Visualizer
+
 
 
 ---------------------------------------------------------------------------------------------------
@@ -561,6 +566,10 @@ If you have a problem and want to try another "RTT mode", run rviz with the envi
         export OGRE_RTT_MODE=Copy   <== WORKS!!!
 
 
+Progress:
+	DONE Figure out why transparency is funky in stl files
+	DONE  - Fix black color in URDF
+
 ---------------------------------------------------------------------------------------------------
 TODO
 	Investigate "    operation: disable  # Adjacent in collision" in clam_planning_description.yaml
@@ -574,24 +583,16 @@ TODO
 	Tutorial Ideas:
 	http://www.ros.org/wiki/arm_navigation/Tutorials
 
-	Change colors to Grey-Orange only
 
-	Figure out why transparency is funky in stl files
-	  - Fix black color in URDF
 	Simplify geometry
 	http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Description%20Configuration%20Wizard
 
 	roslaunch clam_robot_arm_navigation clam_robot_arm_navigation.launch 
 	  
 
-	sudo apt-get install ros-electric-arm-navigation
 	- And this
 	http://www.ros.org/wiki/arm_navigation/Tutorials
 	- make arm initialize with no torque
-	- setup arm_navigation package
-		http://www.ros.org/wiki/arm_navigation
-	- do this tutorial:
-		http://www.ros.org/wiki/arm_navigation/Tutorials/Running%20arm%20navigation%20on%20non-PR2%20arm
 	- Kinect
 	- Camera
 	- update website
