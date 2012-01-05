@@ -571,6 +571,16 @@ Progress:
 	DONE  - Fix black color in URDF
 
 ---------------------------------------------------------------------------------------------------
+1/5/2011
+
+TODAYS GOALS:
+       - Wordpress Theme/Look
+       - Tutorial List
+       - VM Instructions
+       - Path planning to command node - ask Arizona dude
+
+
+---------------------------------------------------------------------------------------------------
 TODO
 	Investigate "    operation: disable  # Adjacent in collision" in clam_planning_description.yaml
 
