@@ -29,16 +29,15 @@ def main():
     f = open(filename,'r')
     read_coords = pickle.load(f)
 
-    print read_coords;
-
     for coor in read_coords:
         print 'Playing...'
 
         print coor
-
-        pubs[coor[0]].publish(coor[1])
+        print pubs[0]
         print 'sending command', coor[1]
-        time.sleep(1)
+        pubs[  coor[0]  ].publish(0) #coor[1])
+
+        time.sleep(10)
 
     print 'COMPLETE ---------------------------- '
 

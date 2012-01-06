@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import roslib; roslib.load_manifest('clam_controller')
 import rospy
-from std_msgs.msg import String
-from dynamixel_msgs.msg import JointState
-from dynamixel_controllers.srv import *
+from std_msgs.msg import Float64
+from dynamixel_hardware_interface.msg import JointState
+from dynamixel_hardware_interface.srv import *
 import time
 import sys
 

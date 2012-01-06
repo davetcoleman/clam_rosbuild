@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import roslib; roslib.load_manifest('clam_controller')
 import rospy
-from std_msgs.msg import String
-from dynamixel_msgs.msg import JointState
-from dynamixel_controllers.srv import TorqueEnable
+from std_msgs.msg import Float64
+from dynamixel_hardware_interface.msg import JointState
+from dynamixel_hardware_interface.srv import TorqueEnable
 import time
 import sys
 import pickle
@@ -20,9 +20,10 @@ joint_names = ('shoulder_pan_controller',
 coords = []   # store an array of coordinates over time
 
 def callback(data):
-    print data
+#    print data
 #    print data.motor_ids[0], data.current_pos
-    coords.append(  [data.motor_ids[0], data.current_pos]   )
+    coords.append(  [data.name, data.position]   )
+#    coords.append(  [data.motor_ids[0], data.current_pos]   )
 
 
 def listener():

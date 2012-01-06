@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import roslib; roslib.load_manifest('clam_controller')
 import rospy
-from std_msgs.msg import String
-from dynamixel_msgs.msg import JointState
-from dynamixel_controllers.srv import *
+from std_msgs.msg import Float64
+from dynamixel_hardware_interface.msg import JointState
+from dynamixel_hardware_interface.srv import *
 import time
 import sys
 
@@ -16,17 +16,16 @@ joint_names = ('shoulder_pan_controller',
                'gripper_roll_controller',
                'gripper_grip_controller')
 
-
 if __name__ == '__main__':
 
     if len(sys.argv) != 2:
-        print 'Usage: speed.py <number>\n'
+        print 'Usage: set_all_velocity.py <number>\n'
         sys.exit(1)
 
-    print 'Setting speed to '+sys.argv[1]
+    print 'Setting velocity to '+sys.argv[1]
 
     ivalue  = float(sys.argv[1])
-    service_name = 'set_speed'
+    service_name = 'set_velocity'
 
     for joint_name in joint_names:
 
@@ -35,7 +34,7 @@ if __name__ == '__main__':
         rospy.wait_for_service('/'+joint_name+'/'+service_name)
 
         try:
-            service1 = rospy.ServiceProxy('/'+joint_name+'/'+service_name, SetSpeed)
+            service1 = rospy.ServiceProxy('/'+joint_name+'/'+service_name, SetVelocity)
             response = service1(ivalue)
             print '\tSuccess'
         except rospy.ServiceException, e:

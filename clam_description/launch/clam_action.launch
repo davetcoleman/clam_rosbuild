@@ -1,8 +1,16 @@
 <!-- -*- mode: XML -*- -->
 
 <launch>
+	<!-- Startup the arm controller -->
+	<include file="$(find clam_controller)/launch/clam_controller.launch" />
 
-        <node name="pose_animate" pkg="clam_controller" type="pose_animate.py" />
+	<!-- send robot XML description to param server -->
+        <param name="robot_description" command="cat $(find clam_description)/urdf/clam_urdf_generated.xml" />
 
+        <!--node name="joint_states_publisher" pkg="clam_controller" type="joint_states_publisher.py" /-->
+	<include file="$(find clam_controller)/launch/joint_state_aggregator.launch" />
+
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clam_description)/launch/rviz.vcg" />
 
 </launch>

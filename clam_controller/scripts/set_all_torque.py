@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import roslib; roslib.load_manifest('clam_controller')
 import rospy
-from std_msgs.msg import String
-from dynamixel_msgs.msg import JointState
-from dynamixel_controllers.srv import TorqueEnable
+from std_msgs.msg import Float64
+from dynamixel_hardware_interface.msg import JointState
+from dynamixel_hardware_interface.srv import TorqueEnable
 import time
 import sys
 
@@ -18,7 +18,6 @@ joint_names = ('shoulder_pan_controller',
 
 
 if __name__ == '__main__':
-
 
     if len(sys.argv) != 2:
         print 'Usage: set_all_torque.py <0,1>\n'
