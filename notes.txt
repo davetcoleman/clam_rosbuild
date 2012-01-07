@@ -571,7 +571,7 @@ Progress:
 	DONE  - Fix black color in URDF
 
 ---------------------------------------------------------------------------------------------------
-1/5/2011
+1/5/2012
 
 TODAYS GOALS:
        DONE Wordpress Theme/Look
@@ -582,6 +582,13 @@ TODAYS GOALS:
 
 Notes:
 	rosrun runtime_monitor monitor   -very useful for reading topic info
+
+---------------------------------------------------------------------------------------------------
+1/7/2012
+
+Website stuff:
+/home/web/htdocs/csops/correll/clam/
+/home/research/grads/daco5652/
 
 ---------------------------------------------------------------------------------------------------
 TODO
