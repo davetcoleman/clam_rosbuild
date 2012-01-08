@@ -592,10 +592,14 @@ Website stuff:
 How to use the built-in dynamixel_hardware_interface joint_trajectory_action_controller.cpp:
     first, load my version of wubble2_robot/config/wubble_arm_trajectory_controller.yaml 
      -> loaded by dynamixel_controllers.launch
+     investigate multi_joint_dummy_port
+     DONE configure clam_trajectory_controller.yaml
 
 Today's Goals:
 	DONE - actionlib tutorials  http://www.ros.org/wiki/actionlib
         Path planning to command node - ask Arizona dude
+	Rename arm_trajectory_controller_spawner and joint_state_aggregator to be clamy
+	shorten name clam_arm_controller
 
 	REQUIRED ALTERATION
 		 You must substitute the name for the action topic for your controller's implementation 
