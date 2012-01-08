@@ -581,6 +581,9 @@ TODAYS GOALS:
 
 Notes:
 	rosrun runtime_monitor monitor   -very useful for reading topic info
+	Monitors/diagnostics:
+	http://www.ros.org/wiki/robot_monitor
+	http://www.ros.org/wiki/diagnostics/Tutorials/Starting%20the%20Runtime%20Monitor
 
 ---------------------------------------------------------------------------------------------------
 1/7/2012
@@ -592,39 +595,32 @@ Website stuff:
 How to use the built-in dynamixel_hardware_interface joint_trajectory_action_controller.cpp:
     first, load my version of wubble2_robot/config/wubble_arm_trajectory_controller.yaml 
      -> loaded by dynamixel_controllers.launch
-     investigate multi_joint_dummy_port
+     investigate multi_joint_dummy_port - seems to work
      DONE configure clam_trajectory_controller.yaml
 
 Today's Goals:
 	DONE - actionlib tutorials  http://www.ros.org/wiki/actionlib
-        Path planning to command node - ask Arizona dude
-	Rename arm_trajectory_controller_spawner and joint_state_aggregator to be clamy
-	shorten name clam_arm_controller
-
-	REQUIRED ALTERATION
-		 You must substitute the name for the action topic for your controller's implementation 
+	DONE - Why is PCV Markers so big? - known issue with rviz
+	DONE 	 You must substitute the name for the action topic for your controller's implementation 
 		 of the control_msgs/FollowJointTrajectory action in the parameter controller_action_name.
-	Remote control using virual machine
-
+	DONE - simple joint_trajectory_action controller
 
 ---------------------------------------------------------------------------------------------------
 TODO
-		 
-	Why is PCV Markers so big?
+	Do move_arm tutorials: http://www.ros.org/wiki/move_arm/Tutorials		 
+	Figure out how to connect move_clam_chain/goal to planning_componenets_visualizer 
+	Remote control arm using virual machine
 	Try out /home/share/ros/dynamixel_hardware_interface/scripts/info_dump.py
 	Document ttp://www.ros.org/wiki/dynamixel_hardware_interface
-
-	Gazebo
-	Simplify geometry
-	http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Description%20Configuration%20Wizard
-
-	- make arm initialize with no torque
-	- Kinect
-	- Camera
-	- Fix joint compliance for EX-106 shoulder_pitch
-	- step up monitors/diagnostics:
-	http://www.ros.org/wiki/robot_monitor
-	http://www.ros.org/wiki/diagnostics/Tutorials/Starting%20the%20Runtime%20Monitor
+	Rename arm_trajectory_controller_spawner and joint_state_aggregator to be clamy
+	Shorten name clam_arm_controller
+	Gazebo Simulator Setup
+	Simplify geometry to make rviz graphics look better
+	Make arm initialize with no torque
+	Setup Kinect
+	Setup Camera
+	Fix joint compliance for EX-106 shoulder_pitch
+	Add new gripper to robot
 
 ---------------------------------------------------------------------------------------------------
 

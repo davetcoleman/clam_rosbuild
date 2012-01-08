@@ -1,3 +1,5 @@
+<!-- -*- mode: XML -*- -->
+
 <launch>
     <include file="$(find clam_arm_navigation)/launch/clam_planning_environment.launch" />
     <include file="$(find planning_environment)/launch/environment_server.launch">
