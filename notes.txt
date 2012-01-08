@@ -578,7 +578,6 @@ TODAYS GOALS:
        DONE Tutorial List
        DONE VM Instructions
        DONE update website
-       - Path planning to command node - ask Arizona dude
 
 Notes:
 	rosrun runtime_monitor monitor   -very useful for reading topic info
@@ -587,19 +586,30 @@ Notes:
 1/7/2012
 
 Website stuff:
-/home/web/htdocs/csops/correll/clam/
-/home/research/grads/daco5652/
+	/home/web/htdocs/csops/correll/clam/
+	/home/research/grads/daco5652/
 
----------------------------------------------------------------------------------------------------
-TODO
-	Investigate "    operation: disable  # Adjacent in collision" in clam_planning_description.yaml
+How to use the built-in dynamixel_hardware_interface joint_trajectory_action_controller.cpp:
+    first, load my version of wubble2_robot/config/wubble_arm_trajectory_controller.yaml 
+     -> loaded by dynamixel_controllers.launch
 
-	Read about http://www.ros.org/wiki/actionlib
+Today's Goals:
+	DONE - actionlib tutorials  http://www.ros.org/wiki/actionlib
+        Path planning to command node - ask Arizona dude
 
 	REQUIRED ALTERATION
 		 You must substitute the name for the action topic for your controller's implementation 
 		 of the control_msgs/FollowJointTrajectory action in the parameter controller_action_name.
+	Remote control using virual machine
+
+
+---------------------------------------------------------------------------------------------------
+TODO
 		 
+	Why is PCV Markers so big?
+	Try out /home/share/ros/dynamixel_hardware_interface/scripts/info_dump.py
+	Document ttp://www.ros.org/wiki/dynamixel_hardware_interface
+
 	Gazebo
 	Simplify geometry
 	http://www.ros.org/wiki/arm_navigation/Tutorials/tools/Planning%20Description%20Configuration%20Wizard

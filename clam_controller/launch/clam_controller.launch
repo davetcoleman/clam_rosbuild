@@ -4,7 +4,7 @@
     <!-- Start the Dynamixel motor manager to control all clam servos -->
     <node name="dynamixel_manager" pkg="dynamixel_hardware_interface" type="controller_manager" output="screen" >
         <!-- Load all the servo properties -->
-        <rosparam file="$(find clam_controller)/config/clam_controller_manager.yaml" command="load"/>
+        <rosparam file="$(find clam_controller)/config/dynamixel_ports.yaml" command="load"/>
     </node>
     
     <!-- Load joint controller configuration from YAML file to parameter server -->
