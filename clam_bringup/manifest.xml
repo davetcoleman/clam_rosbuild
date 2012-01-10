@@ -1,0 +1,14 @@
+<package>
+  <description brief="clam_bringup">
+
+     clam_bringup
+
+  </description>
+  <author>Dave Coleman</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/clam_bringup</url>
+
+</package>
+
+

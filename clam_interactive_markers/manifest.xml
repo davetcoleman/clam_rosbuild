@@ -1,0 +1,21 @@
+<package>
+  <description brief="clam_interactive_markers">
+
+     clam_interactive_markers allows the user to control the ClamArm using rviz interactive markers.
+
+  </description>
+  <author>Dave Coleman, Helen Oleynikova</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url></url>
+
+  <depend package="roscpp"/>
+  <depend package="visualization_msgs"/>
+  <depend package="interactive_markers"/>
+  <!--depend package="arm_navigation_msgs"/-->
+  <depend package="simple_arm_server"/>
+  <depend package="actionlib"/>
+
+</package>
+
+
