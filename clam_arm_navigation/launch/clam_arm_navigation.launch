@@ -1,13 +1,21 @@
 <!-- -*- mode: XML -*- -->
 
 <launch>
+    <!-- reload urdf and robot_description_planning parameter -->
     <include file="$(find clam_arm_navigation)/launch/clam_planning_environment.launch" />
+    <!-- load monitor/collision checking -->
     <include file="$(find planning_environment)/launch/environment_server.launch">
         <arg name="use_monitor" value="true" />
         <arg name="use_collision_map" value="false" />
     </include>
+    <!-- load inverse kinematics -->
     <include file="$(find clam_arm_navigation)/launch/constraint_aware_kinematics.launch" />
+    <!-- load planning -->
     <include file="$(find clam_arm_navigation)/launch/ompl_planning.launch" />
+    <!-- load perception -->
+    <!-- THIS IS JUST EXAMPLE: include file="$(find pr2_arm_navigation_perception)/launch/laser-perception.launch"/-->
+    <!-- load trajectory filtering / smoothing -->
     <include file="$(find clam_arm_navigation)/launch/trajectory_filter_server.launch" />
-    <include file="$(find clam_arm_navigation)/launch/move_groups.launch" />
+    <!-- load move arm simple action node -->
+    <include file="$(find clam_arm_navigation)/launch/move_clam_chain.launch" />
 </launch>
