@@ -1,8 +1,0 @@
-<!-- -*- mode: XML -*- -->
-
-<launch>
-
-        <node name="pose_animate" pkg="clam_controller" type="pose_animate.py" />
-
-
-</launch>

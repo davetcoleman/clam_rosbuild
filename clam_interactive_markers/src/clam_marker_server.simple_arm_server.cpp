@@ -30,8 +30,8 @@
 #include <ros/ros.h>
 
 #include <actionlib/client/simple_action_client.h>
-#include <arm_navigation_msgs/MoveArmAction.h>
-#include <arm_navigation_msgs/utils.h>
+#include <simple_arm_server/MoveArmAction.h>
+//#include <arbotix_msgs/Relax.h>
 
 #include <interactive_markers/interactive_marker_server.h>
 #include <interactive_markers/menu_handler.h>
@@ -55,7 +55,7 @@ class ClamMarkerServer
 {
 private:
     ros::NodeHandle nh;
-    actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> move_arm; // TODO: maybe initialize with (..) ?
+    actionlib::SimpleActionClient<simple_arm_server::MoveArmAction> client;
     interactive_markers::InteractiveMarkerServer server;
     tf::TransformListener tf_listener;
     
@@ -91,12 +91,7 @@ private:
     
 public:
 	ClamMarkerServer()
-		: nh("~"),
-		  move_arm("move_clam_chain", true),
-		  server("clam_marker_server"),
-		  tf_listener(nh),
-		  immediate_commands(true),
-		  in_move(false)
+		: nh("~"), client("move_clam_chain", true), server("clam_marker_server"), tf_listener(nh), immediate_commands(true), in_move(false)
 	{
 		// Get general arm parameters
 		nh.param<std::string>("root_link", root_link, "/base_link");
@@ -117,7 +112,7 @@ public:
 		}
 		else
 		{
-			ROS_INFO("Using default join list");
+			cout << "Using default join list" << endl;
 			joints.push_back("shoulder_pan_controller");
 			joints.push_back("gripper_roll_controller");
 			joints.push_back("gripper_grip_controller");
@@ -126,6 +121,12 @@ public:
 			joints.push_back("elbow_pitch_controller");
 			joints.push_back("wrist_roll_controller");
 			joints.push_back("wrist_pitch_controller");
+			/*
+			joints.push_back("arm_shoulder_pan_joint");
+			joints.push_back("arm_shoulder_lift_joint");
+			joints.push_back("arm_elbow_flex_joint");
+			joints.push_back("arm_wrist_flex_joint");
+			joints.push_back("gripper_joint");*/
 		}
     
 		// Get the corresponding link list
@@ -143,7 +144,13 @@ public:
 		}
 		else
 		{
-			ROS_INFO("Using default link list");
+			cout << "Using default link list" << endl;
+			/*
+			links.push_back("arm_shoulder_pan_servo_link");
+			links.push_back("arm_shoulder_lift_servo_link");
+			links.push_back("arm_elbow_flex_servo_link");
+			links.push_back("arm_wrist_flex_servo_link");
+			links.push_back("gripper_servo_link"); */
 			
 			links.push_back("shoulder_pan_link");
 			links.push_back("gripper_roll_link");
@@ -228,7 +235,7 @@ public:
 	}
   
 	void processCommand(const actionlib::SimpleClientGoalState& state,
-						const arm_navigation_msgs::MoveArmResultConstPtr& result, 
+						const simple_arm_server::MoveArmResultConstPtr& result, 
 						const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
 		ROS_INFO("Finished in state [%s]", state.toString().c_str());
@@ -246,62 +253,12 @@ public:
 			changeMarkerColor(1, 0, 0, true, feedback->pose);
 		}
 	}
-
-	/*
-	  Send arm a trajectory to reach a pose
-	*/
+  
 	bool sendTrajectoryCommand(const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
-		// Initialize the goal
-		arm_navigation_msgs::MoveArmGoal goal;		
-		goal.motion_plan_request.group_name = "clam_chain"; // corresponds to clam_planning_description.yaml group name
-		goal.motion_plan_request.num_planning_attempts = 1;
-		goal.motion_plan_request.planner_id = std::string("");
-		goal.planner_service_name = std::string("ompl_planning/plan_kinematic_path");
-		goal.motion_plan_request.allowed_planning_time = ros::Duration(50.0);
-
-		// Create the desired pose
-		arm_navigation_msgs::SimplePoseConstraint desired_pose;
-		desired_pose.header.frame_id = root_link; // base_link
-		desired_pose.link_name = tip_link; //feedback->header.frame_id; //gripper_grip_link
-		cout << "Sending pose for link name: " << feedback->header.frame_id << endl;
-		desired_pose.pose = feedback->pose;
-
-		desired_pose.absolute_position_tolerance.x = 0.02;
-		desired_pose.absolute_position_tolerance.y = 0.02;
-		desired_pose.absolute_position_tolerance.z = 0.02;
-
-		desired_pose.absolute_roll_tolerance = 0.1;
-		desired_pose.absolute_pitch_tolerance = 0.1;
-		desired_pose.absolute_yaw_tolerance = 0.1;
-
-		arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose,goal);
-
-		if (nh.ok())
-		{
-			bool finished_within_time = false;
-			move_arm.sendGoal(goal);
-			finished_within_time = move_arm.waitForResult(ros::Duration(200.0));
-			if (!finished_within_time)
-			{
-				move_arm.cancelGoal();
-				ROS_INFO("Timed out achieving goal");
-			}
-			else
-			{
-				actionlib::SimpleClientGoalState state = move_arm.getState();
-				bool success = (state == actionlib::SimpleClientGoalState::SUCCEEDED);
-				if(success)
-					ROS_INFO("Action finished: %s",state.toString().c_str());
-				else
-					ROS_INFO("Action failed: %s",state.toString().c_str());
-			}
-		}
-
-		changeMarkerColor(0, 0, 1, true, feedback->pose);
-		
-		// OLD STUFF:
-		/*arm_navigation_msgs::ArmAction action;
+		simple_arm_server::MoveArmGoal goal;
+		simple_arm_server::ArmAction action;
+    
 		goal.header.frame_id = root_link;
     
 		geometry_msgs::Pose pose;
@@ -312,8 +269,8 @@ public:
 		action.move_time = ros::Duration(move_time);
 		goal.motions.push_back(action); 
     
-		move_arm.sendGoal(goal, boost::bind(&ClamMarkerServer::processCommand, this, _1, _2, feedback));
-		changeMarkerColor(0, 0, 1, true, feedback->pose);*/
+		client.sendGoal(goal, boost::bind(&ClamMarkerServer::processCommand, this, _1, _2, feedback));
+		changeMarkerColor(0, 0, 1, true, feedback->pose);
     
 		return true;
 	}
@@ -321,21 +278,21 @@ public:
 	bool sendGripperCommand(const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
 		/* DTC
-		   arm_navigation_msgs::MoveArmGoal goal;
-		   arm_navigation_msgs::ArmAction action;
+		simple_arm_server::MoveArmGoal goal;
+		simple_arm_server::ArmAction action;
     
-		   goal.header.frame_id = tip_link;
-		   action.type = arm_navigation_msgs::ArmAction::MOVE_GRIPPER;
-		   action.command = -feedback->pose.position.y;
-		   goal.motions.push_back(action); 
+		goal.header.frame_id = tip_link;
+		action.type = simple_arm_server::ArmAction::MOVE_GRIPPER;
+		action.command = -feedback->pose.position.y;
+		goal.motions.push_back(action); 
     
-		   move_arm.sendGoal(goal);
-		   //move_arm.waitForResult(ros::Duration(30.0));
-		   //if (move_arm.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-		   //  return true;
-		   //return false;
+		client.sendGoal(goal);
+		//client.waitForResult(ros::Duration(30.0));
+		//if (client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+		//  return true;
+		//return false;
 
-		   */
+		*/
 		// Don't block. Just return.
 		return true;
 	}

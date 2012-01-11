@@ -35,5 +35,4 @@
           args="--manager=clam_motor_manager                                                                                                        --port=multi_joint_dummy_port                                                                                                       clam_arm_controller"
           output="screen"/>
 
-
 </launch>

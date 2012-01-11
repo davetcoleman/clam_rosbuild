@@ -1,6 +1,7 @@
 #include <ros/ros.h>
-#include <control_msgs/FollowJointTrajectoryAction.h>
 #include <actionlib/client/simple_action_client.h>
+
+#include <control_msgs/FollowJointTrajectoryAction.h>
 
 typedef actionlib::SimpleActionClient< control_msgs::FollowJointTrajectoryAction > TrajClient;
 
