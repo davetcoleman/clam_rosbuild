@@ -16,9 +16,9 @@ joint_names = ('shoulder_pan_controller',
                'gripper_roll_controller',
                'gripper_grip_controller')
                
-joint_commands = (-1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0)
+joint_commands = (-1.0, 0.5, 0.7, 1.0, 1.0, 1.0, 1.0, -0.9)
 joint_commands2 = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-joint_commands3 = (0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 0.0, -1)
+joint_commands3 = (0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 0.0, -0.9)
 joint_commands4 = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 joint_commands5 = (0.0, 2, 0.0, -0.3, 0.0, 0.0, 0.0, 1.0)
 

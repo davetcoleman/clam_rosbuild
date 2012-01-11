@@ -28,10 +28,11 @@
  */
 
 #include <ros/ros.h>
-
 #include <actionlib/client/simple_action_client.h>
+
 #include <arm_navigation_msgs/MoveArmAction.h>
 #include <arm_navigation_msgs/utils.h>
+#include <dynamixel_hardware_interface/TorqueEnable.h>
 
 #include <interactive_markers/interactive_marker_server.h>
 #include <interactive_markers/menu_handler.h>
@@ -117,7 +118,7 @@ public:
 		}
 		else
 		{
-			ROS_INFO("Using default join list");
+			ROS_INFO("Using default joint list");
 			joints.push_back("shoulder_pan_controller");
 			joints.push_back("gripper_roll_controller");
 			joints.push_back("gripper_grip_controller");
@@ -172,7 +173,7 @@ public:
     
 		resetMarker();
     
-		ROS_INFO("[clam marker server] Initialized.");
+		ROS_INFO("Marker Server Initialized.");
 	}
 
 	void createJointPublishers()
@@ -180,7 +181,8 @@ public:
 		BOOST_FOREACH( std::string joint_name, joints )
 		{
 			joint_command_publishers[joint_name] = (nh.advertise<std_msgs::Float64>("/" + joint_name + "/command", 1, false));
-			//joint_relax_clients[joint_name] = (nh.serviceClient<arbotix_msgs::Relax>("/" + joint_name + "/relax"));
+			joint_relax_clients[joint_name] =
+				(nh.serviceClient<dynamixel_hardware_interface::TorqueEnable>("/" + joint_name + "/torque_enable", false));
 		}
   
 	}
@@ -198,7 +200,7 @@ public:
       
 		if (immediate_commands)
 		{
-			sendTrajectoryCommand(feedback);
+			sendPoseCommand(feedback);
 		}
 	}
   
@@ -248,9 +250,9 @@ public:
 	}
 
 	/*
-	  Send arm a trajectory to reach a pose
+	  This is what happens when the interactive gripper cube is moved around
 	*/
-	bool sendTrajectoryCommand(const InteractiveMarkerFeedbackConstPtr &feedback)
+	bool sendPoseCommand(const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
 		// Initialize the goal
 		arm_navigation_msgs::MoveArmGoal goal;		
@@ -264,7 +266,6 @@ public:
 		arm_navigation_msgs::SimplePoseConstraint desired_pose;
 		desired_pose.header.frame_id = root_link; // base_link
 		desired_pose.link_name = tip_link; //feedback->header.frame_id; //gripper_grip_link
-		cout << "Sending pose for link name: " << feedback->header.frame_id << endl;
 		desired_pose.pose = feedback->pose;
 
 		desired_pose.absolute_position_tolerance.x = 0.02;
@@ -300,21 +301,6 @@ public:
 
 		changeMarkerColor(0, 0, 1, true, feedback->pose);
 		
-		// OLD STUFF:
-		/*arm_navigation_msgs::ArmAction action;
-		goal.header.frame_id = root_link;
-    
-		geometry_msgs::Pose pose;
-		getTransformedPose(feedback->header.frame_id, feedback->pose, root_link, pose, feedback->header.stamp);
-    
-		action.goal.orientation = pose.orientation;
-		action.goal.position = pose.position;
-		action.move_time = ros::Duration(move_time);
-		goal.motions.push_back(action); 
-    
-		move_arm.sendGoal(goal, boost::bind(&ClamMarkerServer::processCommand, this, _1, _2, feedback));
-		changeMarkerColor(0, 0, 1, true, feedback->pose);*/
-    
 		return true;
 	}
   
@@ -570,7 +556,7 @@ public:
 
 	void sendCommandCb(const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback)
 	{
-		sendTrajectoryCommand(feedback);
+		sendPoseCommand(feedback);
 	}
   
 	void relaxAllCb(const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback)
@@ -589,8 +575,10 @@ public:
   
 	void relaxCb(const std::string joint_name, const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback)
 	{
-		//DTC arbotix_msgs::Relax srv;
-		//DTC joint_relax_clients[joint_name].call(srv);
+		std::cout << "RELAX" << joint_name << std::endl;
+		dynamixel_hardware_interface::TorqueEnable srv;
+		joint_relax_clients[joint_name].call(srv);
+		
 	}
   
 	void immediateCb(const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback)

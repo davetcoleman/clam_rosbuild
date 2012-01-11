@@ -1,6 +1,4 @@
 <!-- -*- mode: XML -*- -->
-<!-- This brings up everything needed to run the physical ClamArm except things to send commands and visualize it -->
-
 <launch>
     <!-- Startup the arm controller -->
     <include file="$(find clam_controller)/launch/clam_controller.launch" />

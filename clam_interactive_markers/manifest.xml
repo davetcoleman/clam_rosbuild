@@ -13,7 +13,7 @@
   <depend package="visualization_msgs"/>
   <depend package="interactive_markers"/>
   <depend package="arm_navigation_msgs"/>
-  <!--depend package="simple_arm_server"/-->
+  <depend package="dynamixel_hardware_interface"/>
   <depend package="actionlib"/>
 
 </package>

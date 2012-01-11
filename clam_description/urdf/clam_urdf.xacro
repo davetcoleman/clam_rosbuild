@@ -2,7 +2,7 @@
 
 <!-- Robot Description format of CLAM arm 
      Dave Coleman - davetcoleman@gmail.com
-     11/6/2011
+     1/10/2012
      
      Documentation:
 
@@ -45,7 +45,6 @@
     </inertial>
   </link>
 
-  <!-- J0 -->
   <joint name="shoulder_pan_joint" type="revolute">
     <parent link="base_link"/>
     <child link="shoulder_pan_link"/>
@@ -67,7 +66,6 @@
     </visual>
   </link>
 
-  <!-- J1 -->
   <joint name="shoulder_pitch_joint" type="revolute">
     <parent link="shoulder_pan_link"/>
     <child link="shoulder_pitch_link"/>
@@ -96,7 +94,6 @@
 
   </link>
 
-  <!-- J2 -->
   <joint name="elbow_roll_joint" type="revolute">
     <parent link="shoulder_pitch_link"/>
     <child link="elbow_roll_link"/>
@@ -118,7 +115,6 @@
     </visual>
   </link>
 
-  <!-- J3 -->
   <joint name="elbow_pitch_joint" type="revolute">
     <parent link="elbow_roll_link"/>
     <child link="elbow_pitch_link"/>
@@ -140,7 +136,6 @@
     </visual>
   </link>
 
-  <!-- J4 -->
   <joint name="wrist_roll_joint" type="revolute">
     <parent link="elbow_pitch_link"/>
     <child link="wrist_roll_link"/>
@@ -162,7 +157,6 @@
     </visual>
   </link>
 
-  <!-- J5 -->
   <joint name="wrist_pitch_joint" type="revolute">
     <parent link="wrist_roll_link"/>
     <child link="wrist_pitch_link"/>
@@ -184,7 +178,6 @@
     </visual>
   </link>
 
-  <!-- J6 -->
   <joint name="gripper_roll_joint" type="revolute">
     <parent link="wrist_pitch_link"/>
     <child link="gripper_roll_link"/>
@@ -205,7 +198,6 @@
     </visual>
   </link>
 
-  <!-- J7 -->
   <joint name="gripper_grip_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="gripper_grip_link"/>
@@ -215,6 +207,7 @@
     <dynamics damping="50" friction="1"/>
   </joint>
 
+  <!-- GRIPPER GRIP LINK -->
   <link name="gripper_grip_link">
     <visual>
       <origin xyz="0 0 ${0.060 * .5}" rpy="0 0 0" />            

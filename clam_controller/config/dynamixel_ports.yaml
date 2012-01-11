@@ -1,5 +1,5 @@
 namespace: clam_motor_manager
-diagnostics_rate: 10
+diagnostics_rate: 2
 serial_ports:
      port_ttl:
         port_name: /dev/dynamixel_ttl
