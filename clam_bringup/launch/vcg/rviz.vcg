@@ -18,7 +18,7 @@ Grid.OffsetZ=0
 Grid.Plane=0
 Grid.Plane\ Cell\ Count=10
 Grid.Reference\ Frame=<Fixed Frame>
-Robot\ Model.Alpha=1
+Robot\ Model.Alpha=0.99
 Robot\ Model.Collision\ Enabled=0
 Robot\ Model.Enabled=1
 Robot\ Model.Robot\ Description=robot_description
@@ -46,8 +46,8 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.146 5.58943 1.16089 0.141195 0.345845 -0.126072
-Property\ Grid\ State=selection=Robot Model.Enabled;expanded=.Global Options,Grid.Enabled,Robot Model.Enabled;scrollpos=0,0;splitterpos=223,462;ispageselected=1
+Camera\ Config=1.071 1.04943 0.478759 0.0443097 0.0790587 -0.0615523
+Property\ Grid\ State=selection=Robot Model.Enabled.Robot Model.Update Interval;expanded=.Global Options,Grid.Enabled,Robot Model.Enabled;scrollpos=0,0;splitterpos=223,462;ispageselected=1
 [Display0]
 Name=Grid
 Package=rviz
