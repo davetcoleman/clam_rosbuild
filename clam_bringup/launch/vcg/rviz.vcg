@@ -37,7 +37,7 @@ Robot\:\ Robot\ Model\ Link\ gripper_roll_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ gripper_roll_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ shoulder_pan_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ shoulder_pan_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ shoulder_pitch_linkShow\ Axes=0
+Robot\:\ Robot\ Model\ Link\ shoulder_pitch_linkShow\ Axes=1
 Robot\:\ Robot\ Model\ Link\ shoulder_pitch_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ wrist_pitch_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ wrist_pitch_linkShow\ Trail=0
@@ -46,8 +46,8 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.071 1.04943 0.478759 0.0443097 0.0790587 -0.0615523
-Property\ Grid\ State=selection=Robot Model.Enabled.Robot Model.Update Interval;expanded=.Global Options,Grid.Enabled,Robot Model.Enabled;scrollpos=0,0;splitterpos=223,462;ispageselected=1
+Camera\ Config=1.286 4.73262 0.48444 -0.021741 0.0739616 0.0649588
+Property\ Grid\ State=selection=Robot: Robot Model Link shoulder_pitch_linkShow Axes;expanded=.Global Options,Grid.Enabled,Robot Model.Enabled,Robot Model.Enabled.Robot: Robot ModelLinks,Robot: Robot Model Link shoulder_pan_linkshoulder_pan_link,Robot: Robot Model Link shoulder_pitch_linkshoulder_pitch_link;scrollpos=0,7;splitterpos=223,449;ispageselected=1
 [Display0]
 Name=Grid
 Package=rviz

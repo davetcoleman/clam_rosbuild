@@ -77,7 +77,7 @@
   <joint name="shoulder_pitch_joint" type="revolute">
     <parent link="shoulder_pan_link"/>
     <child link="shoulder_pitch_link"/>
-    <origin xyz="0 0 ${0.046 * 0}" rpy="-${M_PI/2} 0 ${M_PI/2}" />
+    <origin xyz="-0.041 0.0 0.0" rpy="-${M_PI/2} 0 ${M_PI/2}" />
     <axis xyz="1 0 0" />
     <limit effort="300" velocity="1" lower="-1.19962513147" upper="1.89994105047" />
     <dynamics damping="50" friction="1"/>
@@ -86,35 +86,38 @@
   <!-- SHOULDER PITCH LINK -->
   <link name="shoulder_pitch_link" >
     <visual>
-      <origin xyz="-0.002 0 0.046" rpy="${M_PI/2} ${M_PI} ${M_PI/2}" />
+      <origin xyz="-0.002 0 -0.000" rpy="${M_PI/2} ${M_PI} ${M_PI/2}" />
       <geometry>
 	<mesh filename="package://clam_description/stl/shoulder_pitch_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.117" radius="0.02" /-->
       </geometry>
       <material name="Grey" />
     </visual>
-    <!--collision>
-      <origin xyz="-0.002 0 -0.005" rpy="${M_PI/2} ${M_PI} ${M_PI/2}" />
-      <geometry>
-	<mesh filename="package://clam_description/stl/shoulder_pitch_link_convex.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
-      </geometry>
-    </collision-->
 
   </link>
 
   <joint name="elbow_roll_joint" type="revolute">
     <parent link="shoulder_pitch_link"/>
     <child link="elbow_roll_link"/>
-    <origin xyz="0.004 0 ${0.117 * 1 + 0.035}" rpy="0 0 0" />
+    <origin xyz="-0.001 0 0.121" rpy="0 ${M_PI/2} 0" />
     <axis xyz="1 0 0" />
     <limit effort="300" velocity="1" lower="-2.61799387799" upper="0.705631162427" />
     <dynamics damping="50" friction="1"/>
   </joint>
 
   <!-- ELBOW ROLL LINK -->
+
+
+
+  <!-- CONTINUE CONVERTING URDF HERE -->
+
+
+
+
+
   <link name="elbow_roll_link" >
     <visual>
-      <origin xyz="-0.006 0.0 ${0.039 * 0}" rpy="${M_PI/2} ${M_PI} 0" />
+      <origin xyz="0.0 0.0 0.0" rpy="${M_PI} ${M_PI/2} ${M_PI/2}" />
       <geometry>
 	<mesh filename="package://clam_description/stl/elbow_roll_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.039" radius="0.02" /-->
