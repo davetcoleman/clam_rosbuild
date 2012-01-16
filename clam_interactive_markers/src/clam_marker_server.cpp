@@ -100,8 +100,8 @@ public:
 		  in_move(false)
 	{
 		// Get general arm parameters
-		nh.param<std::string>("root_link", root_link, "/base_link");
-		nh.param<std::string>("tip_link", tip_link, "/gripper_grip_link");
+		nh.param<std::string>("root_link", root_link, "base_link");
+		nh.param<std::string>("tip_link", tip_link, "gripper_grip_link");
 		nh.param<double>("move_time", move_time, 2.0);
 
 		// Get the joint list
@@ -119,6 +119,7 @@ public:
 		else
 		{
 			ROS_INFO("Using default joint list");
+			
 			joints.push_back("shoulder_pan_controller");
 			joints.push_back("gripper_roll_controller");
 			joints.push_back("gripper_grip_controller");
@@ -172,7 +173,10 @@ public:
 		createJointPublishers();
     
 		resetMarker();
-    
+
+		//ROS_INFO("LINK NAMES: %s", root_link.c_str());
+		//ROS_INFO("LINK NAMES: %s", tip_link.c_str());		
+		
 		ROS_INFO("Marker Server Initialized.");
 	}
 
@@ -203,7 +207,10 @@ public:
 			sendPoseCommand(feedback);
 		}
 	}
-  
+
+	/*
+	  Send individual joint commands
+	*/
 	void processJointFeedback(const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
 		std_msgs::Float64 command;
@@ -492,17 +499,18 @@ public:
   
 	void createJointMarker(const string joint_name, const string link_name)
 	{
+		//ROS_INFO("Creating joint marker for %s on link %s", joint_name.c_str(), link_name.c_str());
 		InteractiveMarker int_marker;
 		int_marker.header.frame_id = link_name;
 		int_marker.name = joint_name;
-		int_marker.scale = 0.05;
+		int_marker.scale = 0.08; //0.05;
 
 		InteractiveMarkerControl control;
 
 		control.orientation.w = 1;
-		control.orientation.x = 0;
-		control.orientation.y = 0;
-		control.orientation.z = 1;
+		control.orientation.x = 0; //0
+		control.orientation.y = 0; //0
+		control.orientation.z = 1; //1
 		control.name = "rotate_z";
 		control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
 		int_marker.controls.push_back(control);
@@ -517,7 +525,8 @@ public:
 		arm_menu_handler = MenuHandler();
 		arm_menu_handler.insert("Send command", boost::bind(&ClamMarkerServer::sendCommandCb, this, _1));
 		arm_menu_handler.setCheckState(
-									   arm_menu_handler.insert("Send command immediately", boost::bind(&ClamMarkerServer::immediateCb, this, _1)), MenuHandler::CHECKED );
+		   arm_menu_handler.insert("Send command immediately", boost::bind(&ClamMarkerServer::immediateCb, this, _1)),
+		   MenuHandler::CHECKED );
 		arm_menu_handler.insert("Reset marker", boost::bind(&ClamMarkerServer::resetPoseCb, this, _1));
     
 		MenuHandler::EntryHandle entry = arm_menu_handler.insert("Relax joints");

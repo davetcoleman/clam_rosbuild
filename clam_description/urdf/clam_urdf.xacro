@@ -16,9 +16,16 @@
      http://www.ros.org/wiki/xacro
 
 -->
-<robot name="clam">
+<robot name="clam"
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
 
+  <!-- Include materials -->
   <include filename="$(find clam_description)/urdf/materials.urdf.xacro" />
+
+  <!-- Constants -->
+  <property name="M_SCALE" value="0.001"/>
 
   <!-- BASE LINK -->
 
@@ -26,7 +33,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.5708 0 0" /> <!-- rotate PI/2 -->
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--box size="0.1 0.1 0.05" /-->
       </geometry>
       <material name="Grey" />
@@ -35,7 +42,7 @@
     <!--collision>
       <origin xyz="0 0 0" rpy="1.5708 0 0" /> 
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link_convex.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/base_link_convex.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
       </geometry>>
     </collision-->
 
@@ -59,7 +66,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.5708 0 0" />
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pan_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pan_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.046" radius="0.03" /-->
       </geometry>
       <material name="Orange" />
@@ -80,7 +87,7 @@
     <visual>
       <origin xyz="-0.002 0 -0.005" rpy="1.5708 3.1416 1.5708" />
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pitch_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pitch_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.117" radius="0.02" /-->
       </geometry>
       <material name="Grey" />
@@ -88,7 +95,7 @@
     <!--collision>
       <origin xyz="-0.002 0 -0.005" rpy="1.5708 3.1416 1.5708" />
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pitch_link_convex.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/shoulder_pitch_link_convex.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
       </geometry>
     </collision-->
 
@@ -108,7 +115,7 @@
     <visual>
       <origin xyz="-0.006 0.0 ${0.039 * 0}" rpy="1.5708 3.1416 0" />
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_roll_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_roll_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.039" radius="0.02" /-->
       </geometry>
       <material name="Black" />
@@ -129,7 +136,7 @@
     <visual>
       <origin xyz="-0.004 0 ${0.215 * 0}" rpy="1.5708 3.1416 4.7124" />
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_pitch_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/elbow_pitch_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.215" radius="0.02" /-->
       </geometry>
       <material name="Orange" />
@@ -150,7 +157,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="-1.5708 0 0" />      
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_roll_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_roll_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.033" radius="0.02" /-->
       </geometry>
       <material name="Black" />
@@ -160,7 +167,7 @@
   <joint name="wrist_pitch_joint" type="revolute">
     <parent link="wrist_roll_link"/>
     <child link="wrist_pitch_link"/>
-    <origin xyz="-0.001 0.000 0" rpy="0 0 0" />
+    <origin xyz="-0${M_SCALE} 0.000 0" rpy="0 0 0" />
     <axis xyz="1 0 0" />
     <limit effort="300" velocity="1" lower="-1.5953400194" upper="1.98394848567" />
     <dynamics damping="50" friction="1"/>
@@ -171,7 +178,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="3.1416 -1.5708 0" />
       <geometry>
-	<mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_pitch_link.STL" scale=".001 .001 .001" />
+	<mesh filename="package://clam_description/cad/arm_assemblies/stl/wrist_pitch_link.STL" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" />
 	<!--cylinder length="0.081" radius="0.02" /-->
       </geometry>
       <material name="Grey" />
