@@ -1,6 +1,6 @@
 <!-- -*- mode: XML -*- -->
 
 <launch>
-	<!-- Visualize it -->
-        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clam_bringup)/launch/vcg/rviz.vcg" />
+    <!-- Visualize it -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clam_bringup)/launch/vcg/rviz.vcg" />
 </launch>

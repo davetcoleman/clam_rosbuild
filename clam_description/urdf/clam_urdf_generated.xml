@@ -71,8 +71,8 @@
   <joint name="shoulder_pan_joint" type="revolute">
     <parent link="base_link"/>
     <child link="shoulder_pan_link"/>
-    <origin rpy="0 1.570795 0" xyz="0 0 0.05"/>
-    <axis xyz="1 0 0"/>
+    <origin rpy="0 1.570795 0.0" xyz="0 0 0.05"/>
+    <axis xyz="-1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="1.98394848567" velocity="1"/>
     <dynamics damping="50" friction="1"/>
   </joint>
@@ -109,15 +109,15 @@
   <joint name="elbow_roll_joint" type="revolute">
     <parent link="shoulder_pitch_link"/>
     <child link="elbow_roll_link"/>
-    <origin rpy="0 1.570795 0" xyz="-0.001 0 0.157"/>
-    <axis xyz="1 0 0"/>
+    <origin rpy="3.14159 1.570795 0" xyz="-0.001 0 0.121"/>
+    <axis xyz="-1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="0.705631162427" velocity="1"/>
     <dynamics damping="50" friction="1"/>
   </joint>
   <!-- ELBOW ROLL LINK -->
   <link name="elbow_roll_link">
     <visual>
-      <origin rpy="3.14159 1.570795 1.570795" xyz="0.0 0.0 0.0"/>
+      <origin rpy="3.14159 1.570795 1.570795" xyz="-0.035 0.0 0.0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/elbow_roll_link.STL" scale="0.001 0.001 0.001"/>
         <!--cylinder length="0.039" radius="0.02" /-->
@@ -128,7 +128,7 @@
   <joint name="elbow_pitch_joint" type="revolute">
     <parent link="elbow_roll_link"/>
     <child link="elbow_pitch_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    <origin rpy="0 1.570795 0" xyz="-0.035 0 0.0009"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.5953400194" upper="1.93281579274" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -136,7 +136,8 @@
   <!-- ELBOW PITCH LINK -->
   <link name="elbow_pitch_link">
     <visual>
-      <origin rpy="1.570795 3.14159 4.7124" xyz="-0.004 0 0.0"/>
+      <!--   roll   pitch=green  yaw=blue axis -->
+      <origin rpy="1.570795 0 4.712385" xyz="0.0 0 -0.0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/elbow_pitch_link.STL" scale="0.001 0.001 0.001"/>
         <!--cylinder length="0.215" radius="0.02" /-->
@@ -147,7 +148,7 @@
   <joint name="wrist_roll_joint" type="revolute">
     <parent link="elbow_pitch_link"/>
     <child link="wrist_roll_link"/>
-    <origin rpy="0 0 0" xyz="-0.004 -0.008 0.248"/>
+    <origin rpy="0 1.570795 3.14159" xyz="0.0 -0.008 -.248"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -155,7 +156,7 @@
   <!-- WRIST ROLL LINK -->
   <link name="wrist_roll_link">
     <visual>
-      <origin rpy="-1.570795 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.570795 1.570795" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/wrist_roll_link.STL" scale="0.001 0.001 0.001"/>
         <!--cylinder length="0.033" radius="0.02" /-->
@@ -166,7 +167,7 @@
   <joint name="wrist_pitch_joint" type="revolute">
     <parent link="wrist_roll_link"/>
     <child link="wrist_pitch_link"/>
-    <origin rpy="0 0 0" xyz="-00.001 0.000 0"/>
+    <origin rpy="0 1.570795 0" xyz="0.0 0.0 0.002"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.5953400194" upper="1.98394848567" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -185,7 +186,7 @@
   <joint name="gripper_roll_joint" type="revolute">
     <parent link="wrist_pitch_link"/>
     <child link="gripper_roll_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.081"/>
+    <origin rpy="0 1.570795 0" xyz="0 0 0.1"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -193,9 +194,9 @@
   <!-- GRIPPER ROLL LINK -->
   <link name="gripper_roll_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.02"/>
+      <origin rpy="0 1.570795 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.040" radius="0.025"/>
+        <box size="0.06 0.015 0.04"/>
       </geometry>
       <material name="Orange"/>
     </visual>
@@ -203,7 +204,7 @@
   <joint name="gripper_grip_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="gripper_grip_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.04"/>
+    <origin rpy="0 0 1.570795" xyz="-0.02 0 0.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-0.940841549903" upper="0.0" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -211,9 +212,9 @@
   <!-- GRIPPER GRIP LINK -->
   <link name="gripper_grip_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+      <origin rpy="1.570795 0 0" xyz="0.0 0.03 0"/>
       <geometry>
-        <box size="0.03 0.02 0.060"/>
+        <box size="0.03 0.005 0.060"/>
       </geometry>
       <material name="Black"/>
     </visual>

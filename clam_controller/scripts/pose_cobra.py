@@ -24,7 +24,8 @@ if __name__ == '__main__':
     rospy.init_node('make_cobra_pose', anonymous=True)
     
     for i in range(len(pubs)):
-        pubs[i].publish(joint_commands[i])
         time.sleep(.1)
         print 'Sending command'        
+        pubs[i].publish(joint_commands[i])
+
         

@@ -165,10 +165,15 @@ public:
 		nh.param<double>("gripper/box_offset/x", gripper_box_offset_x, -0.017);
 		nh.param<double>("gripper/box_offset/y", gripper_box_offset_y, 0.008);
 		nh.param<double>("gripper/box_offset/z", gripper_box_offset_z, 0.0);
-    
-		createArmMarker();
+
+		// When "Interact" is clicked, which mode should we start in:
+		// 1. Planning Mode
+		/*createArmMarker();
 		createGripperMarker();
-		createArmMenu();
+		createArmMenu();*/		
+		// 2. Manual Joint Control Mode
+		createJointMarkers();
+		createJointMenus();		
     
 		createJointPublishers();
     
@@ -214,7 +219,7 @@ public:
 	void processJointFeedback(const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
 		std_msgs::Float64 command;
-		command.data = feedback->pose.orientation.y;
+		command.data = feedback->pose.orientation.x;
 		joint_command_publishers[feedback->marker_name].publish(command);
 	}
   
@@ -235,7 +240,8 @@ public:
 		server.insert(int_marker);
 		server.applyChanges();
 	}
-  
+
+	// DTC: This is never used??
 	void processCommand(const actionlib::SimpleClientGoalState& state,
 						const arm_navigation_msgs::MoveArmResultConstPtr& result, 
 						const InteractiveMarkerFeedbackConstPtr &feedback)
@@ -245,6 +251,7 @@ public:
 		//changeMarkerColor(0, 0, 1);
 		if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
 		{
+			// Make green:
 			changeMarkerColor(0, 1, 0, true, feedback->pose);
 			ros::Duration(0.25).sleep();
 			resetMarker();
@@ -252,6 +259,7 @@ public:
 		}
 		else
 		{
+			// Make red:
 			changeMarkerColor(1, 0, 0, true, feedback->pose);
 		}
 	}
@@ -443,6 +451,7 @@ public:
    
 	void createGripperMarker()
 	{
+		/* DTC
 		// Create a marker for the gripper
 		InteractiveMarker int_marker;
 		int_marker.header.frame_id = tip_link;
@@ -487,6 +496,7 @@ public:
 		server.insert(int_marker, boost::bind( &ClamMarkerServer::sendGripperCommand, this, _1 ));
     
 		server.applyChanges();
+		*/
 	}
   
 	void createJointMarkers()
@@ -505,14 +515,15 @@ public:
 		int_marker.name = joint_name;
 		int_marker.scale = 0.08; //0.05;
 
+		
 		InteractiveMarkerControl control;
-
 		control.orientation.w = 1;
 		control.orientation.x = 1; //0
 		control.orientation.y = 0; //0
 		control.orientation.z = 0; //1
-		control.name = "rotate_z";
+		control.name = "rotate_x";
 		control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
+		
 		int_marker.controls.push_back(control);
 
 		server.insert(int_marker, boost::bind( &ClamMarkerServer::processJointFeedback, this, _1 ));
