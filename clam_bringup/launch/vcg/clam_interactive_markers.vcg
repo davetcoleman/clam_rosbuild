@@ -28,7 +28,7 @@ Robot\ Model.Collision\ Enabled=0
 Robot\ Model.Enabled=1
 Robot\ Model.Robot\ Description=robot_description
 Robot\ Model.TF\ Prefix=
-Robot\ Model.Update\ Interval=1
+Robot\ Model.Update\ Interval=0
 Robot\ Model.Visual\ Enabled=1
 Robot\:\ Robot\ Model\ Link\ base_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ base_linkShow\ Trail=0
@@ -51,8 +51,8 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.196 5.31836 1.07025 -0.118793 0.450048 -0.0412363
-Property\ Grid\ State=selection=Robot Model.Enabled.Robot Model.Update Interval;expanded=.Global Options,Robot Model.Enabled,Interactive Markers.Enabled;scrollpos=0,0;splitterpos=223,462;ispageselected=1
+Camera\ Config=1.576 6.19837 1.07025 -0.189144 0.200376 -0.110554
+Property\ Grid\ State=selection=Robot Model.Enabled.Robot Model.Alpha;expanded=.Global Options,Robot Model.Enabled,Interactive Markers.Enabled;scrollpos=0,0;splitterpos=204,424;ispageselected=1
 [Display0]
 Name=Grid
 Package=rviz

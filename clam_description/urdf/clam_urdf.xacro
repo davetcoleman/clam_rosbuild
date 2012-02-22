@@ -217,6 +217,7 @@
     <visual>
       <origin xyz="0.0 0.03 0" rpy="${M_PI/2} 0 0" />  
       <geometry>
+	<!--mesh filename="package://clam_description/stl/gripper.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" /-->
 	<box size="0.03 0.005 0.060" />
       </geometry>
       <material name="Black" />

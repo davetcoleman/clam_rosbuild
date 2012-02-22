@@ -20,10 +20,9 @@ joint_names = ('shoulder_pan_controller',
 coords = []   # store an array of coordinates over time
 
 def callback(data):
-#    print data
-#    print data.motor_ids[0], data.current_pos
-    coords.append(  [data.name, data.position]   )
-#    coords.append(  [data.motor_ids[0], data.current_pos]   )
+    #print data
+    #rint data.name, data.position
+    coords.append(  [data.name, data.position]  )
 
 
 def listener():

@@ -6,7 +6,16 @@ import traceback
 import sys
 from std_msgs.msg import Float64
 
-joint_names = ('shoulder_pan_controller',
+joint_names = ('shoulder_pan_joint',
+               'shoulder_pitch_joint',
+               'elbow_roll_joint',
+               'elbow_pitch_joint',
+               'wrist_roll_joint',
+               'wrist_pitch_joint',
+               'gripper_roll_joint',
+               'gripper_grip_joint')
+
+controller_names = ('shoulder_pan_controller',
                'shoulder_pitch_controller',
                'elbow_roll_controller',
                'elbow_pitch_controller',
@@ -17,7 +26,7 @@ joint_names = ('shoulder_pan_controller',
                
 def main():
 
-    pubs = [rospy.Publisher(name + '/command', Float64) for name in joint_names]
+    pubs = [rospy.Publisher(name + '/command', Float64) for name in controller_names]
     rospy.init_node('motion_play', anonymous=True)
     
     # determine file name to open
@@ -29,15 +38,13 @@ def main():
     f = open(filename,'r')
     read_coords = pickle.load(f)
 
+    print 'Playing...'
+
     for coor in read_coords:
-        print 'Playing...'
+        print 'sending command', coor[1], "to", coor[0], "via", joint_names.index(coor[0])
+        pubs[  joint_names.index(coor[0])  ].publish(coor[1])
 
-        print coor
-        print pubs[0]
-        print 'sending command', coor[1]
-        pubs[  coor[0]  ].publish(0) #coor[1])
-
-        time.sleep(10)
+        time.sleep(.5)
 
     print 'COMPLETE ---------------------------- '
 
