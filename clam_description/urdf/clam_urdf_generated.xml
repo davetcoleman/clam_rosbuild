@@ -167,7 +167,7 @@
   <joint name="wrist_roll_joint" type="revolute">
     <parent link="elbow_pitch_link"/>
     <child link="wrist_roll_link"/>
-    <origin rpy="0 1.570795 3.14159" xyz="0.0 -0.008 -.248"/>
+    <origin rpy="0 1.570795 3.14159" xyz="0.0 0.008 -.248"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -178,7 +178,6 @@
       <origin rpy="0 1.570795 1.570795" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/wrist_roll_link.STL" scale="0.001 0.001 0.001"/>
-        <!--cylinder length="0.033" radius="0.02" /-->
       </geometry>
       <material name="Black"/>
     </visual>
@@ -186,7 +185,6 @@
       <origin rpy="0 1.570795 1.570795" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/wrist_roll_link_simple.STL" scale="0.001 0.001 0.001"/>
-        <!--cylinder length="0.033" radius="0.02" /-->
       </geometry>
     </collision>
   </link>
