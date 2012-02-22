@@ -53,7 +53,6 @@
       <!-- rotate PI/2 -->
       <geometry>
         <mesh filename="package://clam_description/stl/base_link.STL" scale="0.001 0.001 0.001"/>
-        <!--box size="0.1 0.1 0.05" /-->
       </geometry>
       <material name="Grey"/>
     </visual>
@@ -246,7 +245,7 @@
     <visual>
       <origin rpy="1.570795 0 0" xyz="0.0 0.03 0"/>
       <geometry>
-        <!--mesh filename="package://clam_description/stl/gripper.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}" /-->
+        <!--mesh filename="package://clam_description/stl/gripper.dae" scale="${M_SCALE}" /-->
         <box size="0.03 0.005 0.060"/>
       </geometry>
       <material name="Black"/>
