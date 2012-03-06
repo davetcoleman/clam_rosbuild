@@ -1,0 +1,29 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"shoulder_pan_link" [label="shoulder_pan_link"];
+"shoulder_pitch_link" [label="shoulder_pitch_link"];
+"elbow_roll_link" [label="elbow_roll_link"];
+"elbow_pitch_link" [label="elbow_pitch_link"];
+"wrist_roll_link" [label="wrist_roll_link"];
+"wrist_pitch_link" [label="wrist_pitch_link"];
+"gripper_roll_link" [label="gripper_roll_link"];
+"gripper_grip_link" [label="gripper_grip_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "shoulder_pan_joint" [label="xyz: 0 0 0.05 \nrpy: 0 1.5708 0"]
+"shoulder_pan_joint" -> "shoulder_pan_link"
+"shoulder_pan_link" -> "shoulder_pitch_joint" [label="xyz: -0.041 0 0 \nrpy: -1.57079 5.55112e-17 1.57079"]
+"shoulder_pitch_joint" -> "shoulder_pitch_link"
+"shoulder_pitch_link" -> "elbow_roll_joint" [label="xyz: -0.001 0 0.121 \nrpy: 3.14159 1.5708 0"]
+"elbow_roll_joint" -> "elbow_roll_link"
+"elbow_roll_link" -> "elbow_pitch_joint" [label="xyz: -0.035 0 0.0009 \nrpy: 0 1.5708 0"]
+"elbow_pitch_joint" -> "elbow_pitch_link"
+"elbow_pitch_link" -> "wrist_roll_joint" [label="xyz: 0 0.008 -0.248 \nrpy: 0 1.5708 3.14159"]
+"wrist_roll_joint" -> "wrist_roll_link"
+"wrist_roll_link" -> "wrist_pitch_joint" [label="xyz: 0 0 0.002 \nrpy: 0 1.5708 0"]
+"wrist_pitch_joint" -> "wrist_pitch_link"
+"wrist_pitch_link" -> "gripper_roll_joint" [label="xyz: 0 0 0.1 \nrpy: 0 1.5708 0"]
+"gripper_roll_joint" -> "gripper_roll_link"
+"gripper_roll_link" -> "gripper_grip_joint" [label="xyz: -0.02 0 0 \nrpy: 0 -0 1.57079"]
+"gripper_grip_joint" -> "gripper_grip_link"
+}
