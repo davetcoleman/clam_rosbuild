@@ -10,7 +10,7 @@
   <!-- Launch markers -->
   <node name="clam_marker_server" type="clam_marker_server" pkg="clam_interactive_markers" output="screen">
     <param name="root_link" value="base_link" />
-    <param name="tip_link" value="gripper_grip_link" />
+    <param name="tip_link" value="l_gripper_pincher" />
   </node>
 
   <!-- Launch visualizer -->

@@ -4,17 +4,17 @@ planner_configs:
   LBKPIECEkConfig1:
     type: kinematic::LBKPIECE
 groups:
-  - clam_chain
-  - clam_chain_cartesian
-clam_chain:
+  - clam_arm
+  - clam_arm_cartesian
+clam_arm:
   planner_type: JointPlanner
   planner_configs:
     - SBLkConfig1
     - LBKPIECEkConfig1
   projection_evaluator: joint_state
-clam_chain_cartesian:
+clam_arm_cartesian:
   parent_frame: base_link
-  physical_group: clam_chain
+  physical_group: clam_arm
   planner_type: RPYIKTaskSpacePlanner
   state_spaces:
     - x
@@ -45,7 +45,7 @@ clam_chain_cartesian:
     - SBLkConfig1
     - LBKPIECEkConfig1
   kinematics_solver: arm_kinematics_constraint_aware/KDLArmKinematicsPlugin
-  tip_name: gripper_grip_link
+  tip_name: l_gripper_pincher
   root_name: base_link
   projection_evaluator: joint_state
   longest_valid_segment_fraction: 0.001

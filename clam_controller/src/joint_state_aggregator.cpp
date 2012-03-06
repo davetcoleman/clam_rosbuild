@@ -72,8 +72,9 @@ public:
         
         for (int i = 0; i < num_controllers; ++i)
         {
-            controller_state_subs_[i] = nh_.subscribe<dynamixel_hardware_interface::JointState>(controller_names[i] +  "/state", 100,
-                                                                                                boost::bind(&JointStateAggregator::processControllerState, this, _1, i+num_static));
+            controller_state_subs_[i] =
+				nh_.subscribe<dynamixel_hardware_interface::JointState>(controller_names[i] +  "/state", 100,
+                boost::bind(&JointStateAggregator::processControllerState, this, _1, i+num_static));
         }
         
         for (int i = 0; i < num_controllers; ++i)
