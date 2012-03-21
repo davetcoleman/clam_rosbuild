@@ -4,12 +4,12 @@
     <node name="joint_state_aggregator" pkg="clam_controller" type="joint_state_aggregator" output="screen">
         <rosparam>
             rate: 50
-            static_joints:
-	        - l_gripper_aft_pincher_joint
+<!--            static_joints:
+                - l_gripper_aft_pincher_joint
                 - l_gripper_fwd_link_joint
-		- r_gripper_aft_link_joint
-		- r_gripper_aft_pincher_joint
-		- r_gripper_fwd_link_joint
+                - r_gripper_aft_link_joint
+                - r_gripper_aft_pincher_joint
+                - r_gripper_fwd_link_joint -->
             controllers:
                 - shoulder_pan_controller
                 - gripper_roll_controller
