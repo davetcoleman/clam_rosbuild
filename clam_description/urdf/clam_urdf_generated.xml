@@ -270,7 +270,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/l_gripper_fwd_link.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/l_gripper_fwd_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Grey"/>
     </visual>
@@ -280,7 +280,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/r_gripper_fwd_link.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/r_gripper_fwd_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Grey"/>
     </visual>
@@ -290,7 +290,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/l_gripper_aft_link.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/l_gripper_aft_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Grey"/>
     </visual>
@@ -309,7 +309,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/r_gripper_aft_link.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/r_gripper_aft_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Grey"/>
     </visual>
@@ -328,7 +328,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/l_gripper_pincher.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/l_gripper_pincher.STL" scale="1 1 1"/>
       </geometry>
       <material name="Black"/>
     </visual>
@@ -338,7 +338,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/r_gripper_pincher.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/r_gripper_pincher.STL" scale="1 1 1"/>
       </geometry>
       <material name="Black"/>
     </visual>
