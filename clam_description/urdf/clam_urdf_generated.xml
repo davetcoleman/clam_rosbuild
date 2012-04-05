@@ -223,9 +223,9 @@ http://www.ros.org/wiki/xacro
   <!-- GRIPPER ROLL LINK -->
   <link name="gripper_roll_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 .045 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/gripper_grip_link.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://clam_description/stl/gripper_grip_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Orange"/>
     </visual>
