@@ -4,9 +4,9 @@ multi_dof_joints:
     parent_frame_id: base_link
     child_frame_id: base_link
 groups:
-  - name: clam_arm
+  - name: clam
     base_link: base_link
-    tip_link: l_gripper_pincher
+    tip_link: gripper_roll_link
 default_collision_operations:
   - object1: base_link
     object2: shoulder_pan_link
@@ -47,3 +47,198 @@ default_collision_operations:
   - object1: gripper_roll_link
     object2: r_gripper_fwd_link
     operation: disable  # Adjacent in collision
+  - object1: l_gripper_fwd_link
+    object2: r_gripper_fwd_link
+    operation: disable  # Often in collision
+  - object1: r_gripper_pincher
+    object2: wrist_roll_link
+    operation: disable  # Occasionally in collision
+  - object1: r_gripper_pincher
+    object2: wrist_pitch_link
+    operation: disable  # Occasionally in collision
+  - object1: r_gripper_fwd_link
+    object2: r_gripper_pincher
+    operation: disable  # Occasionally in collision
+  - object1: l_gripper_pincher
+    object2: wrist_roll_link
+    operation: disable  # Occasionally in collision
+  - object1: r_gripper_aft_link
+    object2: r_gripper_fwd_link
+    operation: disable  # Occasionally in collision
+  - object1: l_gripper_pincher
+    object2: wrist_pitch_link
+    operation: disable  # Occasionally in collision
+  - object1: l_gripper_pincher
+    object2: r_gripper_pincher
+    operation: disable  # Occasionally in collision
+  - object1: l_gripper_pincher
+    object2: r_gripper_fwd_link
+    operation: disable  # Occasionally in collision
+  - object1: base_link
+    object2: elbow_pitch_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: elbow_roll_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: gripper_roll_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: l_gripper_aft_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: l_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: r_gripper_aft_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: r_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: r_gripper_pincher
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: base_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: gripper_roll_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: l_gripper_aft_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: l_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: r_gripper_aft_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: r_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: elbow_pitch_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: gripper_roll_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: l_gripper_aft_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: l_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: l_gripper_pincher
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: r_gripper_aft_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: r_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: r_gripper_pincher
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: elbow_roll_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: gripper_roll_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: gripper_roll_link
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: gripper_roll_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_aft_link
+    object2: l_gripper_fwd_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_aft_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_aft_link
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_aft_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_aft_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_fwd_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_fwd_link
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_fwd_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_fwd_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_pincher
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: l_gripper_pincher
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_aft_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_aft_link
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_aft_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_aft_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_fwd_link
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_fwd_link
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_fwd_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_fwd_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_pincher
+    object2: shoulder_pan_link
+    operation: disable  # Never in collision
+  - object1: r_gripper_pincher
+    object2: shoulder_pitch_link
+    operation: disable  # Never in collision
+  - object1: shoulder_pan_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: shoulder_pan_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision
+  - object1: shoulder_pitch_link
+    object2: wrist_pitch_link
+    operation: disable  # Never in collision
+  - object1: shoulder_pitch_link
+    object2: wrist_roll_link
+    operation: disable  # Never in collision

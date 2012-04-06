@@ -1,9 +1,9 @@
 <launch>
     <include file="$(find clam_arm_navigation)/launch/clam_planning_environment.launch" />
-    <node pkg="arm_kinematics_constraint_aware" type="arm_kinematics_constraint_aware" name="clam_clam_arm_kinematics">
-        <param name="group" type="string" value="clam_arm" />
-        <param name="clam_arm/root_name" type="string" value="base_link" />
-        <param name="clam_arm/tip_name" type="string" value="l_gripper_pincher" />
+    <node pkg="arm_kinematics_constraint_aware" type="arm_kinematics_constraint_aware" name="clam_clam_kinematics">
+        <param name="group" type="string" value="clam" />
+        <param name="clam/root_name" type="string" value="base_link" />
+        <param name="clam/tip_name" type="string" value="gripper_roll_link" />
         <param name="kinematics_solver" type="string" value="arm_kinematics_constraint_aware/KDLArmKinematicsPlugin" />
     </node>
 </launch>
