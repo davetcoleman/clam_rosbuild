@@ -17,7 +17,7 @@ clam_arm_controller:
                 goal: 0.045
             gripper_roll_joint:
                 goal: 0.045
-            gripper_grip_joint:
+            l_gripper_aft_joint:
                 goal: 0.045
             shoulder_pitch_joint:
                 goal: 0.045

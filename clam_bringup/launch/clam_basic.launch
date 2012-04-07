@@ -1,9 +1,10 @@
 <!-- -*- mode: XML -*- -->
 
 <launch>
-  <param name="use_gui" value="FALSE"/>
+  <!--param name="use_gui" value="FALSE"/-->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
     <rosparam param="source_list">[joint_states]</rosparam>
+    <rosparam param="use_gui">FALSE</rosparam>
   </node>
 
   <!-- Visualize it -->

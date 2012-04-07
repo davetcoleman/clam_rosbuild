@@ -101,7 +101,7 @@ public:
 	{
 		// Get general arm parameters
 		nh.param<std::string>("root_link", root_link, "base_link");
-		nh.param<std::string>("tip_link", tip_link, "gripper_grip_link");
+		nh.param<std::string>("tip_link", tip_link, "l_gripper_aft_link");
 		nh.param<double>("move_time", move_time, 2.0);
 
 		// Get the joint list
@@ -149,7 +149,7 @@ public:
 			
 			links.push_back("shoulder_pan_link");
 			links.push_back("gripper_roll_link");
-			links.push_back("gripper_grip_link");
+			links.push_back("l_gripper_aft_link");
 			links.push_back("shoulder_pitch_link");
 			links.push_back("elbow_roll_link");
 			links.push_back("elbow_pitch_link");
@@ -280,7 +280,7 @@ public:
 		// Create the desired pose
 		arm_navigation_msgs::SimplePoseConstraint desired_pose;
 		desired_pose.header.frame_id = root_link; // base_link
-		desired_pose.link_name = tip_link; //feedback->header.frame_id; //gripper_grip_link
+		desired_pose.link_name = tip_link; 
 		desired_pose.pose = feedback->pose;
 
 		desired_pose.absolute_position_tolerance.x = 0.02;

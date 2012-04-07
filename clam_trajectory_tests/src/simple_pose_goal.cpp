@@ -23,10 +23,9 @@ int main(int argc, char **argv){
 
 	arm_navigation_msgs::SimplePoseConstraint desired_pose;
 	desired_pose.header.frame_id = "base_link";
-	desired_pose.link_name = "gripper_grip_link";
+	desired_pose.link_name = "gripper_roll_link";
 
-	desired_pose.pose.position.x = 0.0786;
-	desired_pose.pose.position.y = -0.271;
+	desired_pose.pose.position.x = 0.0786;	desired_pose.pose.position.y = -0.271;
 	desired_pose.pose.position.z = 0.3;
 
 	desired_pose.pose.orientation.x = 0;
