@@ -36,7 +36,6 @@ BUILDING
 **4) Setup the Dynamixel2USB controllers**
 
    - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/
-
    - Disable a conflicting system udev rule if necessary located at /lib/udev/rules.d/95-upower-wup.rules
 
 
@@ -47,7 +46,7 @@ RUN
 
 For more compelete documentation visit the project website:
     
-	http://correll.cs.colorado.edu/clam/?page_id=36
+		http://correll.cs.colorado.edu/clam/?page_id=36
 
 TEST
 ---------
@@ -56,5 +55,5 @@ TEST
 
 CONTRIBUTORS
 ---------
-Andy McEvoy - CU Boulder
-Antons Rebguns - University of Arizona
+    - Andy McEvoy - CU Boulder
+    - Antons Rebguns - University of Arizona
