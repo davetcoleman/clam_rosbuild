@@ -1,11 +1,11 @@
-CLAM Arm Manipulator
+ClamArm Manipulator
 ==========
-* Author: Dave Coleman <davetcoleman@gmail.com>
-* Website: correll.cs.colorado.edu
+* Author: Dave Coleman <davetcoleman.com>
+* Website: correll.cs.colorado.edu/clam
 * License: GNU General Public License, version 3 (GPL-3.0)
-* Date: 12/27/2011
+* Inception Date: 12/27/2011
 
-Controls for the robotic arm in the Correll Lab at the University of Colorado Boulder. Special thanks to Antons Rebguns and his similar work at the University of Arizona.
+Controls for the 7-dof robotic arm in the Correll Lab at the University of Colorado Boulder. 
 
 
 BUILDING
@@ -13,7 +13,7 @@ BUILDING
 
 **1) Download CLAM**
 
-		git clone git@github.com:DaveTColeman/CLAM.git
+		git clone git@github.com:davetcoleman/clam.git
 
 **2) Install Stack Dependencies**
 
@@ -42,10 +42,16 @@ BUILDING
 
 RUN
 ---------
-		roslaunch clam_description clam_description.launch
+		roslaunch clam_bringup clam.launch
+		roslaunch clam_bringup clam_interactive_markers.launch
 
 
 TEST
 ---------
 		roscd clam_controller/scripts
-		python animate_all.py
+		python pose_cobra.py
+
+CONTRIBUTORS
+---------
+Andy McEvoy - CU Boulder
+Antons Rebguns - University of Arizona
