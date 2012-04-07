@@ -45,6 +45,9 @@ RUN
 		roslaunch clam_bringup clam.launch
 		roslaunch clam_bringup clam_interactive_markers.launch
 
+For more compelete documentation visit the project website:
+    
+	http://correll.cs.colorado.edu/clam/?page_id=36
 
 TEST
 ---------
