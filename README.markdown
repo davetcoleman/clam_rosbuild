@@ -55,5 +55,5 @@ TEST
 
 CONTRIBUTORS
 ---------
-    - Andy McEvoy - CU Boulder
-    - Antons Rebguns - University of Arizona
+   - Andy McEvoy - CU Boulder
+   - Antons Rebguns - University of Arizona
