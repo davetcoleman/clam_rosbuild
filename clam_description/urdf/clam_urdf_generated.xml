@@ -371,5 +371,20 @@ http://www.ros.org/wiki/xacro
       </geometry>
     </visual>
   </link>
+  <!-- TABLETOP MODEL -->
+  <joint name="tabletop_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="tabletop_link"/>
+  </joint>
+  <link name="tabletop_link">
+    <visual>
+      <origin rpy="1.570795 0 1.570795" xyz=" 0 0 -0.017"/>
+      <geometry>
+        <mesh filename="package://clam_description/stl/tabletop.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+  </link>
 </robot>
 
