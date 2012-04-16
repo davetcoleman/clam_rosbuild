@@ -150,14 +150,14 @@ http://www.ros.org/wiki/xacro
   <!-- ELBOW PITCH LINK -->
   <link name="elbow_pitch_link">
     <visual>
-      <origin rpy="1.570795 0 4.712385" xyz="0.0 0 -0.0"/>
+      <origin rpy="1.570795 0 4.712385" xyz="0.0 0 0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/elbow_pitch_link.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Orange"/>
     </visual>
     <collision>
-      <origin rpy="1.570795 0 4.712385" xyz="0.0 0 -0.0"/>
+      <origin rpy="1.570795 0 4.712385" xyz="0.0 0 0"/>
       <geometry>
         <mesh filename="package://clam_description/stl/elbow_pitch_link_simple.STL" scale="0.001 0.001 0.001"/>
       </geometry>
