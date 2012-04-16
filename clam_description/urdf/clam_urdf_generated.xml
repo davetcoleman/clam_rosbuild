@@ -94,7 +94,7 @@ http://www.ros.org/wiki/xacro
   <joint name="shoulder_pitch_joint" type="revolute">
     <parent link="shoulder_pan_link"/>
     <child link="shoulder_pitch_link"/>
-    <origin rpy="-1.570795 0 1.570795" xyz="-0.041 0.0 0.0"/>
+    <origin rpy="-1.570795 0 1.570795" xyz="-0.041 0.0021 0.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.19962513147" upper="1.89994105047" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -166,7 +166,7 @@ http://www.ros.org/wiki/xacro
   <joint name="wrist_roll_joint" type="revolute">
     <parent link="elbow_pitch_link"/>
     <child link="wrist_roll_link"/>
-    <origin rpy="0 1.570795 3.14159" xyz="0.0 0.008 -.248"/>
+    <origin rpy="0 1.570795 3.14159" xyz="0.0 0.0081 -.248"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -190,7 +190,7 @@ http://www.ros.org/wiki/xacro
   <joint name="wrist_pitch_joint" type="revolute">
     <parent link="wrist_roll_link"/>
     <child link="wrist_pitch_link"/>
-    <origin rpy="0 1.570795 0" xyz="0.0 0.0 0.002"/>
+    <origin rpy="0 1.570795 0" xyz="0.0 0.0 0.0001"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.5953400194" upper="1.98394848567" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -214,7 +214,7 @@ http://www.ros.org/wiki/xacro
   <joint name="gripper_roll_joint" type="revolute">
     <parent link="wrist_pitch_link"/>
     <child link="gripper_roll_link"/>
-    <origin rpy="4.712385 -1.570795 0" xyz="0 0 0.08"/>
+    <origin rpy="4.712385 -1.570795 0" xyz="0 0 0.08065"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
     <dynamics damping="50" friction="1"/>
