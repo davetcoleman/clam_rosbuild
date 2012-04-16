@@ -118,7 +118,7 @@ http://www.ros.org/wiki/xacro
   <joint name="elbow_roll_joint" type="revolute">
     <parent link="shoulder_pitch_link"/>
     <child link="elbow_roll_link"/>
-    <origin rpy="3.14159 1.570795 0" xyz="-0.001 0 0.115"/>
+    <origin rpy="3.14159 1.570795 0" xyz="-0.002 0 0.1206"/>
     <axis xyz="-1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="0.705631162427" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -142,7 +142,7 @@ http://www.ros.org/wiki/xacro
   <joint name="elbow_pitch_joint" type="revolute">
     <parent link="elbow_roll_link"/>
     <child link="elbow_pitch_link"/>
-    <origin rpy="0.055 1.570795 0" xyz="-0.035 0 0.0009"/>
+    <origin rpy="0.055 1.570795 0" xyz="-0.035 0 0.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.5953400194" upper="1.93281579274" velocity="1"/>
     <dynamics damping="50" friction="1"/>

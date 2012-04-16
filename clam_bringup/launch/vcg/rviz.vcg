@@ -67,8 +67,8 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.25059 1.59837 0.161491 -0.0063449 0.201948 -0.00413391
-Property\ Grid\ State=selection=Robot: Robot Model Link elbow_pitch_linkShow Axes;expanded=.Global Options,Robot Model.Enabled,Robot Model.Enabled.Robot: Robot ModelLinks,Robot: Robot Model Link elbow_pitch_linkelbow_pitch_link,Robot: Robot Model Link elbow_roll_linkelbow_roll_link,Interactive Markers.Enabled,Interactive Markers.Enabled.Interactive Markers.StatusTopStatus,Marker.Enabled,Marker.Enabled.Marker.Namespaces;scrollpos=0,0;splitterpos=280,563;ispageselected=1
+Camera\ Config=1.58059 4.83655 0.175699 -0.017417 0.22765 0.00129223
+Property\ Grid\ State=selection=Robot: Robot Model Link elbow_pitch_linkShow Axes;expanded=.Global Options,Robot Model.Enabled,Robot Model.Enabled.Robot: Robot ModelLinks,Robot: Robot Model Link elbow_pitch_linkelbow_pitch_link,Robot: Robot Model Link elbow_roll_linkelbow_roll_link,Robot: Robot Model Link elbow_roll_linkOrientationComposed,Interactive Markers.Enabled,Interactive Markers.Enabled.Interactive Markers.StatusTopStatus,Marker.Enabled,Marker.Enabled.Marker.Namespaces;scrollpos=0,0;splitterpos=280,563;ispageselected=1
 [Display0]
 Name=Grid
 Package=rviz
