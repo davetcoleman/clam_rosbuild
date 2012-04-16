@@ -36,14 +36,12 @@ Robot\:\ Robot\ Model\ Link\ base_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ base_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ elbow_pitch_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ elbow_pitch_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ elbow_roll_linkShow\ Axes=0
+Robot\:\ Robot\ Model\ Link\ elbow_roll_linkShow\ Axes=1
 Robot\:\ Robot\ Model\ Link\ elbow_roll_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ gripper_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ gripper_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ gripper_roll_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ gripper_roll_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ kinect_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ kinect_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ l_gripper_aft_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ l_gripper_aft_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ l_gripper_fwd_linkShow\ Axes=0
@@ -69,8 +67,8 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.40059 4.48337 0.748782 0.0905896 -0.00723789 -0.0915634
-Property\ Grid\ State=selection=Robot Model.Enabled;expanded=.Global Options,Robot Model.Enabled,Interactive Markers.Enabled,Marker.Enabled,Marker.Enabled.Marker.Namespaces;scrollpos=0,0;splitterpos=210,436;ispageselected=1
+Camera\ Config=1.25059 1.59837 0.161491 -0.0063449 0.201948 -0.00413391
+Property\ Grid\ State=selection=Robot: Robot Model Link elbow_pitch_linkShow Axes;expanded=.Global Options,Robot Model.Enabled,Robot Model.Enabled.Robot: Robot ModelLinks,Robot: Robot Model Link elbow_pitch_linkelbow_pitch_link,Robot: Robot Model Link elbow_roll_linkelbow_roll_link,Interactive Markers.Enabled,Interactive Markers.Enabled.Interactive Markers.StatusTopStatus,Marker.Enabled,Marker.Enabled.Marker.Namespaces;scrollpos=0,0;splitterpos=280,563;ispageselected=1
 [Display0]
 Name=Grid
 Package=rviz

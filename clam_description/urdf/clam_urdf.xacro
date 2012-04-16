@@ -132,7 +132,7 @@ http://www.ros.org/wiki/xacro
   <joint name="elbow_pitch_joint" type="revolute">
     <parent link="elbow_roll_link"/>
     <child link="elbow_pitch_link"/>
-    <origin xyz="-0.035 0 0.0009" rpy="0.065 ${M_PI/2} 0" />
+    <origin xyz="-0.035 0 0.0009" rpy="0.055 ${M_PI/2} 0" />
     <axis xyz="1 0 0" />
     <limit effort="300" velocity="1" lower="-1.5953400194" upper="1.93281579274" />
     <dynamics damping="50" friction="1"/>
@@ -358,6 +358,42 @@ http://www.ros.org/wiki/xacro
       <material name="Black" />
     </visual>
   </link>
+
+  <!-- TABLETOP MODEL -->
+  <joint name="tabletop_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="tabletop_link"/>
+  </joint>
+
+  <link name="tabletop_link">
+    <visual>
+      <origin rpy="${.5*M_PI} 0 ${.5*M_PI}" xyz=" 0 0 -0.017"/>
+      <geometry>
+	<mesh filename="package://clam_description/stl/tabletop.STL" scale="1 1 1" />
+      </geometry>
+      <material name="Brown" />
+    </visual>
+  </link>
+
+  <!-- FAKE CAMERA CALIBRATION POINT -->
+  <joint name="gripper_link_joint" type="fixed">
+    <!--origin xyz="0.012 -0.11 0.020" rpy="0 0 0" /-->
+    <origin xyz="0.1795 0 0" rpy="0 0 0" />
+    <parent link="gripper_roll_link"/>
+    <child link="gripper_link" />
+  </joint>
+
+  <link name="gripper_link" >
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	<sphere radius=".001"/>
+      </geometry>
+    </visual>
+  </link>
+
+
 
 
 </robot>

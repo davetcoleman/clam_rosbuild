@@ -118,7 +118,7 @@ http://www.ros.org/wiki/xacro
   <joint name="elbow_roll_joint" type="revolute">
     <parent link="shoulder_pitch_link"/>
     <child link="elbow_roll_link"/>
-    <origin rpy="3.14159 1.570795 0" xyz="-0.001 0 0.121"/>
+    <origin rpy="3.14159 1.570795 0" xyz="-0.001 0 0.115"/>
     <axis xyz="-1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="0.705631162427" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -142,7 +142,7 @@ http://www.ros.org/wiki/xacro
   <joint name="elbow_pitch_joint" type="revolute">
     <parent link="elbow_roll_link"/>
     <child link="elbow_pitch_link"/>
-    <origin rpy="0.065 1.570795 0" xyz="-0.035 0 0.0009"/>
+    <origin rpy="0.055 1.570795 0" xyz="-0.035 0 0.0009"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.5953400194" upper="1.93281579274" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -341,6 +341,36 @@ http://www.ros.org/wiki/xacro
         <mesh filename="package://clam_description/stl/r_gripper_pincher.STL" scale="1 1 1"/>
       </geometry>
       <material name="Black"/>
+    </visual>
+  </link>
+  <!-- TABLETOP MODEL -->
+  <joint name="tabletop_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="tabletop_link"/>
+  </joint>
+  <link name="tabletop_link">
+    <visual>
+      <origin rpy="1.570795 0 1.570795" xyz=" 0 0 -0.017"/>
+      <geometry>
+        <mesh filename="package://clam_description/stl/tabletop.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="Brown"/>
+    </visual>
+  </link>
+  <!-- FAKE CAMERA CALIBRATION POINT -->
+  <joint name="gripper_link_joint" type="fixed">
+    <!--origin xyz="0.012 -0.11 0.020" rpy="0 0 0" /-->
+    <origin rpy="0 0 0" xyz="0.1795 0 0"/>
+    <parent link="gripper_roll_link"/>
+    <child link="gripper_link"/>
+  </joint>
+  <link name="gripper_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius=".001"/>
+      </geometry>
     </visual>
   </link>
 </robot>

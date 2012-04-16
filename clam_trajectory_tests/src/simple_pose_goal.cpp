@@ -26,12 +26,13 @@ int main(int argc, char **argv){
 	desired_pose.header.frame_id = "base_link";
 	desired_pose.link_name = "gripper_roll_link"; //"gripper_roll_link";
 
-	desired_pose.pose.position.x = 0.0786;
-	desired_pose.pose.position.y = -0.271;
-	desired_pose.pose.position.z = 0.3;
+	// the following are in m units, so 40cm = .40 m
+	desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
+	desired_pose.pose.position.y = 0.0;  // positive is right on plywood
+	desired_pose.pose.position.z = 0.20;     // up
 
 	desired_pose.pose.orientation.x = 0;
-	desired_pose.pose.orientation.y = 0;
+	desired_pose.pose.orientation.y = 0; //.5*3.14;
 	desired_pose.pose.orientation.z = 0;
 	desired_pose.pose.orientation.w = 1;
 
