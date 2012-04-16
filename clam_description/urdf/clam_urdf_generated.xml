@@ -214,7 +214,7 @@ http://www.ros.org/wiki/xacro
   <joint name="gripper_roll_joint" type="revolute">
     <parent link="wrist_pitch_link"/>
     <child link="gripper_roll_link"/>
-    <origin rpy="4.712385 -1.570795 0" xyz="0 0 0.08065"/>
+    <origin rpy="4.712385 -1.570795 0" xyz="0 0 0.080"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-2.61799387799" upper="2.6128806087" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -233,7 +233,7 @@ http://www.ros.org/wiki/xacro
   <joint name="l_gripper_aft_link_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="l_gripper_aft_link"/>
-    <origin rpy="3.2672536 1.570795 0.603534345556" xyz="0.025 0.0125 0"/>
+    <origin rpy="3.2672536 1.570795 0.603534345556" xyz="0.026 .017 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="0.0" upper="-0.925023722222" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -251,7 +251,7 @@ http://www.ros.org/wiki/xacro
   <joint name="r_gripper_aft_link_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="r_gripper_aft_link"/>
-    <origin rpy="4.22543855 1.570795 0.603534345556" xyz="0.025 -0.0161  0"/>
+    <origin rpy="4.22543855 1.570795 0.603534345556" xyz="0.026 -0.011  0"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="1"/>
     <mimic joint="l_gripper_aft_link_joint" multiplier="-1.0" offset="0.0"/>
@@ -270,7 +270,7 @@ http://www.ros.org/wiki/xacro
   <joint name="l_gripper_fwd_link_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="l_gripper_fwd_link"/>
-    <origin rpy="3.2672536 1.570795 3.74512434556" xyz="0.05 0.003 0.007"/>
+    <origin rpy="3.2672536 1.570795 3.74512434556" xyz="0.05 0.008 0.007"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="0" upper="1.57" velocity="1"/>
     <mimic joint="l_gripper_aft_link_joint" multiplier="1.0" offset="0"/>
@@ -289,7 +289,7 @@ http://www.ros.org/wiki/xacro
   <joint name="r_gripper_fwd_link_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="r_gripper_fwd_link"/>
-    <origin rpy="3.0159264 1.570795 2.53805565444" xyz="0.05 -0.007 0.007"/>
+    <origin rpy="3.0159264 1.570795 2.53805565444" xyz="0.05 -0.0014 0.007"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.57" upper="0" velocity="1"/>
     <mimic joint="l_gripper_aft_link_joint" multiplier="-1.0" offset="0"/>
@@ -308,7 +308,7 @@ http://www.ros.org/wiki/xacro
   <joint name="l_gripper_aft_pincher_joint" type="continuous">
     <parent link="l_gripper_aft_link"/>
     <child link="l_gripper_pincher"/>
-    <origin rpy="2.56755169389 0 0" xyz="-0.0032 0 -0.0508"/>
+    <origin rpy="2.55812692389 0 0" xyz="-0.0032 0 -0.0508"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.57" upper="1.57" velocity="1"/>
     <mimic joint="l_gripper_aft_link_joint" multiplier="-1.0" offset="0"/>
@@ -327,7 +327,7 @@ http://www.ros.org/wiki/xacro
   <joint name="r_gripper_aft_pincher_joint" type="revolute">
     <parent link="r_gripper_aft_link"/>
     <child link="r_gripper_pincher"/>
-    <origin rpy="-0.574038306111 3.14159 0" xyz="0 0 -0.0508"/>
+    <origin rpy="-0.583463076111 3.14159 0" xyz="0 0 -0.0508"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="0" upper="1.57" velocity="1"/>
     <mimic joint="l_gripper_aft_link_joint" multiplier="-1.0" offset="0"/>
