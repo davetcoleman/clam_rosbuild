@@ -25,7 +25,7 @@ Interactive\ Markers.Show\ Tool\ Tips=1
 Interactive\ Markers.Update\ Topic=/clam_marker_server/update
 Marker.Enabled=1
 Marker.Marker\ Topic=/move_clam_markers
-Robot\ Model.Alpha=0.7
+Robot\ Model.Alpha=1
 Robot\ Model.Collision\ Enabled=0
 Robot\ Model.Enabled=1
 Robot\ Model.Robot\ Description=robot_description
@@ -48,7 +48,7 @@ Robot\:\ Robot\ Model\ Link\ l_gripper_fwd_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ l_gripper_fwd_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ l_gripper_pincherShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ l_gripper_pincherShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_aft_linkShow\ Axes=1
+Robot\:\ Robot\ Model\ Link\ r_gripper_aft_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ r_gripper_aft_linkShow\ Trail=0
 Robot\:\ Robot\ Model\ Link\ r_gripper_fwd_linkShow\ Axes=0
 Robot\:\ Robot\ Model\ Link\ r_gripper_fwd_linkShow\ Trail=0
@@ -67,7 +67,7 @@ Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
 Tool\ 2D\ Nav\ GoalTopic=goal
 Tool\ 2D\ Pose\ EstimateTopic=initialpose
 Camera\ Type=rviz::OrbitViewController
-Camera\ Config=1.716 4.71101 0.363268 -0.0120307 0.703219 -0.000367259
+Camera\ Config=0.676001 4.52601 0.187927 0.0888911 0.893802 -1.10266
 Property\ Grid\ State=selection=Robot: Robot Model Link r_gripper_aft_linkShow Axes;expanded=.Global Options,Robot Model.Enabled,Robot Model.Enabled.Robot: Robot ModelLinks,Robot: Robot Model Link elbow_roll_linkOrientationComposed,Robot: Robot Model Link r_gripper_aft_linkr_gripper_aft_link,Robot: Robot Model Link wrist_pitch_linkwrist_pitch_link,Interactive Markers.Enabled,Interactive Markers.Enabled.Interactive Markers.StatusTopStatus,Marker.Enabled,Marker.Enabled.Marker.Namespaces;scrollpos=0,0;splitterpos=280,563;ispageselected=1
 [Display0]
 Name=Grid

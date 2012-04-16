@@ -1,13 +1,13 @@
 <package>
   <description brief="turtlebot_kinect_arm_calibration">
 
-     turtlebot_kinect_arm_calibration allows calibration of a kinect to a TurtleBot arm, including a kinect on-board and off-board the TurtleBot for more precise manipulation.
+     clam_kinect_arm_calibration allows calibration of a kinect to the clam arm. copied from turtlebot arm
 
   </description>
   <author>Helen Oleynikova</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/turtlebot_kinect_arm_calibration</url>
+  <url></url>
 
   <depend package="roscpp"/>
   <depend package="visualization_msgs"/>

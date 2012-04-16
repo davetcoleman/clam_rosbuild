@@ -31,10 +31,10 @@ int main(int argc, char **argv){
 	desired_pose.pose.position.y = 0.0;  // positive is right on plywood
 	desired_pose.pose.position.z = 0.20;     // up
 
-	desired_pose.pose.orientation.x = 0;
-	desired_pose.pose.orientation.y = 0; //.5*3.14;
-	desired_pose.pose.orientation.z = 0;
-	desired_pose.pose.orientation.w = 1;
+	desired_pose.pose.orientation.x = 0.034366;
+	desired_pose.pose.orientation.y = 0.72035;
+	desired_pose.pose.orientation.z = -0.010556;
+	desired_pose.pose.orientation.w = 0.692725;
 
 	desired_pose.absolute_position_tolerance.x = 0.02;
 	desired_pose.absolute_position_tolerance.y = 0.02;
