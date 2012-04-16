@@ -224,7 +224,7 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/l_gripper_aft_link.STL" scale="1 1 1"/>
+        <mesh filename="package://clam_description/stl/gripper_grip_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Orange"/>
     </visual>
