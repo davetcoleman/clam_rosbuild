@@ -20,7 +20,7 @@ joint_names = ['shoulder_pan',
                'wrist_roll',
                'wrist_pitch',
                'gripper_roll',
-               'gripper_grip']
+               'l_gripper_aft']
 joint_model = ['AX-12',
                'EX-106',
                'RX-64',

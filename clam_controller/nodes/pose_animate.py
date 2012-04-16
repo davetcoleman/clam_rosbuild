@@ -17,7 +17,7 @@ class PoseAnimate():
                        'wrist_roll_controller',
                        'wrist_pitch_controller',
                        'gripper_roll_controller',
-                       'gripper_grip_controller')
+                       'l_gripper_aft_controller')
         
         self.joint_commands = (-1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0)
         self.joint_commands2 = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)

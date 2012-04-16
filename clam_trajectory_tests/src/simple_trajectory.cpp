@@ -53,7 +53,7 @@ class RobotArm
             // First, the joint names, which apply to all waypoints
             goal.trajectory.joint_names.push_back("shoulder_pan_joint");
             goal.trajectory.joint_names.push_back("gripper_roll_joint");
-			//            goal.trajectory.joint_names.push_back("gripper_grip_joint");
+            goal.trajectory.joint_names.push_back("l_gripper_aft_joint");
             goal.trajectory.joint_names.push_back("shoulder_pitch_joint");
             goal.trajectory.joint_names.push_back("elbow_roll_joint");
             goal.trajectory.joint_names.push_back("elbow_pitch_joint");
@@ -66,7 +66,7 @@ class RobotArm
             // First trajectory point
             // Positions
             int ind = 0;
-            goal.trajectory.points[ind].positions.resize(7);
+            goal.trajectory.points[ind].positions.resize(8);
             goal.trajectory.points[ind].positions[0] = 0.0;
             goal.trajectory.points[ind].positions[1] = 0.0;
             goal.trajectory.points[ind].positions[2] = 0.0;
@@ -74,10 +74,10 @@ class RobotArm
             goal.trajectory.points[ind].positions[4] = 0.0;
             goal.trajectory.points[ind].positions[5] = 0.0;
             goal.trajectory.points[ind].positions[6] = 0.0;
-            //goal.trajectory.points[ind].positions[7] = 0.0;			
+            goal.trajectory.points[ind].positions[7] = 0.0;			
             // Velocities
-            goal.trajectory.points[ind].velocities.resize(7);
-            for (size_t j = 0; j < 7; ++j)
+            goal.trajectory.points[ind].velocities.resize(8);
+            for (size_t j = 0; j < 8; ++j)
             {
                 goal.trajectory.points[ind].velocities[j] = 0.0;
             }
@@ -87,7 +87,7 @@ class RobotArm
             // Second trajectory point
             // Positions
             ind += 1;
-            goal.trajectory.points[ind].positions.resize(7);
+            goal.trajectory.points[ind].positions.resize(8);
             goal.trajectory.points[ind].positions[0] = 0.0;
             goal.trajectory.points[ind].positions[1] = 0.2;
             goal.trajectory.points[ind].positions[2] = -0.1;
@@ -95,11 +95,11 @@ class RobotArm
             goal.trajectory.points[ind].positions[4] = 1.5;
             goal.trajectory.points[ind].positions[5] = -0.3;
             goal.trajectory.points[ind].positions[6] = 0.5;
-            //goal.trajectory.points[ind].positions[7] = 0.5;
+            goal.trajectory.points[ind].positions[7] = 0.5;
 			
             // Velocities
-            goal.trajectory.points[ind].velocities.resize(7);
-            for (size_t j = 0; j < 7; ++j)
+            goal.trajectory.points[ind].velocities.resize(8);
+            for (size_t j = 0; j < 8; ++j)
             {
                 goal.trajectory.points[ind].velocities[j] = 0.0;
             }

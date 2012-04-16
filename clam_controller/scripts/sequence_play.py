@@ -13,7 +13,7 @@ joint_names = ('shoulder_pan_joint',
                'wrist_roll_joint',
                'wrist_pitch_joint',
                'gripper_roll_joint',
-               'gripper_grip_joint')
+               'l_gripper_aft_joint')
 
 controller_names = ('shoulder_pan_controller',
                'shoulder_pitch_controller',
@@ -22,7 +22,7 @@ controller_names = ('shoulder_pan_controller',
                'wrist_roll_controller',
                'wrist_pitch_controller',
                'gripper_roll_controller',
-               'gripper_grip_controller')
+               'l_gripper_aft_controller')
                
 def main():
 

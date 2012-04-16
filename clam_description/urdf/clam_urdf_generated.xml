@@ -36,6 +36,9 @@ http://www.ros.org/wiki/xacro
   <material name="Orange">
     <color rgba="1.0 0.423529411765 0.0392156862745 1.0"/>
   </material>
+  <material name="Brown">
+    <color rgba="0.870588235294 0.811764705882 0.764705882353 1.0"/>
+  </material>
   <material name="Red">
     <color rgba="0.8 0.0 0.0 1.0"/>
   </material>
@@ -63,10 +66,6 @@ http://www.ros.org/wiki/xacro
         <mesh filename="package://clam_description/stl/base_link_simple.STL" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
-    <inertial>
-      <mass value="25"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
-    </inertial>
   </link>
   <joint name="shoulder_pan_joint" type="revolute">
     <parent link="base_link"/>
@@ -143,7 +142,7 @@ http://www.ros.org/wiki/xacro
   <joint name="elbow_pitch_joint" type="revolute">
     <parent link="elbow_roll_link"/>
     <child link="elbow_pitch_link"/>
-    <origin rpy="0.05 1.570795 0" xyz="-0.035 0 0.0009"/>
+    <origin rpy="0.065 1.570795 0" xyz="-0.035 0 0.0009"/>
     <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.5953400194" upper="1.93281579274" velocity="1"/>
     <dynamics damping="50" friction="1"/>
@@ -225,11 +224,12 @@ http://www.ros.org/wiki/xacro
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://clam_description/stl/gripper_grip_link.STL" scale="1 1 1"/>
+        <mesh filename="package://clam_description/stl/l_gripper_aft_link.STL" scale="1 1 1"/>
       </geometry>
       <material name="Orange"/>
     </visual>
   </link>
+  <!--joint name="l_gripper_aft_joint" type="revolute"-->
   <joint name="l_gripper_aft_link_joint" type="revolute">
     <parent link="gripper_roll_link"/>
     <child link="l_gripper_aft_link"/>
@@ -341,49 +341,6 @@ http://www.ros.org/wiki/xacro
         <mesh filename="package://clam_description/stl/r_gripper_pincher.STL" scale="1 1 1"/>
       </geometry>
       <material name="Black"/>
-    </visual>
-  </link>
-  <!-- FAKE CAMERA CALIBRATION POINT -->
-  <joint name="gripper_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.012 -0.11 0.020"/>
-    <parent link="l_gripper_pincher"/>
-    <child link="gripper_link"/>
-  </joint>
-  <link name="gripper_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <sphere radius=".001"/>
-      </geometry>
-    </visual>
-  </link>
-  <!-- KINECT LINK ?? -->
-  <joint name="base_kinect_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="kinect_link"/>
-  </joint>
-  <link name="kinect_link">
-    <visual>
-      <origin rpy="0 0 0" xyz=" 0 0 0 "/>
-      <geometry>
-        <sphere radius=".005"/>
-      </geometry>
-    </visual>
-  </link>
-  <!-- TABLETOP MODEL -->
-  <joint name="tabletop_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="tabletop_link"/>
-  </joint>
-  <link name="tabletop_link">
-    <visual>
-      <origin rpy="1.570795 0 1.570795" xyz=" 0 0 -0.017"/>
-      <geometry>
-        <mesh filename="package://clam_description/stl/tabletop.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="White"/>
     </visual>
   </link>
 </robot>

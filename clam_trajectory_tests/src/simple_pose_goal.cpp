@@ -7,7 +7,8 @@
 int main(int argc, char **argv){
 	ros::init (argc, argv, "simple_pose_goal"); // name is aribitrary
 	ros::NodeHandle nh;
-	actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> move_arm("move_clam_chain",true);
+	actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> move_arm("move_clam",true);
+	   // before: "move_clam_chain
 	   // name corresponds with /clam_move_clam_chain node
 	
 	ROS_INFO("Waiting for server");
@@ -15,7 +16,7 @@ int main(int argc, char **argv){
 	ROS_INFO("Connected to server");
 	arm_navigation_msgs::MoveArmGoal goalA;
 
-	goalA.motion_plan_request.group_name = "clam_chain"; // corresponds to clam_planning_description.yaml group name
+	goalA.motion_plan_request.group_name = "clam"; // corresponds to clam_planning_description.yaml group name
 	goalA.motion_plan_request.num_planning_attempts = 1;
 	goalA.motion_plan_request.planner_id = std::string("");
 	goalA.planner_service_name = std::string("ompl_planning/plan_kinematic_path");
@@ -23,9 +24,10 @@ int main(int argc, char **argv){
 
 	arm_navigation_msgs::SimplePoseConstraint desired_pose;
 	desired_pose.header.frame_id = "base_link";
-	desired_pose.link_name = "gripper_roll_link";
+	desired_pose.link_name = "gripper_roll_link"; //"gripper_roll_link";
 
-	desired_pose.pose.position.x = 0.0786;	desired_pose.pose.position.y = -0.271;
+	desired_pose.pose.position.x = 0.0786;
+	desired_pose.pose.position.y = -0.271;
 	desired_pose.pose.position.z = 0.3;
 
 	desired_pose.pose.orientation.x = 0;
