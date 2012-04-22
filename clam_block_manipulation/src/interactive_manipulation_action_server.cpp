@@ -34,12 +34,12 @@
 #include <actionlib/server/simple_action_server.h>
 #include <interactive_markers/interactive_marker_server.h>
 
-#include <turtlebot_block_manipulation/InteractiveBlockManipulationAction.h>
+#include <clam_block_manipulation/InteractiveBlockManipulationAction.h>
 #include <geometry_msgs/PoseArray.h>
 
 using namespace visualization_msgs;
 
-namespace turtlebot_block_manipulation
+namespace clam_block_manipulation
 {
 
 class InteractiveManipulationServer
@@ -49,12 +49,12 @@ private:
 
   interactive_markers::InteractiveMarkerServer server_;
   
-  actionlib::SimpleActionServer<turtlebot_block_manipulation::InteractiveBlockManipulationAction> as_;
+  actionlib::SimpleActionServer<clam_block_manipulation::InteractiveBlockManipulationAction> as_;
   std::string action_name_;
   
-  turtlebot_block_manipulation::InteractiveBlockManipulationFeedback     feedback_;
-  turtlebot_block_manipulation::InteractiveBlockManipulationResult       result_;
-  turtlebot_block_manipulation::InteractiveBlockManipulationGoalConstPtr goal_;
+  clam_block_manipulation::InteractiveBlockManipulationFeedback     feedback_;
+  clam_block_manipulation::InteractiveBlockManipulationResult       result_;
+  clam_block_manipulation::InteractiveBlockManipulationGoalConstPtr goal_;
   
   ros::Subscriber block_sub_;
   ros::Publisher  pick_and_place_pub_;
@@ -85,7 +85,7 @@ public:
     
     as_.start();
   
-    block_sub_ = nh_.subscribe("/turtlebot_blocks", 1, &InteractiveManipulationServer::addBlocks, this);
+    block_sub_ = nh_.subscribe("/clam_blocks", 1, &InteractiveManipulationServer::addBlocks, this);
     pick_and_place_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/pick_and_place", 1, true);
   }
   
@@ -243,7 +243,7 @@ int main(int argc, char** argv)
   // initialize node
   ros::init(argc, argv, "interactive_manipulation_action_server");
 
-  turtlebot_block_manipulation::InteractiveManipulationServer manip("interactive_manipulation");
+  clam_block_manipulation::InteractiveManipulationServer manip("interactive_manipulation");
 
   ros::spin();
 }

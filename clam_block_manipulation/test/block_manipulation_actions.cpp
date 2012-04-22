@@ -31,8 +31,8 @@
 #include <ros/ros.h>
 
 #include <actionlib/client/simple_action_client.h>
-#include <turtlebot_block_manipulation/BlockDetectionAction.h>
-#include <turtlebot_block_manipulation/PickAndPlaceAction.h>
+#include <clam_block_manipulation/BlockDetectionAction.h>
+#include <clam_block_manipulation/PickAndPlaceAction.h>
 
 #include <interactive_markers/interactive_marker_server.h>
 
@@ -57,11 +57,11 @@ private:
   ros::NodeHandle nh_;
   
   // Actions
-  actionlib::SimpleActionClient<turtlebot_block_manipulation::BlockDetectionAction> block_detection_action_;
-  actionlib::SimpleActionClient<turtlebot_block_manipulation::PickAndPlaceAction> pick_and_place_action_;
+  actionlib::SimpleActionClient<clam_block_manipulation::BlockDetectionAction> block_detection_action_;
+  actionlib::SimpleActionClient<clam_block_manipulation::PickAndPlaceAction> pick_and_place_action_;
   
-  turtlebot_block_manipulation::BlockDetectionGoal block_detection_goal_;
-  turtlebot_block_manipulation::PickAndPlaceGoal pick_and_place_goal_;
+  clam_block_manipulation::BlockDetectionGoal block_detection_goal_;
+  clam_block_manipulation::PickAndPlaceGoal pick_and_place_goal_;
   
   geometry_msgs::Pose old_pose_;
 
@@ -102,7 +102,7 @@ public:
     block_detection_action_.sendGoal(block_detection_goal_,  boost::bind( &BlockManipulationAction::addBlocks, this, _1, _2));
   }
   
-  void addBlocks(const actionlib::SimpleClientGoalState& state, const turtlebot_block_manipulation::BlockDetectionResultConstPtr& result)
+  void addBlocks(const actionlib::SimpleClientGoalState& state, const clam_block_manipulation::BlockDetectionResultConstPtr& result)
   {
     ROS_INFO("Got block detection callback. Adding blocks.");
     geometry_msgs::Pose block;

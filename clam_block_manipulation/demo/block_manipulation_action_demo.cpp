@@ -30,9 +30,9 @@
 #include <ros/ros.h>
 
 #include <actionlib/client/simple_action_client.h>
-#include <turtlebot_block_manipulation/BlockDetectionAction.h>
-#include <turtlebot_block_manipulation/PickAndPlaceAction.h>
-#include <turtlebot_block_manipulation/InteractiveBlockManipulationAction.h>
+#include <clam_block_manipulation/BlockDetectionAction.h>
+#include <clam_block_manipulation/PickAndPlaceAction.h>
+#include <clam_block_manipulation/InteractiveBlockManipulationAction.h>
 #include <simple_arm_actions/ResetArmAction.h>
 
 #include <string>
@@ -41,7 +41,7 @@
 
 const std::string pick_and_place_topic = "/pick_and_place";
 
-namespace turtlebot_block_manipulation
+namespace clam_block_manipulation
 {
 
 class BlockManipulationAction
@@ -77,19 +77,24 @@ public:
     reset_arm_action_("reset_arm", true)
   {
     // Load parameters
-    nh_.param<std::string>("arm_link", arm_link, "/arm_base_link");
-    nh_.param<double>("gripper_open", gripper_open, 0.042);
-    nh_.param<double>("gripper_closed", gripper_closed, 0.024);
-    nh_.param<double>("z_up", z_up, 0.12);
-    nh_.param<double>("table_height", z_down, 0.01);
-    nh_.param<double>("block_size", block_size, 0.03);
+    nh_.param<std::string>("/block_manipulation_action_demo/arm_link", arm_link, "/base_link");
+    nh_.param<double>("/block_manipulation_action_demo/gripper_open", gripper_open, 0.042);
+    nh_.param<double>("/block_manipulation_action_demo/gripper_closed", gripper_closed, 0.024);
+    nh_.param<double>("/block_manipulation_action_demo/z_up", z_up, 0.12);
+    nh_.param<double>("/block_manipulation_action_demo/table_height", z_down, 0.01);
+    nh_.param<double>("/block_manipulation_action_demo/block_size", block_size, 0.03);
     
     nh_.param<bool>("once", once, false);
-  
+
+	ROS_INFO("Block size %f", block_size);
+	ROS_INFO("Table height %f", z_down);
+		
     // Initialize goals
     block_detection_goal_.frame = arm_link;
     block_detection_goal_.table_height = z_down;
     block_detection_goal_.block_size = block_size;
+
+	
     
     pick_and_place_goal_.frame = arm_link;
     pick_and_place_goal_.z_up = z_up;
@@ -177,7 +182,7 @@ int main(int argc, char** argv)
   ros::init(argc, argv, "block_manipulation");
 
 
-  turtlebot_block_manipulation::BlockManipulationAction manip;
+  clam_block_manipulation::BlockManipulationAction manip;
 
   // everything is done in cloud callback, just spin
   ros::spin();

@@ -32,7 +32,7 @@
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <actionlib/server/simple_action_server.h>
-#include <turtlebot_block_manipulation/BlockDetectionAction.h>
+#include <clam_block_manipulation/BlockDetectionAction.h>
 
 #include <tf/transform_listener.h>
 
@@ -55,7 +55,7 @@
 #include <cmath>
 #include <algorithm>
 
-namespace turtlebot_block_manipulation
+namespace clam_block_manipulation
 {
 
 class BlockDetectionServer
@@ -63,11 +63,11 @@ class BlockDetectionServer
 private:
     
   ros::NodeHandle nh_;
-  actionlib::SimpleActionServer<turtlebot_block_manipulation::BlockDetectionAction> as_;
+  actionlib::SimpleActionServer<clam_block_manipulation::BlockDetectionAction> as_;
   std::string action_name_;
-  turtlebot_block_manipulation::BlockDetectionFeedback feedback_;
-  turtlebot_block_manipulation::BlockDetectionResult result_;
-  turtlebot_block_manipulation::BlockDetectionGoalConstPtr goal_;
+  clam_block_manipulation::BlockDetectionFeedback feedback_;
+  clam_block_manipulation::BlockDetectionResult result_;
+  clam_block_manipulation::BlockDetectionGoalConstPtr goal_;
   ros::Subscriber sub_;
   ros::Publisher pub_;
   
@@ -100,7 +100,7 @@ public:
     sub_ = nh_.subscribe("/camera/depth_registered/points", 1, &BlockDetectionServer::cloudCb, this);
     pub_ = nh_.advertise< pcl::PointCloud<pcl::PointXYZRGB> >("block_output", 1);
     
-    block_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/turtlebot_blocks", 1, true);
+    block_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/clam_blocks", 1, true);
   }
 
   void goalCB()
@@ -306,7 +306,7 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "block_detection_action_server");
 
-  turtlebot_block_manipulation::BlockDetectionServer server("block_detection");
+  clam_block_manipulation::BlockDetectionServer server("block_detection");
   ros::spin();
 
   return 0;
