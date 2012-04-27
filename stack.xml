@@ -1,15 +1,10 @@
 <stack>
-    <description brief="CLAM">CLAM</description>
-    <author>Dave Coleman, Antons Rebguns</author>
+    <description brief="ClamArm">clam controls the ClamArm 7dof robotic manipulator</description>
+    <author>Dave Coleman</author>
     <license>BSD</license>
     <review status="unreviewed" notes=""/>
-    <url>http://correll.cs.colorado.edu</url>
+    <url>http://correll.cs.colorado.edu/clam</url>
 
     <depend stack="ros" />
     <depend stack="ros_comm" />
-    <depend package="clam_description" />
-    <depend package="clam_controller" />
-    <depend package="clam_arm_navigation" />
-    <depend package="dynamixel_hardware_interface" />
-
 </stack>

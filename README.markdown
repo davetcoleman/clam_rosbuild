@@ -11,32 +11,9 @@ Controls for the 7-dof robotic arm in the Correll Lab at the University of Color
 BUILDING
 ---------
 
-**1) Download CLAM**
+Installation instructions for the ClamArm are maintained at the following website:
 
-		git clone git@github.com:davetcoleman/clam.git
-
-**2) Install Stack Dependencies**
-
-   Package dynamixel_hardware_interface:
-
-   	   www.ros.org/browse/details.php?name=dynamixel_hardware_interface
-
-   Package control_msgs: 
-
-   	   www.ros.org/wiki/control_msgs
-
-   Package gearbox:
-
-   	   www.ros.org/browse/details.php?name=gearbox
-
-**3) Build the stack**
-
-		rosmake clam
-
-**4) Setup the Dynamixel2USB controllers**
-
-   - Copy the file /setup/50-usb-serial.rules to /etc/udev/rules.d/
-   - Disable a conflicting system udev rule if necessary located at /lib/udev/rules.d/95-upower-wup.rules
+	     http://correll.cs.colorado.edu/clam/?page_id=187
 
 
 RUN
@@ -48,10 +25,6 @@ For more compelete documentation visit the project website:
     
 		http://correll.cs.colorado.edu/clam/?page_id=36
 
-TEST
----------
-		roscd clam_controller/scripts
-		python pose_cobra.py
 
 CONTRIBUTORS
 ---------
