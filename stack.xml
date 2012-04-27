@@ -7,4 +7,5 @@
 
     <depend stack="ros" />
     <depend stack="ros_comm" />
+    <depend stack="clam" package="clam_interactive_markers" />
 </stack>
