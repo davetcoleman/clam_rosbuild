@@ -4,12 +4,6 @@
 
 <launch>
 
-  <!-- Launch fake joint state publisher -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
-    <rosparam param="source_list">[joint_states]</rosparam>
-    <rosparam param="use_gui">FALSE</rosparam>
-  </node>
-
   <!-- Launch arm navigation stack -->
   <include file="$(find clam_arm_navigation)/launch/clam_arm_navigation.launch" />
 
@@ -21,6 +15,5 @@
 
   <!-- Launch visualizer -->
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find clam_bringup)/launch/vcg/clam_interactive_markers.vcg" />
-
 
 </launch>
