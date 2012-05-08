@@ -1,5 +1,5 @@
 <package>
-  <description brief="turtlebot_kinect_arm_calibration">
+  <description brief="clam_kinect_arm_calibration">
 
      clam_kinect_arm_calibration allows calibration of a kinect to the clam arm. copied from turtlebot arm
 
@@ -12,13 +12,14 @@
   <depend package="roscpp"/>
   <depend package="visualization_msgs"/>
   <depend package="tf"/>
-  <depend package="eigen"/>
   <depend package="opencv2"/>
   <depend package="image_geometry"/>
   <depend package="pcl"/>
   <depend package="pcl_ros"/>
   <depend package="image_transport"/>
   <depend package="cv_bridge"/>
+
+  <rosdep name="eigen" />
 
 </package>
 

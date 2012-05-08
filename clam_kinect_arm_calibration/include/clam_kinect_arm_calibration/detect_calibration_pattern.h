@@ -36,6 +36,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
+//#define EIGEN2_SUPPORT_STAGE10_FULL_EIGEN2_API
 #include <Eigen/Dense>
 #include <Eigen/Geometry> 
 #include <Eigen/StdVector>

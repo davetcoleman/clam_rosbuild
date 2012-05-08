@@ -30,3 +30,6 @@ rosbuild_add_executable(calibrate_kinect_checkerboard src/calibrate_kinect_check
 #rosbuild_link_boost(${PROJECT_NAME} thread)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
+
+find_package(Eigen REQUIRED)
+include_directories(${Eigen_INCLUDE_DIRS})

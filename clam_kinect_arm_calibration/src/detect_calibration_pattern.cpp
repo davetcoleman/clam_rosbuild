@@ -27,7 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <turtlebot_kinect_arm_calibration/detect_calibration_pattern.h>
+#include <clam_kinect_arm_calibration/detect_calibration_pattern.h>
 
 void PatternDetector::setCameraMatrices(cv::Mat K_, cv::Mat D_)
 {
