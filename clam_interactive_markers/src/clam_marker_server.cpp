@@ -93,7 +93,7 @@ private:
 public:
 	ClamMarkerServer()
 		: nh("~"),
-		  move_arm("move_clam_chain", true),
+		  move_arm("move_clam_arm", true),
 		  server("clam_marker_server"),
 		  tf_listener(nh),
 		  immediate_commands(true),
@@ -158,29 +158,30 @@ public:
 		}
 
 		// Get gripper offsets
-		nh.param<double>("gripper/marker_offset/x", gripper_marker_offset_x, 0.02);
-		nh.param<double>("gripper/marker_offset/y", gripper_marker_offset_y, -0.025);
+		nh.param<double>("gripper/marker_offset/x", gripper_marker_offset_x, 0.1);
+		nh.param<double>("gripper/marker_offset/y", gripper_marker_offset_y, 0.0);
 		nh.param<double>("gripper/marker_offset/z", gripper_marker_offset_z, 0.0);
     
-		nh.param<double>("gripper/box_offset/x", gripper_box_offset_x, -0.017);
-		nh.param<double>("gripper/box_offset/y", gripper_box_offset_y, 0.008);
+		nh.param<double>("gripper/box_offset/x", gripper_box_offset_x, 0.1);
+		nh.param<double>("gripper/box_offset/y", gripper_box_offset_y, 0.0);
 		nh.param<double>("gripper/box_offset/z", gripper_box_offset_z, 0.0);
 
 		// When "Interact" is clicked, which mode should we start in:
 		// 1. Planning Mode
-		/*createArmMarker();
+		createArmMarker();
 		createGripperMarker();
-		createArmMenu();*/		
+		createArmMenu();
+
 		// 2. Manual Joint Control Mode
-		createJointMarkers();
-		createJointMenus();		
+		/*createJointMarkers();
+		  createJointMenus(); 	*/
     
 		createJointPublishers();
     
 		resetMarker();
 
-		//ROS_INFO("LINK NAMES: %s", root_link.c_str());
-		//ROS_INFO("LINK NAMES: %s", tip_link.c_str());		
+		ROS_INFO("LINK NAMES: %s", root_link.c_str());
+		ROS_INFO("LINK NAMES: %s", tip_link.c_str());		
 		
 		ROS_INFO("Marker Server Initialized.");
 	}
@@ -269,13 +270,15 @@ public:
 	*/
 	bool sendPoseCommand(const InteractiveMarkerFeedbackConstPtr &feedback)
 	{
+		ROS_INFO("SEND POSE COMMAND");
+		
 		// Initialize the goal
 		arm_navigation_msgs::MoveArmGoal goal;		
-		goal.motion_plan_request.group_name = "clam_chain"; // corresponds to clam_planning_description.yaml group name
+		goal.motion_plan_request.group_name = "clam_arm"; // corresponds to clam_planning_description.yaml group name
 		goal.motion_plan_request.num_planning_attempts = 1;
 		goal.motion_plan_request.planner_id = std::string("");
 		goal.planner_service_name = std::string("ompl_planning/plan_kinematic_path");
-		goal.motion_plan_request.allowed_planning_time = ros::Duration(50.0);
+		goal.motion_plan_request.allowed_planning_time = ros::Duration(5.0); // 50.0
 
 		// Create the desired pose
 		arm_navigation_msgs::SimplePoseConstraint desired_pose;
@@ -293,11 +296,12 @@ public:
 
 		arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose,goal);
 
+				ROS_INFO("Sending goal...");		
 		if (nh.ok())
 		{
 			bool finished_within_time = false;
 			move_arm.sendGoal(goal);
-			finished_within_time = move_arm.waitForResult(ros::Duration(200.0));
+			finished_within_time = move_arm.waitForResult(ros::Duration(10.0)); // 200.0
 			if (!finished_within_time)
 			{
 				move_arm.cancelGoal();
