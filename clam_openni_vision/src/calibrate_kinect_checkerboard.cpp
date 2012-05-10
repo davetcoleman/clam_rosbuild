@@ -44,7 +44,7 @@
 #include <sensor_msgs/CameraInfo.h>
 #include <geometry_msgs/PointStamped.h>
 
-#include <clam_kinect_arm_calibration/detect_calibration_pattern.h>
+#include <clam_openni_vision/detect_calibration_pattern.h>
 
 using namespace std;
 using namespace Eigen;

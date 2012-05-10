@@ -2,7 +2,7 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b clam_kinect_arm_calibration is ... 
+\b clam_openni_vision handles calibration and vision launch files
 
 <!-- 
 Provide an overview of your package.
@@ -10,7 +10,6 @@ Provide an overview of your package.
 
 
 \section codeapi Code API
-
 <!--
 Provide links to specific auto-generated API documentation within your
 package that is of particular interest to a reader. Doxygen will
