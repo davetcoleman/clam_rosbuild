@@ -1,0 +1,6 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: clam_description
+    relative_path: urdf/clam_urdf_generated.xml
+  SRDF:
+    relative_path: config/clam.srdf

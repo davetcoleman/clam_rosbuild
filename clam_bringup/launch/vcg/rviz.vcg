@@ -1,87 +1,146 @@
-Background\ ColorR=0.313726
-Background\ ColorG=0.313726
-Background\ ColorB=0.313726
-Fixed\ Frame=/base_link
-Target\ Frame=<Fixed Frame>
-Grid.Alpha=0.5
-Grid.Cell\ Size=1
-Grid.ColorR=0.5
-Grid.ColorG=0.5
-Grid.ColorB=0.5
-Grid.Enabled=1
-Grid.Line\ Style=0
-Grid.Line\ Width=0.03
-Grid.Normal\ Cell\ Count=0
-Grid.OffsetX=0
-Grid.OffsetY=0
-Grid.OffsetZ=0
-Grid.Plane=0
-Grid.Plane\ Cell\ Count=10
-Grid.Reference\ Frame=<Fixed Frame>
-Interactive\ Markers.Enabled=0
-Interactive\ Markers.Show\ Axes=0
-Interactive\ Markers.Show\ Descriptions=1
-Interactive\ Markers.Show\ Tool\ Tips=1
-Interactive\ Markers.Update\ Topic=/clam_marker_server/update
-Marker.Enabled=1
-Marker.Marker\ Topic=/move_clam_markers
-Robot\ Model.Alpha=1
-Robot\ Model.Collision\ Enabled=0
-Robot\ Model.Enabled=1
-Robot\ Model.Robot\ Description=robot_description
-Robot\ Model.TF\ Prefix=
-Robot\ Model.Update\ Interval=0
-Robot\ Model.Visual\ Enabled=1
-Robot\:\ Robot\ Model\ Link\ base_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ base_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ elbow_pitch_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ elbow_pitch_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ elbow_roll_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ elbow_roll_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ gripper_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ gripper_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ gripper_roll_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ gripper_roll_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ l_gripper_aft_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ l_gripper_aft_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ l_gripper_fwd_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ l_gripper_fwd_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ l_gripper_pincherShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ l_gripper_pincherShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_aft_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_aft_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_fwd_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_fwd_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_pincherShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ r_gripper_pincherShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ shoulder_pan_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ shoulder_pan_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ shoulder_pitch_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ shoulder_pitch_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ tabletop_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ tabletop_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ wrist_pitch_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ wrist_pitch_linkShow\ Trail=0
-Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Axes=0
-Robot\:\ Robot\ Model\ Link\ wrist_roll_linkShow\ Trail=0
-Tool\ 2D\ Nav\ GoalTopic=goal
-Tool\ 2D\ Pose\ EstimateTopic=initialpose
-Camera\ Type=rviz::OrbitViewController
-Camera\ Config=0.676001 4.52601 0.187927 0.0888911 0.893802 -1.10266
-Property\ Grid\ State=selection=Robot: Robot Model Link r_gripper_aft_linkShow Axes;expanded=.Global Options,Robot Model.Enabled,Robot Model.Enabled.Robot: Robot ModelLinks,Robot: Robot Model Link elbow_roll_linkOrientationComposed,Robot: Robot Model Link r_gripper_aft_linkr_gripper_aft_link,Robot: Robot Model Link wrist_pitch_linkwrist_pitch_link,Interactive Markers.Enabled,Interactive Markers.Enabled.Interactive Markers.StatusTopStatus,Marker.Enabled,Marker.Enabled.Marker.Namespaces;scrollpos=0,0;splitterpos=280,563;ispageselected=1
-[Display0]
-Name=Grid
-Package=rviz
-ClassName=rviz::GridDisplay
-[Display1]
-Name=Robot Model
-Package=rviz
-ClassName=rviz::RobotModelDisplay
-[Display2]
-Name=Interactive Markers
-Package=rviz
-ClassName=rviz::InteractiveMarkerDisplay
-[Display3]
-Name=Marker
-Package=rviz
-ClassName=rviz::MarkerDisplay
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Status1
+        - /RobotModel1
+        - /RobotModel1/Status1
+      Splitter Ratio: 0.457364
+    Tree Height: 815
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        elbow_pitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        elbow_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        kinect_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_gripper_aft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_gripper_fwd_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_gripper_pincher:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_gripper_aft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_gripper_fwd_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_gripper_pincher:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        shoulder_pan_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        shoulder_pitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tabletop_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrist_pitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrist_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: /map
+  Name: root
+  Tools:
+    - Class: rviz/MoveCamera
+    - Class: rviz/Interact
+    - Class: rviz/Select
+    - Class: rviz/SetInitialPose
+      Topic: initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 2.78501
+      Focal Point:
+        Value: 0; 0; 0
+        X: 0
+        Y: 0
+        Z: 0
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.565398
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 6.06858
+    Saved: ~
+Window Geometry:
+  Height: 1080
+  QMainWindow State: 000000ff00000000fd000000010000000000000206000003bdfc0200000001fb000000100044006900730070006c0061007900730100000041000003bd000000dc00ffffff00000574000003bd00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1920
+  X: 1919
+  Y: -52
