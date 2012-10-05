@@ -1,10 +1,8 @@
 <package>
-  <description brief="turtlebot_kinect_arm_calibration">
-
-     clam_kinect_arm_calibration allows calibration of a kinect to the clam arm. copied from turtlebot arm
-
+  <description brief="clam_openni_vision">
+     clam_openni_vision allows calibration of a kinect or other openni camera to the clam arm. originally copied from turtlebot arm
   </description>
-  <author>Helen Oleynikova</author>
+  <author>Dave Coleman</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url></url>
@@ -12,13 +10,14 @@
   <depend package="roscpp"/>
   <depend package="visualization_msgs"/>
   <depend package="tf"/>
-  <depend package="eigen"/>
   <depend package="opencv2"/>
   <depend package="image_geometry"/>
   <depend package="pcl"/>
   <depend package="pcl_ros"/>
   <depend package="image_transport"/>
   <depend package="cv_bridge"/>
+
+  <rosdep name="eigen" />
 
 </package>
 

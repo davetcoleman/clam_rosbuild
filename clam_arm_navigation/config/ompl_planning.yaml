@@ -4,17 +4,17 @@ planner_configs:
   LBKPIECEkConfig1:
     type: kinematic::LBKPIECE
 groups:
-  - clam
-  - clam_cartesian
-clam:
+  - clam_arm
+  - clam_arm_cartesian
+clam_arm:
   planner_type: JointPlanner
   planner_configs:
     - SBLkConfig1
     - LBKPIECEkConfig1
   projection_evaluator: joint_state
-clam_cartesian:
+clam_arm_cartesian:
   parent_frame: base_link
-  physical_group: clam
+  physical_group: clam_arm
   planner_type: RPYIKTaskSpacePlanner
   state_spaces:
     - x

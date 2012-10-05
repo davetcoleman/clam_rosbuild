@@ -1,3 +1,3 @@
 <launch>
-    <include file="$(find clam_arm_navigation)/launch/move_clam.launch" />
+    <include file="$(find clam_arm_navigation)/launch/move_clam_arm.launch" />
 </launch>

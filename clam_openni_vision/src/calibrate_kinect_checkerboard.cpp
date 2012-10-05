@@ -26,7 +26,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
+//#define EIGEN2_SUPPORT
 #include <ros/ros.h>
 #include <image_transport/image_transport.h>
 
@@ -44,7 +44,7 @@
 #include <sensor_msgs/CameraInfo.h>
 #include <geometry_msgs/PointStamped.h>
 
-#include <turtlebot_kinect_arm_calibration/detect_calibration_pattern.h>
+#include <clam_openni_vision/detect_calibration_pattern.h>
 
 using namespace std;
 using namespace Eigen;
@@ -64,8 +64,13 @@ tf::Transform tfFromEigen(Eigen::Matrix4f trans)
 Eigen::Matrix4f EigenFromTF(tf::Transform trans)
 {
   Eigen::Matrix4f out;
-  btQuaternion quat = trans.getRotation();
-  btVector3 origin = trans.getOrigin();
+
+  //btQuaternion quat = trans.getRotation();
+  btQuaternion quat( trans.getRotation()[0], trans.getRotation()[1],
+					 trans.getRotation()[2], trans.getRotation()[3] );
+
+  //btVector3 origin = trans.getOrigin();
+  btVector3 origin( trans.getOrigin()[0], trans.getOrigin()[1], trans.getOrigin()[2]);
   
   Eigen::Quaternionf quat_out(quat.w(), quat.x(), quat.y(), quat.z());
   Eigen::Vector3f origin_out(origin.x(), origin.y(), origin.z());
@@ -373,13 +378,13 @@ public:
     cout << "URDF output (use for kinect on robot): " << endl;
     
     cout << "<?xml version=\"1.0\"?>\n<robot>\n" << 
-          "\t<property name=\"turtlebot_calib_cam_x\" value=\"" << translation.x() << "\" />\n" <<
-          "\t<property name=\"turtlebot_calib_cam_y\" value=\"" << translation.y() << "\" />\n" <<
-          "\t<property name=\"turtlebot_calib_cam_z\" value=\"" << translation.z() << "\" />\n" <<
-          "\t<property name=\"turtlebot_calib_cam_rr\" value=\"" << roll << "\" />\n" <<
-          "\t<property name=\"turtlebot_calib_cam_rp\" value=\"" << pitch << "\" />\n" <<
-          "\t<property name=\"turtlebot_calib_cam_ry\" value=\"" << yaw << "\" />\n" <<
-          "\t<property name=\"turtlebot_kinect_frame_name\" value=\"" << fixed_frame_urdf << "\" />\n" <<
+          "\t<property name=\"clam_calib_cam_x\" value=\"" << translation.x() << "\" />\n" <<
+          "\t<property name=\"clam_calib_cam_y\" value=\"" << translation.y() << "\" />\n" <<
+          "\t<property name=\"clam_calib_cam_z\" value=\"" << translation.z() << "\" />\n" <<
+          "\t<property name=\"clam_calib_cam_rr\" value=\"" << roll << "\" />\n" <<
+          "\t<property name=\"clam_calib_cam_rp\" value=\"" << pitch << "\" />\n" <<
+          "\t<property name=\"clam_calib_cam_ry\" value=\"" << yaw << "\" />\n" <<
+          "\t<property name=\"clam_kinect_frame_name\" value=\"" << fixed_frame_urdf << "\" />\n" <<
           "</robot>" << endl << endl;
   }
   
