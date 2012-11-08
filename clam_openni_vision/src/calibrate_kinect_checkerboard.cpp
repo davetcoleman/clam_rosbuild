@@ -39,6 +39,9 @@
 #include <pcl_ros/point_cloud.h>
 #include <pcl_ros/transforms.h>
 #include <pcl/registration/registration.h>
+#include <pcl/registration/transformation_estimation_svd.h>
+#include <pcl/registration/icp.h>
+#include <pcl/registration/correspondence_rejection_sample_consensus.h>
 
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/CameraInfo.h>
@@ -318,8 +321,15 @@ public:
     Eigen::Matrix4f t;
     
     physical_pub_.publish(physical_points_);
-    
-    pcl::estimateRigidTransformationSVD( physical_points_, image_points_, t );
+
+    // Old Method:
+    // pcl::estimateRigidTransformationSVD( physical_points_, image_points_, t );
+
+    pcl::registration::TransformationEstimation<pcl::PointXYZ, pcl::PointXYZ>::Ptr 
+      transformation_estimation (new pcl::registration::TransformationEstimationSVD<pcl::PointXYZ, pcl::PointXYZ>);
+
+    transformation_estimation->estimateRigidTransformation ( physical_points_, image_points_, t );
+
 
     // Output       
     tf::Transform transform = tfFromEigen(t), trans_full, camera_transform_unstamped;
