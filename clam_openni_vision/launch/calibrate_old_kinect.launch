@@ -1,7 +1,7 @@
 <launch>
 
   <node name="calibrate_kinect_checkerboard" pkg="clam_openni_vision" type="calibrate_kinect_checkerboard" output="screen">
-    <param name="camera_frame" value="/openni_camera" />
+    <param name="camera_frame" value="/camera_link" />
     <param name="fixed_frame" value="/base_link" />
     <param name="gripper_tip_x" value="0.0" />
     <param name="gripper_tip_y" value="0.0" />

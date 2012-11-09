@@ -120,6 +120,8 @@ public:
     
     reset_arm_action_.sendGoal(simple_arm_actions::ResetArmGoal());
     
+    ROS_INFO("Reseted arm action.");
+
     detectBlocks();
   }
   

@@ -48,7 +48,6 @@
 #include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/segmentation/extract_clusters.h>
 
-
 #include <pcl_ros/point_cloud.h>
 #include <pcl_ros/transforms.h>
 
@@ -88,16 +87,19 @@ public:
   {
     // Load parameters from the server.
     
-    
+    std::cout << "BLOCK DETECTION ACTION SERVER" << std::endl;
     
     // Register the goal and feeback callbacks.
     as_.registerGoalCallback(boost::bind(&BlockDetectionServer::goalCB, this));
     as_.registerPreemptCallback(boost::bind(&BlockDetectionServer::preemptCB, this));
     
     as_.start();
-    
+
     // Subscribe to point cloud
+    std::cout << "PC Subscribed" << std::endl;
     sub_ = nh_.subscribe("/camera/depth_registered/points", 1, &BlockDetectionServer::cloudCb, this);
+
+    std::cout << "Block output started" << std::endl;
     pub_ = nh_.advertise< pcl::PointCloud<pcl::PointXYZRGB> >("block_output", 1);
     
     block_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/clam_blocks", 1, true);
@@ -127,6 +129,8 @@ public:
 
   void cloudCb ( const sensor_msgs::PointCloud2ConstPtr& msg )
   {
+    //ROS_INFO("CloudCB");
+
     // Only do this if we're actually actively working on a goal.
     if (!as_.isActive()) return;
     
@@ -200,16 +204,19 @@ public:
       extract.filter (*cloud_filtered);
     }
 
+    ROS_INFO("At DTC part");
+
+    // Removed DTC to make compatible with PCL 1.5
     // Creating the KdTree object for the search method of the extraction
-    pcl::KdTree<pcl::PointXYZRGB>::Ptr tree (new pcl::KdTreeFLANN<pcl::PointXYZRGB>);
-    tree->setInputCloud (cloud_filtered);
+    //pcl::KdTree<pcl::PointXYZRGB>::Ptr tree (new pcl::KdTreeFLANN<pcl::PointXYZRGB>);
+    //tree->setInputCloud (cloud_filtered);
 
     std::vector<pcl::PointIndices> cluster_indices;
     pcl::EuclideanClusterExtraction<pcl::PointXYZRGB> ec;
     ec.setClusterTolerance (0.005);
     ec.setMinClusterSize (100);
     ec.setMaxClusterSize (25000);
-    ec.setSearchMethod (tree);
+    //ec.setSearchMethod (tree);
     ec.setInputCloud( cloud_filtered);
     ec.extract (cluster_indices);
 

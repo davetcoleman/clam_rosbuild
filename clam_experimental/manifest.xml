@@ -1,0 +1,16 @@
+<package>
+  <description brief="clam_experimental">
+
+     clam_experimental
+
+  </description>
+  <author>Dave Coleman</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/clam_experimental</url>
+  <depend package="pcl_ros"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+

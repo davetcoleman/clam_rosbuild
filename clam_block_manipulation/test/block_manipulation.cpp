@@ -150,8 +150,12 @@ public:
         simple_arm_server::ArmAction action;
         
         /* arm straight up */
-        btQuaternion temp;
+        // DTC: changed for PCL 1.5/fuerte
+        //btQuaternion temp;
+        //temp.setRPY(0,1.57,0);
+        tf::Quaternion temp;
         temp.setRPY(0,1.57,0);
+
         action.goal.orientation.x = temp.getX();
         action.goal.orientation.y = temp.getY();
         action.goal.orientation.z = temp.getZ();
@@ -306,15 +310,16 @@ public:
     pub_.publish(*cloud_filtered);
 
     // cluster
-    pcl::KdTree<pcl::PointXYZRGB>::Ptr tree (new pcl::KdTreeFLANN<pcl::PointXYZRGB>);
-    tree->setInputCloud(cloud_filtered);
+    // DTC: removed for PCL 1.5/fuerte
+    //pcl::KdTree<pcl::PointXYZRGB>::Ptr tree (new pcl::KdTreeFLANN<pcl::PointXYZRGB>);
+    //tree->setInputCloud(cloud_filtered);
     
     std::vector<pcl::PointIndices> clusters;
     pcl::EuclideanClusterExtraction<pcl::PointXYZRGB> ec;
     ec.setClusterTolerance(0.02);
     ec.setMinClusterSize(20);
     ec.setMaxClusterSize(25000);
-    ec.setSearchMethod(tree);
+    //ec.setSearchMethod(tree);
     ec.setInputCloud(cloud_filtered);
     ec.extract(clusters);
 
