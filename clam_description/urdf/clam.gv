@@ -8,37 +8,43 @@ node [shape=box];
 "wrist_roll_link" [label="wrist_roll_link"];
 "wrist_pitch_link" [label="wrist_pitch_link"];
 "gripper_roll_link" [label="gripper_roll_link"];
+"gripper_link" [label="gripper_link"];
 "l_gripper_aft_link" [label="l_gripper_aft_link"];
 "l_gripper_pincher" [label="l_gripper_pincher"];
 "l_gripper_fwd_link" [label="l_gripper_fwd_link"];
 "r_gripper_aft_link" [label="r_gripper_aft_link"];
 "r_gripper_pincher" [label="r_gripper_pincher"];
 "r_gripper_fwd_link" [label="r_gripper_fwd_link"];
+"tabletop_link" [label="tabletop_link"];
 node [shape=ellipse, color=blue, fontcolor=blue];
 "base_link" -> "shoulder_pan_joint" [label="xyz: 0 0 0.05 \nrpy: 0 1.5708 0"]
 "shoulder_pan_joint" -> "shoulder_pan_link"
-"shoulder_pan_link" -> "shoulder_pitch_joint" [label="xyz: -0.041 0 0 \nrpy: -1.57079 5.55112e-17 1.57079"]
+"shoulder_pan_link" -> "shoulder_pitch_joint" [label="xyz: -0.041 0.0021 0 \nrpy: -1.57079 5.55112e-17 1.57079"]
 "shoulder_pitch_joint" -> "shoulder_pitch_link"
-"shoulder_pitch_link" -> "elbow_roll_joint" [label="xyz: -0.001 0 0.121 \nrpy: 3.14159 1.5708 0"]
+"shoulder_pitch_link" -> "elbow_roll_joint" [label="xyz: -0.002 0 0.1206 \nrpy: 3.14159 1.5708 0"]
 "elbow_roll_joint" -> "elbow_roll_link"
-"elbow_roll_link" -> "elbow_pitch_joint" [label="xyz: -0.035 0 0.0009 \nrpy: 0 1.5708 0"]
+"elbow_roll_link" -> "elbow_pitch_joint" [label="xyz: -0.035 0 0 \nrpy: 0.055 1.5708 2.61491e-12"]
 "elbow_pitch_joint" -> "elbow_pitch_link"
-"elbow_pitch_link" -> "wrist_roll_joint" [label="xyz: 0 0.008 -0.248 \nrpy: 0 1.5708 3.14159"]
+"elbow_pitch_link" -> "wrist_roll_joint" [label="xyz: 0 0.0081 -0.248 \nrpy: 0 1.5708 3.14159"]
 "wrist_roll_joint" -> "wrist_roll_link"
-"wrist_roll_link" -> "wrist_pitch_joint" [label="xyz: 0 0 0.002 \nrpy: 0 1.5708 0"]
+"wrist_roll_link" -> "wrist_pitch_joint" [label="xyz: 0 0 0.0001 \nrpy: 0 1.5708 0"]
 "wrist_pitch_joint" -> "wrist_pitch_link"
 "wrist_pitch_link" -> "gripper_roll_joint" [label="xyz: 0 0 0.08 \nrpy: -1.5708 -1.57079 -4.18385e-11"]
 "gripper_roll_joint" -> "gripper_roll_link"
-"gripper_roll_link" -> "l_gripper_aft_link_joint" [label="xyz: 0.025 0.0125 0 \nrpy: -3.01593 1.5708 0.603534"]
-"l_gripper_aft_link_joint" -> "l_gripper_aft_link"
-"l_gripper_aft_link" -> "l_gripper_aft_pincher_joint" [label="xyz: -0.0032 0 -0.0508 \nrpy: 2.56755 -0 0"]
+"gripper_roll_link" -> "gripper_link_joint" [label="xyz: 0.1795 0 0 \nrpy: 0 -0 0"]
+"gripper_link_joint" -> "gripper_link"
+"gripper_roll_link" -> "l_gripper_aft_joint" [label="xyz: 0.026 0.017 0 \nrpy: -3.01593 1.5708 0.603534"]
+"l_gripper_aft_joint" -> "l_gripper_aft_link"
+"l_gripper_aft_link" -> "l_gripper_aft_pincher_joint" [label="xyz: -0.0032 0 -0.0508 \nrpy: 2.55813 -0 0"]
 "l_gripper_aft_pincher_joint" -> "l_gripper_pincher"
-"gripper_roll_link" -> "l_gripper_fwd_link_joint" [label="xyz: 0.05 0.003 0.007 \nrpy: -3.01593 1.5708 -2.53806"]
+"gripper_roll_link" -> "l_gripper_fwd_link_joint" [label="xyz: 0.05 0.008 0.007 \nrpy: -3.01593 1.5708 -2.53806"]
 "l_gripper_fwd_link_joint" -> "l_gripper_fwd_link"
-"gripper_roll_link" -> "r_gripper_aft_link_joint" [label="xyz: 0.025 -0.0161 0 \nrpy: -2.05775 1.5708 0.603534"]
+"gripper_roll_link" -> "r_gripper_aft_link_joint" [label="xyz: 0.026 -0.011 0 \nrpy: -2.05775 1.5708 0.603534"]
 "r_gripper_aft_link_joint" -> "r_gripper_aft_link"
-"r_gripper_aft_link" -> "r_gripper_aft_pincher_joint" [label="xyz: 0 0 -0.0508 \nrpy: 2.56755 2.65359e-06 -3.14159"]
+"r_gripper_aft_link" -> "r_gripper_aft_pincher_joint" [label="xyz: 0 0 -0.0508 \nrpy: 2.55813 2.65359e-06 3.14159"]
 "r_gripper_aft_pincher_joint" -> "r_gripper_pincher"
-"gripper_roll_link" -> "r_gripper_fwd_link_joint" [label="xyz: 0.05 -0.007 0.007 \nrpy: 3.01593 1.5708 2.53806"]
+"gripper_roll_link" -> "r_gripper_fwd_link_joint" [label="xyz: 0.05 -0.0014 0.007 \nrpy: 3.01593 1.5708 2.53806"]
 "r_gripper_fwd_link_joint" -> "r_gripper_fwd_link"
+"base_link" -> "tabletop_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"tabletop_joint" -> "tabletop_link"
 }

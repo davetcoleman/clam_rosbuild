@@ -1,5 +1,8 @@
 <launch>
 
+  <node name="reset_arm_action_server" pkg="clam_block_manipulation" type="reset_arm_action_server" output="screen">
+  </node>
+  
   <node name="block_detection_action_server" pkg="clam_block_manipulation" type="block_detection_action_server" output="screen">
     <!--remap from="/camera/depth_registered/points" to="/camera/rgb/points" /-->
   </node>

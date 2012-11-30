@@ -65,9 +65,10 @@ private:
   double gripper_open;
   double gripper_closed;
   double z_up;
+
 public:
   PickAndPlaceServer(const std::string name) :
-    nh_("~"), as_(name, false), action_name_(name), client_("/move_arm", true)
+    nh_("~"), as_(name, false), action_name_(name), client_("move_clam_arm", true)
   {
 
     //register the goal and feeback callbacks
@@ -77,19 +78,23 @@ public:
     as_.start();
   }
 
+  // Recieve Action Goal Function
   void goalCB()
   {
     ROS_INFO("[pick and place] Received goal!");
+
     goal_ = as_.acceptNewGoal();
     arm_link = goal_->frame;
     gripper_open = goal_->gripper_open;
     gripper_closed = goal_->gripper_closed;
     z_up = goal_->z_up;
 
+    // Check if our listener has recieved a goal from the topic yet
     if (goal_->topic.length() < 1)
-      pickAndPlace(goal_->pickup_pose, goal_->place_pose);
+      pickAndPlace(goal_->pickup_pose, goal_->place_pose); // yes, start moving arm
     else
-      pick_and_place_sub_ = nh_.subscribe(goal_->topic, 1, &PickAndPlaceServer::sendGoalFromTopic, this);
+      pick_and_place_sub_ = nh_.subscribe(goal_->topic, 1, // no, wait for topic
+                                          &PickAndPlaceServer::sendGoalFromTopic, this);
   }
 
   void sendGoalFromTopic(const geometry_msgs::PoseArrayConstPtr& msg)
@@ -99,44 +104,134 @@ public:
     pick_and_place_sub_.shutdown();
   }
 
+  // Cancel the action
   void preemptCB()
   {
-    ROS_INFO("%s: Preempted", action_name_.c_str());
+    ROS_INFO("[%s] Preempted", action_name_.c_str());
     // set the action state to preempted
     as_.setPreempted();
   }
 
+  // Actually run the action
   void pickAndPlace(const geometry_msgs::Pose& start_pose, const geometry_msgs::Pose& end_pose)
   {
-    ROS_INFO("[pick and place] Picking. Also placing.");
+    ROS_INFO("[pick and place] Picking and placing.");
 
-    actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> client2_("move_clam_arm",true);
+    // Wait for MoveArmAction to be ready ----------------------------------------------------------
+    ROS_INFO("[pick and place] Waiting for server");
+    client_.waitForServer();
+    ROS_INFO("[pick and place] Connected to server");
 
-    ROS_INFO("Waiting for server");
-    client2_.waitForServer();
-    ROS_INFO("Connected to server");
+    // Create goal ---------------------------------------------------------------------------------
     arm_navigation_msgs::MoveArmGoal goal;
-
     goal.motion_plan_request.group_name = "clam_arm"; // corresponds to clam_planning_description.yaml group name
     goal.motion_plan_request.num_planning_attempts = 1;
     goal.motion_plan_request.planner_id = std::string("");
     goal.planner_service_name = std::string("ompl_planning/plan_kinematic_path");
     goal.motion_plan_request.allowed_planning_time = ros::Duration(50.0);
 
+    // Create POSE 1 -------------------------------------------------------------------------------
     arm_navigation_msgs::SimplePoseConstraint desired_pose;
     desired_pose.header.frame_id = "base_link";
     desired_pose.link_name = "gripper_roll_link";
 
-    /* arm straight up */
-    /*btQuaternion temp;
-      temp.setRPY(0,1.57,0);
-      desired_pose.pose.orientation.x = temp.getX();
-      desired_pose.pose.orientation.y = temp.getY();
-      desired_pose.pose.orientation.z = temp.getZ();
-      desired_pose.pose.orientation.w = temp.getW();*/
+    // arm straight up
+    tf::Quaternion temp;
+    temp.setRPY(0,1.57,0);
+    //btQuaternion temp;
+    //temp.setRPY(0,1.57,0);
+    desired_pose.pose.orientation.x = temp.getX();
+    desired_pose.pose.orientation.y = temp.getY();
+    desired_pose.pose.orientation.z = temp.getZ();
+    desired_pose.pose.orientation.w = temp.getW();
+
+    // hover over
+    desired_pose.pose.position.x = start_pose.position.x;
+    desired_pose.pose.position.y = start_pose.position.y;
+    desired_pose.pose.position.z = 0.2; // z_up;
+    ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
+    /*
+      desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
+      desired_pose.pose.position.y = 0.0;  // positive is right on plywood
+      desired_pose.pose.position.z = 0.20;     // up
+
+      // Tweaking:
+      desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
+      desired_pose.pose.position.y = 0.0;  // positive is right on plywood
+      desired_pose.pose.position.z = z_up;     // up
+      ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
+    */
+    /*desired_pose.pose.orientation.x = 0.034366;
+      desired_pose.pose.orientation.y = 0.72035;
+      desired_pose.pose.orientation.z = -0.010556;
+      desired_pose.pose.orientation.w = 0.692725;*/
+
+    ROS_INFO_STREAM("Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
+
+    desired_pose.absolute_position_tolerance.x = 0.1;
+    desired_pose.absolute_position_tolerance.y = 0.1;
+    desired_pose.absolute_position_tolerance.z = 0.1;
+
+    desired_pose.absolute_roll_tolerance = 0.1;
+    desired_pose.absolute_pitch_tolerance = 0.1;
+    desired_pose.absolute_yaw_tolerance = 0.1;
+
+    arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
+
+    //action.move_time.sec = 0.25;
+    //goal.motions.push_back(action);
 
     /*
-    // Temp:
+    // go down
+    action.goal.position.z = start_pose.position.z;
+    action.move_time.sec = 1.5;
+    goal.motions.push_back(action);
+
+    // close gripper
+    grip.type = simple_arm_server::ArmAction::MOVE_GRIPPER;
+    grip.command = gripper_closed;
+    grip.move_time.sec = 1.0;
+    goal.motions.push_back(grip);
+
+    // go up
+    action.goal.position.z = z_up;
+    action.move_time.sec = 1.0;
+    goal.motions.push_back(action);
+
+    // hover over
+    action.goal.position.x = end_pose.position.x;
+    action.goal.position.y = end_pose.position.y;
+    action.goal.position.z = z_up;
+    action.move_time.sec = 1.0;
+    goal.motions.push_back(action);
+
+    // go down
+    action.goal.position.z = end_pose.position.z;
+    action.move_time.sec = 1.5;
+    goal.motions.push_back(action);
+
+    // open gripper
+    grip.command = gripper_open;
+    goal.motions.push_back(grip);
+
+    // go up
+    action.goal.position.z = z_up;
+    action.move_time.sec = 1.0;
+    goal.motions.push_back(action);
+    */
+
+
+
+    // MODIFIED ORIGINAL:
+    /*
+    // arm straight up
+    btQuaternion temp;
+    temp.setRPY(0,1.57,0);
+    desired_pose.pose.orientation.x = temp.getX();
+    desired_pose.pose.orientation.y = temp.getY();
+    desired_pose.pose.orientation.z = temp.getZ();
+    desired_pose.pose.orientation.w = temp.getW();
+
     desired_pose.pose.orientation.x = 0.034366;
     desired_pose.pose.orientation.y = 0.72035;
     desired_pose.pose.orientation.z = -0.010556;
@@ -154,31 +249,7 @@ public:
     desired_pose.absolute_roll_tolerance = 0.1;
     desired_pose.absolute_pitch_tolerance = 0.1;
     desired_pose.absolute_yaw_tolerance = 0.1;
-    */
 
-
-	// the following are in m units, so 40cm = .40 m
-	desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
-	desired_pose.pose.position.y = 0.0;  // positive is right on plywood
-	desired_pose.pose.position.z = 0.20;     // up
-
-	desired_pose.pose.orientation.x = 0.034366;
-	desired_pose.pose.orientation.y = 0.72035;
-	desired_pose.pose.orientation.z = -0.010556;
-	desired_pose.pose.orientation.w = 0.692725;
-
-	desired_pose.absolute_position_tolerance.x = 0.02;
-	desired_pose.absolute_position_tolerance.y = 0.02;
-	desired_pose.absolute_position_tolerance.z = 0.02;
-
-	desired_pose.absolute_roll_tolerance = 0.1;
-	desired_pose.absolute_pitch_tolerance = 0.1;
-	desired_pose.absolute_yaw_tolerance = 0.1;
-
-
-    arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
-
-    /*
     // go down
     action.goal.position.z = start_pose.position.z;
     action.move_time.sec = 1.5;
@@ -233,25 +304,61 @@ public:
     */
 
 
+    /*
+    // Working Method --------------------------------------------------------------------------
+    ROS_INFO("SENDING SIMPLE UPRIGHT POSE");
+
+    arm_navigation_msgs::SimplePoseConstraint desired_pose;
+    desired_pose.header.frame_id = "base_link";
+    desired_pose.link_name = "gripper_roll_link";
+
+    // the following are in m units, so 40cm = .40 m
+    desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
+    desired_pose.pose.position.y = 0.0;  // positive is right on plywood
+    desired_pose.pose.position.z = 0.20;     // up
+
+    desired_pose.pose.orientation.x = 0.034366;
+    desired_pose.pose.orientation.y = 0.72035;
+    desired_pose.pose.orientation.z = -0.010556;
+    desired_pose.pose.orientation.w = 0.692725;
+
+    desired_pose.absolute_position_tolerance.x = 0.02;
+    desired_pose.absolute_position_tolerance.y = 0.02;
+    desired_pose.absolute_position_tolerance.z = 0.02;
+
+    desired_pose.absolute_roll_tolerance = 0.1;
+    desired_pose.absolute_pitch_tolerance = 0.1;
+    desired_pose.absolute_yaw_tolerance = 0.1;
+
+    arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
+    */
 
     if (nh_.ok())
     {
       bool finished_within_time = false;
-      client2_.sendGoal(goal);
-      finished_within_time = client2_.waitForResult(ros::Duration(200.0));
+      client_.sendGoal(goal);
+      finished_within_time = client_.waitForResult(ros::Duration(200.0));
       if (!finished_within_time)
       {
-        client2_.cancelGoal();
+        client_.cancelGoal();
         ROS_INFO("Timed out achieving goal");
       }
       else
       {
-        actionlib::SimpleClientGoalState state = client2_.getState();
+        actionlib::SimpleClientGoalState state = client_.getState();
         bool success = (state == actionlib::SimpleClientGoalState::SUCCEEDED);
         if(success)
+        {
           ROS_INFO("Action finished: %s",state.toString().c_str());
+          as_.setSucceeded(result_);
+        }
         else
+        {
           ROS_INFO("Action failed: %s",state.toString().c_str());
+          as_.setAborted(result_);
+        }
+
+        // TODO: use convert_messages.h in arm_navigation_msgs to get error code
       }
     }
 

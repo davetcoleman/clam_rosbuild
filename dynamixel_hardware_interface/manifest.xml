@@ -1,0 +1,31 @@
+<package>
+    <description brief="dynamixel_hardware_interface">
+        dynamixel_hardware_interface
+    </description>
+    
+    <author>Antons Rebguns</author>
+    <license>BSD</license>
+    <review status="unreviewed" notes=""/>
+    <url>http://ros.org/wiki/dynamixel_hardware_interface</url>
+    
+    <depend package="roscpp"/>
+    <depend package="pluginlib"/>
+    <depend package="actionlib"/>
+    <depend package="gearbox"/>
+    <depend package="control_msgs"/>
+    <depend package="trajectory_msgs"/>
+    <depend package="diagnostic_msgs"/>
+    <depend package="diagnostic_updater"/>
+    <depend package="std_srvs"/>
+    
+    <export>
+        <cpp cflags="-I${prefix}/include"
+             lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -ldynamixel_hardware_interface -ldynamixel_controllers" />
+        <dynamixel_hardware_interface plugin="${prefix}/controller_plugins.xml" />
+        <python path="${prefix}/lib" />
+        <python path="${prefix}/src" />
+    </export>
+
+</package>
+
+

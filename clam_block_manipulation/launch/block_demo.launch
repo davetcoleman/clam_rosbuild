@@ -7,7 +7,8 @@
       block_size: 0.04
       gripper_open: 0.042
       gripper_closed: 0.024
-      z_up: 0.12
+      z_up: 0.3
+      once: false
     </rosparam>
   </node>
 </launch>
