@@ -38,7 +38,7 @@
 //#include <simple_arm_server/MoveArmAction.h>
 #include <arm_navigation_msgs/MoveArmAction.h>
 #include <arm_navigation_msgs/utils.h> // is this necessary?
-
+#include <clam_block_manipulation/ClamArmAction.h> // for controlling the gripper
 #include <geometry_msgs/PoseArray.h>
 
 namespace clam_block_manipulation
@@ -49,14 +49,17 @@ class PickAndPlaceServer
 private:
 
   ros::NodeHandle nh_;
-  actionlib::SimpleActionServer<clam_block_manipulation::PickAndPlaceAction> as_;
   std::string action_name_;
 
+  actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> client_;
+  actionlib::SimpleActionServer<clam_block_manipulation::PickAndPlaceAction> as_;
+  actionlib::SimpleActionClient<ClamArmAction> clam_arm_action_;
+
+  ClamArmGoal clam_arm_goal_; // sent to the clam_arm_action_server
   clam_block_manipulation::PickAndPlaceFeedback     feedback_;
   clam_block_manipulation::PickAndPlaceResult       result_;
   clam_block_manipulation::PickAndPlaceGoalConstPtr goal_;
 
-  actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> client_;
 
   ros::Subscriber pick_and_place_sub_;
 
@@ -68,7 +71,9 @@ private:
 
 public:
   PickAndPlaceServer(const std::string name) :
-    nh_("~"), as_(name, false), action_name_(name), client_("move_clam_arm", true)
+    nh_("~"), as_(name, false), action_name_(name), 
+    client_("move_clam_arm", true),
+    clam_arm_action_("clam_arm", true)
   {
 
     //register the goal and feeback callbacks
@@ -130,252 +135,134 @@ public:
     goal.planner_service_name = std::string("ompl_planning/plan_kinematic_path");
     goal.motion_plan_request.allowed_planning_time = ros::Duration(50.0);
 
-    // Create POSE 1 -------------------------------------------------------------------------------
+    // Create pose template to be resused ----------------------------------------------------------
     arm_navigation_msgs::SimplePoseConstraint desired_pose;
     desired_pose.header.frame_id = "base_link";
     desired_pose.link_name = "gripper_roll_link";
 
+    desired_pose.absolute_position_tolerance.x = 1; // 0.1
+    desired_pose.absolute_position_tolerance.y = 1;
+    desired_pose.absolute_position_tolerance.z = 1;
+
+    desired_pose.absolute_roll_tolerance = 1; // 0.1
+    desired_pose.absolute_pitch_tolerance = 1;
+    desired_pose.absolute_yaw_tolerance = 1;
+
+
+    // Create Approach------------------------------------------------------------------------------
+
     // arm straight up
     tf::Quaternion temp;
     temp.setRPY(0,1.57,0);
-    //btQuaternion temp;
-    //temp.setRPY(0,1.57,0);
     desired_pose.pose.orientation.x = temp.getX();
     desired_pose.pose.orientation.y = temp.getY();
     desired_pose.pose.orientation.z = temp.getZ();
     desired_pose.pose.orientation.w = temp.getW();
+    ROS_INFO_STREAM("Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
 
     // hover over
     desired_pose.pose.position.x = start_pose.position.x;
     desired_pose.pose.position.y = start_pose.position.y;
     desired_pose.pose.position.z = 0.2; // z_up;
+
     ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
-    /*
-      desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
-      desired_pose.pose.position.y = 0.0;  // positive is right on plywood
-      desired_pose.pose.position.z = 0.20;     // up
 
-      // Tweaking:
-      desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
-      desired_pose.pose.position.y = 0.0;  // positive is right on plywood
-      desired_pose.pose.position.z = z_up;     // up
-      ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
-    */
-    /*desired_pose.pose.orientation.x = 0.034366;
-      desired_pose.pose.orientation.y = 0.72035;
-      desired_pose.pose.orientation.z = -0.010556;
-      desired_pose.pose.orientation.w = 0.692725;*/
-
-    ROS_INFO_STREAM("Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
-
-    desired_pose.absolute_position_tolerance.x = 0.1;
-    desired_pose.absolute_position_tolerance.y = 0.1;
-    desired_pose.absolute_position_tolerance.z = 0.1;
-
-    desired_pose.absolute_roll_tolerance = 0.1;
-    desired_pose.absolute_pitch_tolerance = 0.1;
-    desired_pose.absolute_yaw_tolerance = 0.1;
-
+    // Send command
     arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
-
-    //action.move_time.sec = 0.25;
-    //goal.motions.push_back(action);
-
-    /*
-    // go down
-    action.goal.position.z = start_pose.position.z;
-    action.move_time.sec = 1.5;
-    goal.motions.push_back(action);
-
-    // close gripper
-    grip.type = simple_arm_server::ArmAction::MOVE_GRIPPER;
-    grip.command = gripper_closed;
-    grip.move_time.sec = 1.0;
-    goal.motions.push_back(grip);
-
-    // go up
-    action.goal.position.z = z_up;
-    action.move_time.sec = 1.0;
-    goal.motions.push_back(action);
-
-    // hover over
-    action.goal.position.x = end_pose.position.x;
-    action.goal.position.y = end_pose.position.y;
-    action.goal.position.z = z_up;
-    action.move_time.sec = 1.0;
-    goal.motions.push_back(action);
-
-    // go down
-    action.goal.position.z = end_pose.position.z;
-    action.move_time.sec = 1.5;
-    goal.motions.push_back(action);
-
-    // open gripper
-    grip.command = gripper_open;
-    goal.motions.push_back(grip);
-
-    // go up
-    action.goal.position.z = z_up;
-    action.move_time.sec = 1.0;
-    goal.motions.push_back(action);
-    */
-
-
-
-    // MODIFIED ORIGINAL:
-    /*
-    // arm straight up
-    btQuaternion temp;
-    temp.setRPY(0,1.57,0);
-    desired_pose.pose.orientation.x = temp.getX();
-    desired_pose.pose.orientation.y = temp.getY();
-    desired_pose.pose.orientation.z = temp.getZ();
-    desired_pose.pose.orientation.w = temp.getW();
-
-    desired_pose.pose.orientation.x = 0.034366;
-    desired_pose.pose.orientation.y = 0.72035;
-    desired_pose.pose.orientation.z = -0.010556;
-    desired_pose.pose.orientation.w = 0.692725;
-
-    // Hover Over
-    desired_pose.pose.position.x = 0.30; //start_pose.position.x;
-    desired_pose.pose.position.y = 0.0; //start_pose.position.y;
-    desired_pose.pose.position.z = 0.20; //z_up;
-
-    desired_pose.absolute_position_tolerance.x = 0.02;
-    desired_pose.absolute_position_tolerance.y = 0.02;
-    desired_pose.absolute_position_tolerance.z = 0.02;
-
-    desired_pose.absolute_roll_tolerance = 0.1;
-    desired_pose.absolute_pitch_tolerance = 0.1;
-    desired_pose.absolute_yaw_tolerance = 0.1;
-
-    // go down
-    action.goal.position.z = start_pose.position.z;
-    action.move_time.sec = 1.5;
-    goal.motions.push_back(action);
-
-
-    action.goal.orientation.x = temp.getX();
-    action.goal.orientation.y = temp.getY();
-    action.goal.orientation.z = temp.getZ();
-    action.goal.orientation.w = temp.getW();
-
-    // hover over
-    action.goal.position.x = start_pose.position.x;
-    action.goal.position.y = start_pose.position.y;
-    action.goal.position.z = z_up;
-    action.move_time.sec = 0.25;
-    //goal.motions.push_back(action);
-
-    //close gripper
-    grip.type = arm_navigation_msgs::ArmAction::MOVE_GRIPPER;
-    grip.command = gripper_closed;
-    grip.move_time.sec = 1.0;
-    goal.motions.push_back(grip); //TODO
-
-    // go up
-    action.goal.position.z = z_up;
-    action.move_time.sec = 1.0;
-    goal.motions.push_back(action);
-
-    //hover over
-    action.goal.position.x = end_pose.position.x;
-    action.goal.position.y = end_pose.position.y;
-    action.goal.position.z = z_up;
-    action.move_time.sec = 1.0;
-    goal.motions.push_back(action);
-
-    // go down
-    action.goal.position.z = end_pose.position.z;
-    action.move_time.sec = 1.5;
-    goal.motions.push_back(action);
-
-    // open gripper
-    grip.command = gripper_open;
-    goal.motions.push_back(grip);
-
-    // go up
-    action.goal.position.z = z_up;
-    action.move_time.sec = 1.0;
-    goal.motions.push_back(action);
-
-    goal.header.frame_id = arm_link;
-    */
-
-
-    /*
-    // Working Method --------------------------------------------------------------------------
-    ROS_INFO("SENDING SIMPLE UPRIGHT POSE");
-
-    arm_navigation_msgs::SimplePoseConstraint desired_pose;
-    desired_pose.header.frame_id = "base_link";
-    desired_pose.link_name = "gripper_roll_link";
-
-    // the following are in m units, so 40cm = .40 m
-    desired_pose.pose.position.x = 0.30;  // positive is straight towards estop buttons
-    desired_pose.pose.position.y = 0.0;  // positive is right on plywood
-    desired_pose.pose.position.z = 0.20;     // up
-
-    desired_pose.pose.orientation.x = 0.034366;
-    desired_pose.pose.orientation.y = 0.72035;
-    desired_pose.pose.orientation.z = -0.010556;
-    desired_pose.pose.orientation.w = 0.692725;
-
-    desired_pose.absolute_position_tolerance.x = 0.02;
-    desired_pose.absolute_position_tolerance.y = 0.02;
-    desired_pose.absolute_position_tolerance.z = 0.02;
-
-    desired_pose.absolute_roll_tolerance = 0.1;
-    desired_pose.absolute_pitch_tolerance = 0.1;
-    desired_pose.absolute_yaw_tolerance = 0.1;
-
-    arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
-    */
-
-    if (nh_.ok())
+    client_.sendGoal(goal);
+    bool finished_within_time = client_.waitForResult(ros::Duration(200.0));
+    if (!finished_within_time)
     {
-      bool finished_within_time = false;
-      client_.sendGoal(goal);
-      finished_within_time = client_.waitForResult(ros::Duration(200.0));
-      if (!finished_within_time)
+      client_.cancelGoal();
+      ROS_INFO("Timed out achieving goal");
+      as_.setAborted(result_);
+      return;
+    }
+    else
+    {
+      actionlib::SimpleClientGoalState state = client_.getState();
+      if(state == actionlib::SimpleClientGoalState::SUCCEEDED)
       {
-        client_.cancelGoal();
-        ROS_INFO("Timed out achieving goal");
+        ROS_INFO("Action 1 finished: %s",state.toString().c_str());
       }
       else
       {
-        actionlib::SimpleClientGoalState state = client_.getState();
-        bool success = (state == actionlib::SimpleClientGoalState::SUCCEEDED);
-        if(success)
-        {
-          ROS_INFO("Action finished: %s",state.toString().c_str());
-          as_.setSucceeded(result_);
-        }
-        else
-        {
-          ROS_INFO("Action failed: %s",state.toString().c_str());
-          as_.setAborted(result_);
-        }
-
-        // TODO: use convert_messages.h in arm_navigation_msgs to get error code
+        ROS_INFO("Action 1 failed: %s",state.toString().c_str());
+        as_.setAborted(result_);
+        return;
       }
     }
 
+    // Close gripper -------------------------------------------------------------------------------
 
+    clam_arm_goal_.command = "CLOSE_GRIPPER";
+    clam_arm_action_.sendGoal(clam_arm_goal_);
+    while(!clam_arm_action_.getState().isDone() && ros::ok())
+    {
+      ROS_INFO("Waiting for gripper to close");
+      ros::Duration(0.5).sleep();
+    }
 
-    /*
-      client_.sendGoal(goal);
-      ROS_INFO("[pick and place] Sent goal. Waiting.");
-      client_.waitForResult(ros::Duration(30.0));
-      ROS_INFO("[pick and place] Received result.");
-      if (client_.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-      as_.setSucceeded(result_);
+    // Move Arm to new location --------------------------------------------------------------------
+
+    // arm straight up
+    tf::Quaternion temp2;
+    temp2.setRPY(0,1.57,0);
+    desired_pose.pose.orientation.x = temp2.getX();
+    desired_pose.pose.orientation.y = temp2.getY();
+    desired_pose.pose.orientation.z = temp2.getZ();
+    desired_pose.pose.orientation.w = temp2.getW();
+
+    ROS_INFO_STREAM("Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
+
+    // hover over
+    desired_pose.pose.position.x = end_pose.position.x;
+    desired_pose.pose.position.y = end_pose.position.y;
+    desired_pose.pose.position.z = 0.2; // z_up;
+
+    ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
+
+    // Send command
+    arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
+    client_.sendGoal(goal);
+    finished_within_time = client_.waitForResult(ros::Duration(200.0));
+    if (!finished_within_time)
+    {
+      client_.cancelGoal();
+      ROS_INFO("Timed out achieving goal");
+      as_.setAborted(result_);
+      return;
+    }
+    else
+    {
+      actionlib::SimpleClientGoalState state = client_.getState();
+      if(state == actionlib::SimpleClientGoalState::SUCCEEDED)
+      {
+        ROS_INFO("Action 1 finished: %s",state.toString().c_str());
+      }
       else
       {
-      ROS_INFO("Actual state: %s", client_.getState().toString().c_str());
-      as_.setAborted(result_);
-      }*/
+        ROS_INFO("Action 1 failed: %s",state.toString().c_str());
+        as_.setAborted(result_);
+        return;
+      }
+    }
+
+    // Open gripper -------------------------------------------------------------------------------
+
+    clam_arm_goal_.command = "OPEN_GRIPPER";
+    clam_arm_action_.sendGoal(clam_arm_goal_);
+    while(!clam_arm_action_.getState().isDone() && ros::ok())
+    {
+      ROS_INFO("Waiting for gripper to open");
+      ros::Duration(0.5).sleep();
+    }
+
+
+    // Done ---------------------------------------------------------------------------------------
+    // Demo will automatically reset arm
+    
+    as_.setSucceeded(result_);    
   }
 };
 

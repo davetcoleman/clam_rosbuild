@@ -48,7 +48,7 @@ public:
     goal.trajectory.joint_names.push_back("wrist_roll_joint");
     goal.trajectory.joint_names.push_back("wrist_pitch_joint");
     goal.trajectory.joint_names.push_back("gripper_roll_joint");
-    goal.trajectory.joint_names.push_back("l_gripper_aft_joint");
+    //goal.trajectory.joint_names.push_back("l_gripper_aft_joint");
 
     // We will have two waypoints in this goal trajectory
     goal.trajectory.points.resize(1);
@@ -56,7 +56,7 @@ public:
     // First trajectory point
     // Positions
     int ind = 0;
-    goal.trajectory.points[ind].positions.resize(8);
+    goal.trajectory.points[ind].positions.resize(7);
     goal.trajectory.points[ind].positions[0] = 0.0;
     goal.trajectory.points[ind].positions[1] = 0.0;
     goal.trajectory.points[ind].positions[2] = 0.0;
@@ -64,13 +64,14 @@ public:
     goal.trajectory.points[ind].positions[4] = 0.0;
     goal.trajectory.points[ind].positions[5] = 0.0;
     goal.trajectory.points[ind].positions[6] = 0.0;
-    goal.trajectory.points[ind].positions[7] = 0.0;
+    //    goal.trajectory.points[ind].positions[7] = 0.0;
+
     // Velocities
-    /*    goal.trajectory.points[ind].velocities.resize(8);
+    goal.trajectory.points[ind].velocities.resize(7);
     for (size_t j = 0; j < 8; ++j)
     {
       goal.trajectory.points[ind].velocities[j] = 1.0;
-      }*/
+    }
     // To be reached 1 second after starting along the trajectory
     goal.trajectory.points[ind].time_from_start = ros::Duration(1.0);
 
@@ -92,7 +93,7 @@ public:
     goal.trajectory.points[ind].velocities.resize(8);
     for (size_t j = 0; j < 8; ++j)
     {
-      goal.trajectory.points[ind].velocities[j] = 1.0;
+    goal.trajectory.points[ind].velocities[j] = 1.0;
     }
     // To be reached 2 seconds after starting along the trajectory
     goal.trajectory.points[ind].time_from_start = ros::Duration(20.0);
@@ -124,4 +125,6 @@ int main(int argc, char** argv)
   {
     usleep(50000);
   }
+
+  return 0;
 }

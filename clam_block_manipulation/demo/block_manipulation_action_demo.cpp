@@ -38,7 +38,7 @@
 #include <actionlib/client/simple_action_client.h>
 #include <clam_block_manipulation/BlockDetectionAction.h>
 #include <clam_block_manipulation/PickAndPlaceAction.h>
-#include <clam_block_manipulation/ResetArmAction.h>
+#include <clam_block_manipulation/ClamArmAction.h>
 #include <clam_block_manipulation/InteractiveBlockManipulationAction.h>
 
 #include <string>
@@ -59,12 +59,12 @@ private:
   actionlib::SimpleActionClient<BlockDetectionAction> block_detection_action_;
   actionlib::SimpleActionClient<InteractiveBlockManipulationAction> interactive_manipulation_action_;
   actionlib::SimpleActionClient<PickAndPlaceAction> pick_and_place_action_;
-  actionlib::SimpleActionClient<ResetArmAction> reset_arm_action_;
+  actionlib::SimpleActionClient<ClamArmAction> clam_arm_action_;
 
   BlockDetectionGoal block_detection_goal_;
   InteractiveBlockManipulationGoal interactive_manipulation_goal_;
   PickAndPlaceGoal pick_and_place_goal_;
-  ResetArmGoal reset_arm_goal_;
+  ClamArmGoal clam_arm_goal_;
 
   // Parameters
   std::string arm_link;
@@ -81,7 +81,7 @@ public:
     block_detection_action_("block_detection", true),
     interactive_manipulation_action_("interactive_manipulation", true),
     pick_and_place_action_("pick_and_place", true),
-    reset_arm_action_("reset_arm", true)
+    clam_arm_action_("clam_arm", true)
   {
     // Load parameters -------------------------------------------------------------------
 
@@ -134,7 +134,8 @@ public:
 
   void resetArm()
   {
-    reset_arm_action_.sendGoal(reset_arm_goal_,
+    clam_arm_goal_.command = "RESET";
+    clam_arm_action_.sendGoal(clam_arm_goal_,
                                boost::bind( &BlockManipulationAction::detectBlocks, this));
   }
 

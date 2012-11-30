@@ -249,7 +249,7 @@ void JointTrajectoryActionController::processTrajectory(const trajectory_msgs::J
         if (!point.velocities.empty() && point.velocities.size() != num_joints_)
         {
             res.error_code = control_msgs::FollowJointTrajectoryResult::INVALID_GOAL;
-            error_msg = "Command point " + boost::lexical_cast<std::string>(i) + " has " + boost::lexical_cast<std::string>(point.velocities.size()) + " elements for the velocities, expecting " + num_joints;
+            error_msg = "Command point " + boost::lexical_cast<std::string>(i) + " has " + boost::lexical_cast<std::string>(point.velocities.size()) + " elements for the velocities, expecting " + boost::lexical_cast<std::string>(num_joints_);
             ROS_ERROR("%s", error_msg.c_str());
             if (is_action) { action_server_->setAborted(res, error_msg); }
             return;
@@ -258,7 +258,7 @@ void JointTrajectoryActionController::processTrajectory(const trajectory_msgs::J
         if (!point.positions.empty() && point.positions.size() != num_joints_)
         {
             res.error_code = control_msgs::FollowJointTrajectoryResult::INVALID_GOAL;
-            error_msg = "Command point " + boost::lexical_cast<std::string>(i) + " has " + boost::lexical_cast<std::string>(point.positions.size()) + " elements for the positions, expecting " + num_joints;
+            error_msg = "Command point " + boost::lexical_cast<std::string>(i) + " has " + boost::lexical_cast<std::string>(point.positions.size()) + " elements for the positions, expecting " + boost::lexical_cast<std::string>(num_joints_);
             ROS_ERROR("%s", error_msg.c_str());
             if (is_action) { action_server_->setAborted(res, error_msg); }
             return;
