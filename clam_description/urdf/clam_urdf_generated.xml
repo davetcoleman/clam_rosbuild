@@ -372,8 +372,9 @@ http://www.ros.org/wiki/xacro
       </geometry>
     </visual>
   </link>
-  <!-- KINECT LINK - Needed? -->
-  <!--joint name="base_kinect_joint" type="fixed">
+  <!-- KINECT LINK - Not Needed! -->
+  <!--
+  <joint name="base_kinect_joint" type="fixed">
     <origin xyz="0.769541 -0.0539292 0.836631" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="camera_link"/>
@@ -386,6 +387,7 @@ http://www.ros.org/wiki/xacro
 	<sphere radius=".005"/>
       </geometry>
     </visual>
-  </link-->
+  </link>
+-->
 </robot>
 

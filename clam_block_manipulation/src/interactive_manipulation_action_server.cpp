@@ -74,7 +74,7 @@ private:
 public:
 
   InteractiveManipulationServer(const std::string name) : 
-     nh_("~"), server_("block_controls"), as_(name, false), action_name_(name), initialized_(false), block_size(0)
+     nh_("~"), server_("block_controls"), as_(name, false), action_name_(name), initialized_(false), block_size(0.4)
   {
     // Load parameters from the server.
     nh_.param<double>("bump_size", bump_size, 0.005);

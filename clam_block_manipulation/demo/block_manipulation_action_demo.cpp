@@ -153,10 +153,13 @@ public:
       ROS_INFO("Did not succeed! %s",  state.toString().c_str());
       ros::shutdown();
     }
-    ros::shutdown(); // DTC: temp
+
     interactive_manipulation_action_.sendGoal(interactive_manipulation_goal_, 
                                               boost::bind( &BlockManipulationAction::pickAndPlace, 
                                                            this, _1, _2));
+    // DTC:
+    //interactive_manipulation_action_.cancelGoal();
+    //ros::shutdown();
   }
 
   void pickAndPlace(const actionlib::SimpleClientGoalState& state, 

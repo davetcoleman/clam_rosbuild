@@ -1,6 +1,6 @@
 <package>
-  <description brief="clam_openni_vision">
-     clam_openni_vision allows calibration of a kinect or other openni camera to the clam arm. originally copied from turtlebot arm
+  <description brief="clam_vision">
+     clam_vision allows calibration of a kinect or other openni camera to the clam arm. originally copied from turtlebot arm
   </description>
   <author>Dave Coleman</author>
   <license>BSD</license>
