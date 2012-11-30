@@ -29,6 +29,16 @@
  * Author: Michael Ferguson, Helen Oleynikova
  */
 
+/*
+  DEV NOTES:
+    Types of clouds:
+      cloud
+      cloud_transformed
+      cloud_filtered
+      cloud_plane
+
+ */
+
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <actionlib/server/simple_action_server.h>
@@ -67,20 +77,16 @@ private:
   clam_block_manipulation::BlockDetectionFeedback feedback_;
   clam_block_manipulation::BlockDetectionResult result_;
   clam_block_manipulation::BlockDetectionGoalConstPtr goal_;
-  ros::Subscriber sub_;
-  ros::Publisher pub_;
-  
+  ros::Subscriber point_cloud_sub_;
+  ros::Publisher filtered_pub_; // filtered point cloud for testing the algorithms
+  ros::Publisher block_pose_pub_; // some kind of pose array?
   tf::TransformListener tf_listener_;
   
   // Parameters from goal
   std::string arm_link;
   double block_size;
   double table_height;
-  
-  ros::Publisher block_pub_;
-  
-  // Parameters from node
-  
+    
 public:
   BlockDetectionServer(const std::string name) : 
     nh_("~"), as_(name, false), action_name_(name)
@@ -96,55 +102,64 @@ public:
     as_.start();
 
     // Subscribe to point cloud
+    point_cloud_sub_ = nh_.subscribe("/camera/depth_registered/points", 1, &BlockDetectionServer::cloudCb, this);
     std::cout << "PC Subscribed" << std::endl;
-    sub_ = nh_.subscribe("/camera/depth_registered/points", 1, &BlockDetectionServer::cloudCb, this);
 
-    std::cout << "Block output started" << std::endl;
-    pub_ = nh_.advertise< pcl::PointCloud<pcl::PointXYZRGB> >("block_output", 1);
+    // Publish a point cloud of blocks 
+    filtered_pub_ = nh_.advertise< pcl::PointCloud<pcl::PointXYZRGB> >("block_output", 1);
+    std::cout << "Block point cloud output started" << std::endl;
     
-    block_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/clam_blocks", 1, true);
+    // Publish interactive markers for blocks
+    block_pose_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/clam_blocks", 1, true);
+    std::cout << "Block output started" << std::endl;
   }
 
   void goalCB()
   {
     ROS_INFO("[block detection] Received goal!");
-    // accept the new goal
+
+    // Clear last block detection result
     result_.blocks.poses.clear();
     
-    goal_ = as_.acceptNewGoal();
-    
+    // Accept the new goal and save data    
+    goal_ = as_.acceptNewGoal();    
     block_size = goal_->block_size;
     table_height = goal_->table_height;
     arm_link = goal_->frame;
     
+    // Start making result
     result_.blocks.header.frame_id = arm_link;
   }
 
+  // Cancel the detection
   void preemptCB()
   {
     ROS_INFO("%s: Preempted", action_name_.c_str());
+
     // set the action state to preempted
     as_.setPreempted();
   }
 
+  // Proccess the point clouds
   void cloudCb ( const sensor_msgs::PointCloud2ConstPtr& msg )
   {
-    //ROS_INFO("CloudCB");
-
     // Only do this if we're actually actively working on a goal.
-    if (!as_.isActive()) return;
+    if (!as_.isActive()) 
+      return;
     
     result_.blocks.header.stamp = msg->header.stamp;
     
-    // convert to PCL
+    // convert from ROS to PCL
     pcl::PointCloud<pcl::PointXYZRGB> cloud;
     pcl::fromROSMsg (*msg, cloud);
-    
-    // transform to whatever frame we're working in, probably the arm frame.
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_transformed (new pcl::PointCloud<pcl::PointXYZRGB>);
-    
-    tf_listener_.waitForTransform(std::string(arm_link), cloud.header.frame_id, cloud.header.stamp, ros::Duration(1.0));
-    if (!pcl_ros::transformPointCloud (std::string(arm_link), cloud, *cloud_transformed, tf_listener_))
+
+    // make new point cloud that is in our working frame
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_transformed (new pcl::PointCloud<pcl::PointXYZRGB>);    
+
+    // transform to whatever frame we're working in, probably the arm's base frame, ie "base_link"
+    tf_listener_.waitForTransform(std::string(arm_link), cloud.header.frame_id, 
+                                  cloud.header.stamp, ros::Duration(1.0));
+    if (!pcl_ros::transformPointCloud(std::string(arm_link), cloud, *cloud_transformed, tf_listener_))
     {
       ROS_ERROR ("Error converting to desired frame");
       return;
@@ -165,9 +180,9 @@ public:
     // Limit to things we think are roughly at the table height.
     pcl::PassThrough<pcl::PointXYZRGB> pass;
     pass.setInputCloud(cloud_transformed); 
-    pass.setFilterFieldName("z");
-    
+    pass.setFilterFieldName("z");    
     pass.setFilterLimits(table_height - 0.05, table_height + block_size + 0.05);
+    //pass.setFilterLimits(table_height - 0.01, table_height + block_size + 0.02); // DTC
     pass.filter(*cloud_filtered);
     if( cloud_filtered->points.size() == 0 ){
       ROS_ERROR("0 points left");
@@ -206,7 +221,7 @@ public:
 
     ROS_INFO("At DTC part");
 
-    // Removed DTC to make compatible with PCL 1.5
+    // DTC: Removed to make compatible with PCL 1.5
     // Creating the KdTree object for the search method of the extraction
     //pcl::KdTree<pcl::PointXYZRGB>::Ptr tree (new pcl::KdTreeFLANN<pcl::PointXYZRGB>);
     //tree->setInputCloud (cloud_filtered);
@@ -220,13 +235,14 @@ public:
     ec.setInputCloud( cloud_filtered);
     ec.extract (cluster_indices);
 
-    pub_.publish(cloud_filtered);
+    filtered_pub_.publish(cloud_filtered);
 
     // for each cluster, see if it is a block
     for (size_t c = 0; c < cluster_indices.size (); ++c)
     {  
       // find the outer dimensions of the cluster
-      float xmin = 0; float xmax = 0; float ymin = 0; float ymax = 0;
+      float xmin = 0; float xmax = 0; 
+      float ymin = 0; float ymax = 0;
       float zmin = 0; float zmax = 0;
       for (size_t i = 0; i < cluster_indices[c].indices.size(); i++)
       {
@@ -280,7 +296,7 @@ public:
     if (result_.blocks.poses.size() > 0)
     {
       as_.setSucceeded(result_);
-      block_pub_.publish(result_.blocks);
+      block_pose_pub_.publish(result_.blocks);
       ROS_INFO("[block detection] Set as succeeded!");
     }
     else

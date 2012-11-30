@@ -124,8 +124,8 @@ public:
     {
       block = msg->poses[i];
       addBlock(block, i, active, msg->header.frame_id);
-      ROS_INFO("Added %d blocks", i);
     }
+    ROS_INFO("Added %d blocks to Rviz", msg->poses.size());
     
     server_.applyChanges();
     

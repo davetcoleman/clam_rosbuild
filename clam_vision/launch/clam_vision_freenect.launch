@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- Launch vision stuff: -->
+  <include file="$(find freenect_launch)/launch/freenect.launch" />
+
+  <!-- This is highly dependent on the setup of the kinect in the lab -->
+  <node name="clam_vision_frame" pkg="tf" type="static_transform_publisher" output="screen"
+	args="0.769541 -0.0539292 0.836631 -0.495848 -0.0201182 0.86803 -0.015908 /base_link /camera_link 100"/>
+
+</launch>

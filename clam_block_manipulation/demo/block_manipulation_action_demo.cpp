@@ -27,6 +27,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*
+  This script combines the three components of block manipulation: block detection, 
+  interactive block moving, and pick & place into one coherent program using actionlib action
+  servers.
+ */
+
 #include <ros/ros.h>
 
 #include <actionlib/client/simple_action_client.h>
@@ -48,17 +54,17 @@ class BlockManipulationAction
 {
 private:
   ros::NodeHandle nh_;
-  
+
   // Actions
   actionlib::SimpleActionClient<BlockDetectionAction> block_detection_action_;
   actionlib::SimpleActionClient<InteractiveBlockManipulationAction> interactive_manipulation_action_;
   actionlib::SimpleActionClient<PickAndPlaceAction> pick_and_place_action_;
   actionlib::SimpleActionClient<simple_arm_actions::ResetArmAction> reset_arm_action_;
-  
+
   BlockDetectionGoal block_detection_goal_;
   InteractiveBlockManipulationGoal interactive_manipulation_goal_;
   PickAndPlaceGoal pick_and_place_goal_;
-  
+
   // Parameters
   std::string arm_link;
   double gripper_open;
@@ -67,90 +73,99 @@ private:
   double z_down;
   double block_size;
   bool once;
-  
+
 public:
 
-  BlockManipulationAction() : 
+  BlockManipulationAction() :
     block_detection_action_("block_detection", true),
     interactive_manipulation_action_("interactive_manipulation", true),
     pick_and_place_action_("pick_and_place", true),
     reset_arm_action_("reset_arm", true)
   {
-    // Load parameters
+    // Load parameters -------------------------------------------------------------------
+
     nh_.param<std::string>("/block_manipulation_action_demo/arm_link", arm_link, "/base_link");
     nh_.param<double>("/block_manipulation_action_demo/gripper_open", gripper_open, 0.042);
     nh_.param<double>("/block_manipulation_action_demo/gripper_closed", gripper_closed, 0.024);
     nh_.param<double>("/block_manipulation_action_demo/z_up", z_up, 0.12);
     nh_.param<double>("/block_manipulation_action_demo/table_height", z_down, 0.01);
     nh_.param<double>("/block_manipulation_action_demo/block_size", block_size, 0.03);
-    
     nh_.param<bool>("once", once, false);
 
-	ROS_INFO("Block size %f", block_size);
-	ROS_INFO("Table height %f", z_down);
-		
-    // Initialize goals
+    ROS_INFO("Block size %f", block_size);
+    ROS_INFO("Table height %f", z_down);
+
+    // Initialize goals -------------------------------------------------------------------
+
+    // Block Detection
     block_detection_goal_.frame = arm_link;
     block_detection_goal_.table_height = z_down;
     block_detection_goal_.block_size = block_size;
 
-	
-    
+    // Pick and Place
     pick_and_place_goal_.frame = arm_link;
     pick_and_place_goal_.z_up = z_up;
     pick_and_place_goal_.gripper_open = gripper_open;
     pick_and_place_goal_.gripper_closed = gripper_closed;
     pick_and_place_goal_.topic = pick_and_place_topic;
-    
+
+    // Interactive Manipulation
     interactive_manipulation_goal_.block_size = block_size;
     interactive_manipulation_goal_.frame = arm_link;
-    
+
+    // Wait for servers -------------------------------------------------------------------
     ROS_INFO("Finished initializing, waiting for servers...");
-    
+
     block_detection_action_.waitForServer();
     ROS_INFO("Found block detection server.");
-    
+
     interactive_manipulation_action_.waitForServer();
     ROS_INFO("Found interactive manipulation.");
-    
+
     pick_and_place_action_.waitForServer();
     ROS_INFO("Found pick and place server.");
-    
+
     ROS_INFO("Found servers.");
-    
+
     reset_arm_action_.sendGoal(simple_arm_actions::ResetArmGoal());
-    
+
     ROS_INFO("Reseted arm action.");
 
+    // Start demo -------------------------------------------------------------------
     detectBlocks();
   }
-  
+
   void detectBlocks()
   {
-    block_detection_action_.sendGoal(block_detection_goal_,  boost::bind( &BlockManipulationAction::addBlocks, this, _1, _2));
+    block_detection_action_.sendGoal(block_detection_goal_,  
+                                     boost::bind( &BlockManipulationAction::addBlocks, this, _1, _2));
   }
-  
+
   void addBlocks(const actionlib::SimpleClientGoalState& state, const BlockDetectionResultConstPtr& result)
   {
     ROS_INFO("Got block detection callback. Adding blocks.");
     geometry_msgs::Pose block;
-    
+
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      ROS_INFO("Succeeded!");
+      ROS_INFO("Detected blocks successfully!");
     else
     {
       ROS_INFO("Did not succeed! %s",  state.toString().c_str());
       ros::shutdown();
     }
-    interactive_manipulation_action_.sendGoal(interactive_manipulation_goal_, boost::bind( &BlockManipulationAction::pickAndPlace, this, _1, _2));
+    ros::shutdown(); // DTC: temp
+    interactive_manipulation_action_.sendGoal(interactive_manipulation_goal_, 
+                                              boost::bind( &BlockManipulationAction::pickAndPlace, 
+                                                           this, _1, _2));
   }
-  
-  void pickAndPlace(const actionlib::SimpleClientGoalState& state, const InteractiveBlockManipulationResultConstPtr& result)
+
+  void pickAndPlace(const actionlib::SimpleClientGoalState& state, 
+                    const InteractiveBlockManipulationResultConstPtr& result)
   {
     ROS_INFO("Got interactive marker callback. Picking and placing.");
-    
+
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      ROS_INFO("Succeeded!");
+      ROS_INFO("Recieved user input successfully!");
     else
     {
       ROS_INFO("Did not succeed! %s",  state.toString().c_str());
@@ -158,17 +173,17 @@ public:
     }
     pick_and_place_action_.sendGoal(pick_and_place_goal_, boost::bind( &BlockManipulationAction::finish, this, _1, _2));
   }
-  
+
   void finish(const actionlib::SimpleClientGoalState& state, const PickAndPlaceResultConstPtr& result)
   {
     ROS_INFO("Got pick and place callback. Finished!");
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      ROS_INFO("Succeeded!");
+      ROS_INFO("Picked and placed successfully!");
     else
       ROS_INFO("Did not succeed! %s",  state.toString().c_str());
-      
+
     reset_arm_action_.sendGoal(simple_arm_actions::ResetArmGoal());
-    
+
     if (once)
       ros::shutdown();
     else

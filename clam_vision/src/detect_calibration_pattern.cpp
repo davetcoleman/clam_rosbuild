@@ -27,7 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <clam_openni_vision/detect_calibration_pattern.h>
+#include <clam_vision/detect_calibration_pattern.h>
 
 void PatternDetector::setCameraMatrices(cv::Mat K_, cv::Mat D_)
 {

@@ -7,9 +7,11 @@ Panels:
         - /Global Options1
         - /TF1/Frames1
         - /TF1/Tree1
+        - /DepthCloudFiltered1
         - /RecognizedBlocks1
         - /MarkerArray1
-      Splitter Ratio: 0.432638
+        - /PoseArray1
+      Splitter Ratio: 0.392982
     Tree Height: 514
   - Class: rviz/Help
     Name: Help
@@ -41,103 +43,24 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz/Marker
-      Enabled: true
+      Enabled: false
       Marker Topic: /move_clam_arm_markers
       Name: Marker
       Namespaces:
         {}
       Queue Size: 10000
-      Value: true
+      Value: false
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
-      Enabled: true
+      Enabled: false
       Links:
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        elbow_pitch_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        elbow_roll_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gripper_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gripper_roll_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        l_gripper_aft_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        l_gripper_fwd_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        l_gripper_pincher:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        r_gripper_aft_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        r_gripper_fwd_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        r_gripper_pincher:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        shoulder_pan_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        shoulder_pitch_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tabletop_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wrist_pitch_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wrist_roll_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
+        {}
       Name: ClamArm
       Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
-      Value: true
+      Value: false
       Visual Enabled: true
     - Class: rviz/InteractiveMarkers
       Enabled: false
@@ -179,7 +102,7 @@ Visualization Manager:
       Decay Time: 0
       Depth Map Topic: /camera/depth_registered/image_rect
       Depth Map Transport Hint: raw
-      Enabled: true
+      Enabled: false
       Name: DepthCloud
       Position Transformer: XYZ
       Queue Size: 5
@@ -193,22 +116,7 @@ Visualization Manager:
         Max Color: 255; 255; 255
         Min Color: 0; 0; 0
         Value: true
-      Value: true
-    - Class: rviz/InteractiveMarkers
-      Enabled: true
-      Name: RecognizedBlocks
-      Show Axes: false
-      Show Descriptions: true
-      Update Topic: /block_controls/update
-      Value: true
-    - Class: rviz/MarkerArray
-      Enabled: true
-      Marker Topic: /move_clam_arm_markers_array
-      Name: MarkerArray
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds:
         Max Intensity: 4096
@@ -224,8 +132,8 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: RGB8
       Decay Time: 0
-      Enabled: false
-      Name: PointCloud2
+      Enabled: true
+      Name: DepthCloudFiltered
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: false
@@ -238,7 +146,29 @@ Visualization Manager:
         Max Color: 255; 255; 255
         Min Color: 0; 0; 0
         Value: true
+      Value: true
+    - Class: rviz/InteractiveMarkers
+      Enabled: false
+      Name: RecognizedBlocks
+      Show Axes: false
+      Show Descriptions: false
+      Update Topic: /block_controls/update
       Value: false
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /move_clam_arm_markers_array
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Arrow Length: 0.1
+      Class: rviz/PoseArray
+      Color: 255; 25; 0
+      Enabled: true
+      Name: PoseArray
+      Topic: /clam_blocks
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -252,22 +182,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 0.831317
+      Distance: 1.57393
       Focal Point:
-        Value: 0.53629; -0.28569; -9.8348e-07
-        X: 0.536294
-        Y: -0.285686
-        Z: -9.83476e-07
+        Value: 0.45995; -0.24024; -1.0282e-06
+        X: 0.459949
+        Y: -0.240243
+        Z: -1.02818e-06
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.799796
+      Pitch: 1.1202
       Target Frame: /base_link
       Value: XYOrbit (rviz)
-      Yaw: 5.21816
+      Yaw: 6.05314
     Saved: ~
 Window Geometry:
   Height: 1024
-  QMainWindow State: 000000ff00000000fd0000000100000000000001b300000382fc0200000003fb000000100044006900730070006c0061007900730100000041000002a8000000dc00fffffffb0000000800480065006c00700000000342000000bb0000007900fffffffb0000000a0056006900650077007301000002ef000000d4000000a900ffffff000003410000038200000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000001fd00000382fc0200000003fb000000100044006900730070006c0061007900730100000041000002a8000000dc00fffffffb0000000800480065006c00700000000342000000bb0000007900fffffffb0000000a0056006900650077007301000002ef000000d4000000a900ffffff000002f70000038200000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1280
-  X: 3834
-  Y: 81
+  X: 3831
+  Y: 53
