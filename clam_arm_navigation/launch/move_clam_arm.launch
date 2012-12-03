@@ -1,7 +1,16 @@
 <launch>
-    <node pkg="move_arm" type="move_arm_simple_action" name="clam_move_clam_arm">
-        <param name="group" type="string" value="clam_arm" />
-        <remap from="arm_ik" to="clam_clam_arm_kinematics/get_constraint_aware_ik" />
-        <param name="controller_action_name" type="string" value="clam_arm_controller/follow_joint_trajectory" />
-    </node>
+
+  <!-- Debug Info -->
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <!-- Run Move Arm -->
+  <node pkg="move_arm" type="move_arm_simple_action" name="clam_move_clam_arm"
+	launch-prefix="$(arg launch_prefix)">
+    <param name="group" type="string" value="clam_arm" />
+    <remap from="arm_ik" to="clam_clam_arm_kinematics/get_constraint_aware_ik" />
+    <param name="controller_action_name" type="string" value="clam_arm_controller/follow_joint_trajectory" />
+  </node>
+
 </launch>

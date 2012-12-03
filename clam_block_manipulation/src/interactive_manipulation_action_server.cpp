@@ -25,7 +25,7 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * Author: Michael Ferguson, Helen Oleynikova
  */
 
@@ -45,194 +45,199 @@ namespace clam_block_manipulation
 class InteractiveManipulationServer
 {
 private:
-  ros::NodeHandle nh_;
+    ros::NodeHandle nh_;
 
-  interactive_markers::InteractiveMarkerServer server_;
-  
-  actionlib::SimpleActionServer<clam_block_manipulation::InteractiveBlockManipulationAction> as_;
-  std::string action_name_;
-  
-  clam_block_manipulation::InteractiveBlockManipulationFeedback     feedback_;
-  clam_block_manipulation::InteractiveBlockManipulationResult       result_;
-  clam_block_manipulation::InteractiveBlockManipulationGoalConstPtr goal_;
-  
-  ros::Subscriber block_sub_;
-  ros::Publisher  pick_and_place_pub_;
-  
-  geometry_msgs::Pose old_pose_;
-  
-  geometry_msgs::PoseArrayConstPtr msg_;
-  bool initialized_;
-  
-  // Parameters from goal
-  std::string arm_link;
-  double      block_size;
-  
-  // Parameters from server
-  double bump_size;
+    interactive_markers::InteractiveMarkerServer server_;
+
+    actionlib::SimpleActionServer<clam_block_manipulation::InteractiveBlockManipulationAction> as_;
+    std::string action_name_;
+
+    clam_block_manipulation::InteractiveBlockManipulationFeedback     feedback_;
+    clam_block_manipulation::InteractiveBlockManipulationResult       result_;
+    clam_block_manipulation::InteractiveBlockManipulationGoalConstPtr goal_;
+
+    ros::Subscriber block_sub_;
+    ros::Publisher  pick_and_place_pub_;
+
+    geometry_msgs::Pose old_pose_;
+
+    geometry_msgs::PoseArrayConstPtr msg_;
+    bool initialized_;
+
+    // Parameters from goal
+    std::string arm_link;
+    double      block_size;
+
+    // Parameters from server
+    double bump_size;
 
 public:
 
-  InteractiveManipulationServer(const std::string name) : 
-     nh_("~"), server_("block_controls"), as_(name, false), action_name_(name), initialized_(false), block_size(0.4)
-  {
-    // Load parameters from the server.
-    nh_.param<double>("bump_size", bump_size, 0.005);
-    
-    // Register the goal and feeback callbacks.
-    as_.registerGoalCallback(boost::bind(&InteractiveManipulationServer::goalCB, this));
-    as_.registerPreemptCallback(boost::bind(&InteractiveManipulationServer::preemptCB, this));
-    
-    as_.start();
-  
-    block_sub_ = nh_.subscribe("/clam_blocks", 1, &InteractiveManipulationServer::addBlocks, this);
-    pick_and_place_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/pick_and_place", 1, true);
-  }
-  
-  void goalCB()
-  {
-
-    // accept the new goal
-    goal_ = as_.acceptNewGoal();
-    
-    ROS_INFO("[interactive manipulation] Received goal! %f, %s", goal_->block_size, goal_->frame.c_str());
-    
-    block_size = goal_->block_size;
-    arm_link = goal_->frame;
-    
-    if (initialized_)
-      addBlocks(msg_);
-  }
-
-  void preemptCB()
-  {
-    ROS_INFO("%s: Preempted", action_name_.c_str());
-    // set the action state to preempted
-    as_.setPreempted();
-  }
-  
-  void addBlocks(const geometry_msgs::PoseArrayConstPtr& msg)
-  {
-    server_.clear();
-    server_.applyChanges();
-  
-    ROS_INFO("[interactive manipulation] Got block detection callback. Adding blocks.");
-    geometry_msgs::Pose block;
-    bool active = as_.isActive();
-    
-    for (unsigned int i=0; i < msg->poses.size(); i++)
+    InteractiveManipulationServer(const std::string name) :
+        nh_("~"), server_("block_controls"), as_(name, false), action_name_(name), initialized_(false), block_size(0.4)
     {
-      block = msg->poses[i];
-      addBlock(block, i, active, msg->header.frame_id);
-    }
-    ROS_INFO("[interactive manipulation] Added %d blocks to Rviz", int(msg->poses.size()));
-    
-    server_.applyChanges();
-    
-    msg_ = msg;
-    initialized_ = true;
-  }
-  
+        // Load parameters from the server.
+        nh_.param<double>("bump_size", bump_size, 0.005);
 
-  // Move the real block!
-  void feedbackCb( const InteractiveMarkerFeedbackConstPtr &feedback )
-  {
-    if (!as_.isActive())
+        // Register the goal and feeback callbacks.
+        as_.registerGoalCallback(boost::bind(&InteractiveManipulationServer::goalCB, this));
+        as_.registerPreemptCallback(boost::bind(&InteractiveManipulationServer::preemptCB, this));
+
+        as_.start();
+
+        block_sub_ = nh_.subscribe("/clam_blocks", 1, &InteractiveManipulationServer::addBlocks, this);
+        pick_and_place_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/pick_and_place", 1, true);
+    }
+
+    void goalCB()
     {
-      ROS_INFO("[interactive manipulation] Got feedback but not active!");
-      return;
+
+        // accept the new goal
+        goal_ = as_.acceptNewGoal();
+
+        ROS_INFO("[interactive manipulation] Received goal! %f, %s", goal_->block_size, goal_->frame.c_str());
+
+        block_size = goal_->block_size;
+        arm_link = goal_->frame;
+
+        if (initialized_)
+        {
+            addBlocks(msg_);
+        }
+
+        // DTC - skip the interactive crap and just choose the first one
+        moveBlock(msg_->poses[0],msg_->poses[0]);
     }
-    switch ( feedback->event_type )
+
+    void preemptCB()
     {
-      case visualization_msgs::InteractiveMarkerFeedback::MOUSE_DOWN:
-        ROS_INFO_STREAM("[interactive manipulation] Staging " << feedback->marker_name);     
-          old_pose_ = feedback->pose;
-        break;
-   
-      case visualization_msgs::InteractiveMarkerFeedback::MOUSE_UP:
-        ROS_INFO_STREAM("[interactive manipulation] Now moving " << feedback->marker_name); 
-        moveBlock(old_pose_, feedback->pose);
-        break;
+        ROS_INFO("%s: Preempted", action_name_.c_str());
+        // set the action state to preempted
+        as_.setPreempted();
     }
-    
-    server_.applyChanges(); 
-  }
-  
-  void moveBlock(const geometry_msgs::Pose& start_pose, const geometry_msgs::Pose& end_pose)
-  {
-    geometry_msgs::Pose start_pose_bumped, end_pose_bumped;
-    start_pose_bumped = start_pose;
-    start_pose_bumped.position.y -= bump_size;
-    start_pose_bumped.position.z -= block_size/2.0 - bump_size;
-    result_.pickup_pose = start_pose_bumped;
-    
-    end_pose_bumped = end_pose;
-    end_pose_bumped.position.z -= block_size/2.0 - bump_size;
-    result_.place_pose = end_pose_bumped;
-    
-    geometry_msgs::PoseArray msg;
-    msg.header.frame_id = arm_link;
-    msg.header.stamp = ros::Time::now();
-    msg.poses.push_back(start_pose_bumped);
-    msg.poses.push_back(end_pose_bumped);
-    
-    pick_and_place_pub_.publish(msg);
-    
-    as_.setSucceeded(result_);
-    
-    server_.clear();
-    server_.applyChanges();
-  }
 
-  // Make a box
-  Marker makeBox( InteractiveMarker &msg, float r, float g, float b )
-  {
-    Marker m;
+    void addBlocks(const geometry_msgs::PoseArrayConstPtr& msg)
+    {
+        server_.clear();
+        server_.applyChanges();
 
-    m.type = Marker::CUBE;
-    m.scale.x = msg.scale;
-    m.scale.y = msg.scale;
-    m.scale.z = msg.scale;
-    m.color.r = r;
-    m.color.g = g;
-    m.color.b = b;
-    m.color.a = 1.0;
+        ROS_INFO("[interactive manipulation] Got block detection callback. Adding blocks.");
+        geometry_msgs::Pose block;
+        bool active = as_.isActive();
 
-    return m;
-  }
-   
-  // Add a new block
-  void addBlock( const geometry_msgs::Pose pose, int n, bool active, std::string link)
-  {
-    InteractiveMarker marker;
-    marker.header.frame_id = link;
-    marker.pose = pose;
-    marker.scale = block_size;
-    
-    std::stringstream conv;
-    conv << n;
-    conv.str();
-     
-    marker.name = "block" + conv.str();
+        for (unsigned int i=0; i < msg->poses.size(); i++)
+        {
+            block = msg->poses[i];
+            addBlock(block, i, active, msg->header.frame_id);
+        }
+        ROS_INFO("[interactive manipulation] Added %d blocks to Rviz", int(msg->poses.size()));
 
-    InteractiveMarkerControl control;
-    control.orientation.w = 1;
-    control.orientation.x = 0;
-    control.orientation.y = 1;
-    control.orientation.z = 0;
-    control.interaction_mode = InteractiveMarkerControl::MOVE_PLANE;
-    
-    if (active)
-      marker.controls.push_back( control );
-    
-    control.markers.push_back( makeBox(marker, .5, .5, .5) );
-    control.always_visible = true;
-    marker.controls.push_back( control );
-    
+        server_.applyChanges();
 
-    server_.insert( marker );
-    server_.setCallback( marker.name, boost::bind( &InteractiveManipulationServer::feedbackCb, this, _1 ));
-  }
+        msg_ = msg;
+        initialized_ = true;
+
+    }
+
+    // Move the real block!
+    void feedbackCb( const InteractiveMarkerFeedbackConstPtr &feedback )
+    {
+        if (!as_.isActive())
+        {
+            ROS_INFO("[interactive manipulation] Got feedback but not active!");
+            return;
+        }
+        switch ( feedback->event_type )
+        {
+        case visualization_msgs::InteractiveMarkerFeedback::MOUSE_DOWN:
+            ROS_INFO_STREAM("[interactive manipulation] Staging " << feedback->marker_name);
+            old_pose_ = feedback->pose;
+            break;
+
+        case visualization_msgs::InteractiveMarkerFeedback::MOUSE_UP:
+            ROS_INFO_STREAM("[interactive manipulation] Now moving " << feedback->marker_name);
+            moveBlock(old_pose_, feedback->pose);
+            break;
+        }
+
+        server_.applyChanges();
+    }
+
+    void moveBlock(const geometry_msgs::Pose& start_pose, const geometry_msgs::Pose& end_pose)
+    {
+        geometry_msgs::Pose start_pose_bumped, end_pose_bumped;
+        start_pose_bumped = start_pose;
+        start_pose_bumped.position.y -= bump_size;
+        start_pose_bumped.position.z -= block_size/2.0 - bump_size;
+        result_.pickup_pose = start_pose_bumped;
+
+        end_pose_bumped = end_pose;
+        end_pose_bumped.position.z -= block_size/2.0 - bump_size;
+        result_.place_pose = end_pose_bumped;
+
+        geometry_msgs::PoseArray msg;
+        msg.header.frame_id = arm_link;
+        msg.header.stamp = ros::Time::now();
+        msg.poses.push_back(start_pose_bumped);
+        msg.poses.push_back(end_pose_bumped);
+
+        pick_and_place_pub_.publish(msg);
+
+        as_.setSucceeded(result_);
+
+        // DTC server_.clear();
+        // DTC server_.applyChanges();
+    }
+
+    // Make a box
+    Marker makeBox( InteractiveMarker &msg, float r, float g, float b )
+    {
+        Marker m;
+
+        m.type = Marker::CUBE;
+        m.scale.x = msg.scale;
+        m.scale.y = msg.scale;
+        m.scale.z = msg.scale;
+        m.color.r = r;
+        m.color.g = g;
+        m.color.b = b;
+        m.color.a = 1.0;
+
+        return m;
+    }
+
+    // Add a new block
+    void addBlock( const geometry_msgs::Pose pose, int n, bool active, std::string link)
+    {
+        InteractiveMarker marker;
+        marker.header.frame_id = link;
+        marker.pose = pose;
+        marker.scale = block_size;
+
+        std::stringstream conv;
+        conv << n;
+        conv.str();
+
+        marker.name = "block" + conv.str();
+
+        InteractiveMarkerControl control;
+        control.orientation.w = 1;
+        control.orientation.x = 0;
+        control.orientation.y = 1;
+        control.orientation.z = 0;
+        control.interaction_mode = InteractiveMarkerControl::MOVE_PLANE;
+
+        if (active)
+            marker.controls.push_back( control );
+
+        control.markers.push_back( makeBox(marker, .5, .5, .5) );
+        control.always_visible = true;
+        marker.controls.push_back( control );
+
+
+        server_.insert( marker );
+        server_.setCallback( marker.name, boost::bind( &InteractiveManipulationServer::feedbackCb, this, _1 ));
+    }
 
 };
 
@@ -240,11 +245,11 @@ public:
 
 int main(int argc, char** argv)
 {
-  // initialize node
-  ros::init(argc, argv, "interactive_manipulation_action_server");
+    // initialize node
+    ros::init(argc, argv, "interactive_manipulation_action_server");
 
-  clam_block_manipulation::InteractiveManipulationServer manip("interactive_manipulation");
+    clam_block_manipulation::InteractiveManipulationServer manip("interactive_manipulation");
 
-  ros::spin();
+    ros::spin();
 }
 

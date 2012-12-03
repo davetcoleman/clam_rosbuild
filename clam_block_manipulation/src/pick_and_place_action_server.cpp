@@ -92,6 +92,10 @@ public:
     gripper_closed = goal_->gripper_closed;
     z_up = goal_->z_up;
 
+    // Change the goal constraints on the servos to be less strict, so that the controllers don't die
+    nh_.setParam("/clam_arm_controller/joint_trajectory_action_node/constraints/elbow_pitch_joint/goal", 2); // originall it was 0.45, not sure where that is set
+    nh_.setParam("/clam_arm_controller/joint_trajectory_action_node/constraints/shoulder_pan_joint/goal", 2); // originall it was 0.45, not sure where that is set
+
     // Check if our listener has recieved a goal from the topic yet
     if (goal_->topic.length() < 1)
       pickAndPlace(goal_->pickup_pose, goal_->place_pose); // yes, start moving arm
@@ -140,24 +144,24 @@ public:
 
         switch( int(client_.getResult()->error_code.val) )
         {
-        case 31:
+        case -31:
           ROS_ERROR("No IK Solution");
           break;
-        case 32:
+        case -32:
           ROS_ERROR("Invalid link name");
           break;
-        case 33:
+        case -33:
           ROS_ERROR("IK Link In Collision");
           break;
-        case 34:
+        case -34:
           ROS_ERROR("No FK Solution");
           break;
-        case 35:
+        case -35:
           ROS_ERROR("Kinematics state in collision");
           break;
         default:
-          ROS_ERROR_STREAM("Failed with error code (from arm_navigation_msgs/ArmNavigationErrorCodes):" 
-                           << client_.getResult()->error_code );
+          ROS_ERROR_STREAM("Failed w/ error code (from arm_navigation_msgs/ArmNavigationErrorCodes):" 
+                           << client_.getResult()->error_code.val );
         }
 
         as_.setAborted(result_);
@@ -177,6 +181,7 @@ public:
     client_.waitForServer();
 
     // Open gripper -------------------------------------------------------------------------------
+    /*
     ROS_INFO("[pick and place] Opening gripper");
     clam_arm_goal_.command = "OPEN_GRIPPER";
     clam_arm_action_.sendGoal(clam_arm_goal_);
@@ -185,11 +190,12 @@ public:
       //ROS_INFO("[pick and place] Waiting for gripper to open");
       ros::Duration(0.1).sleep();
     }
+    */
 
     // Create goal ---------------------------------------------------------------------------------
     arm_navigation_msgs::MoveArmGoal goal;
     goal.motion_plan_request.group_name = "clam_arm"; // corresponds to clam_planning_description.yaml group name
-    goal.motion_plan_request.num_planning_attempts = 1;
+    goal.motion_plan_request.num_planning_attempts = 20;
     goal.motion_plan_request.planner_id = std::string("");
     goal.planner_service_name = std::string("ompl_planning/plan_kinematic_path");
     goal.motion_plan_request.allowed_planning_time = ros::Duration(50.0);
@@ -203,9 +209,9 @@ public:
     desired_pose.absolute_position_tolerance.y = 1;
     desired_pose.absolute_position_tolerance.z = 1;
 
-    desired_pose.absolute_roll_tolerance = 1; // 0.1
-    desired_pose.absolute_pitch_tolerance = 1;
-    desired_pose.absolute_yaw_tolerance = 1;
+    desired_pose.absolute_roll_tolerance = 10; // 0.1
+    desired_pose.absolute_pitch_tolerance = 10;
+    desired_pose.absolute_yaw_tolerance = 10;
 
 
     // Create Approach------------------------------------------------------------------------------
@@ -217,20 +223,37 @@ public:
     desired_pose.pose.orientation.y = temp.getY();
     desired_pose.pose.orientation.z = temp.getZ();
     desired_pose.pose.orientation.w = temp.getW();
-    ROS_INFO_STREAM("[pick and place] Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
 
     // hover over
-    desired_pose.pose.position.x = start_pose.position.x;
-    desired_pose.pose.position.y = start_pose.position.y;
+    // these are in m units, so 40cm = .40 m
+    desired_pose.pose.position.x = 0.20; //start_pose.position.x;
+    desired_pose.pose.position.y = 0.01;  //start_pose.position.y;
     desired_pose.pose.position.z = 0.2; //0.2; // z_up;
-
-    ROS_INFO_STREAM("[pick and place] Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
 
     // Send command
     ROS_INFO("[pick and place] Sending arm to pre-grasp position");
+    ROS_INFO_STREAM("[pick and place] Pose: \n" << desired_pose.pose );
     arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
     if(!sendGoal(goal))
       return;
+
+    ros::Duration(5).sleep();
+
+
+    // Lower over block ----------------------------------------------------------------------------
+    
+    // drop down - only modify z axis
+    desired_pose.pose.position.z = 0.19;
+
+    // Send command
+    ROS_INFO("[pick and place] Sending arm to grasp position");
+    ROS_INFO_STREAM("[pick and place] Pose: \n" << desired_pose.pose );
+    arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
+    if(!sendGoal(goal))
+      return;
+
+    ros::Duration(5).sleep();
+
 
     // Close gripper -------------------------------------------------------------------------------
 
@@ -245,6 +268,7 @@ public:
 
     // Move Arm to new location --------------------------------------------------------------------
 
+    /*
     // arm straight up
     tf::Quaternion temp2;
     temp2.setRPY(0,1.57,0);
@@ -267,6 +291,16 @@ public:
     ROS_INFO("[pick and place] Sending new location command to arm");
     if(!sendGoal(goal))
       return;
+    */
+
+    // Reset --------------------------------------------------------------------------------------
+    ROS_INFO("[pick and place] Going to home position");
+    clam_arm_goal_.command = "RESET";
+    clam_arm_action_.sendGoal(clam_arm_goal_);
+    while(!clam_arm_action_.getState().isDone() && ros::ok())
+    {
+      ros::Duration(0.1).sleep();
+    }
 
     // Open gripper -------------------------------------------------------------------------------
     ROS_INFO("[pick and place] Opening gripper");
