@@ -2,7 +2,7 @@
 
 <launch>
 	<!-- send erratic robot XML to param server -->
-        <param name="robot_description" command="cat $(find clam_description)/urdf/clam_urdf_generated.urdf" />
+        <param name="robot_description" command="cat $(find clam_description)/urdf/clam.urdf" />
 
         <param name="use_gui" value="TRUE"/>
         <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />

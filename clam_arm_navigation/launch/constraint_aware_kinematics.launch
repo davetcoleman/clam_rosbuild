@@ -1,11 +1,14 @@
+<?xml version='1.0' encoding='ASCII'?>
 <launch>
-    <include file="$(find clam_arm_navigation)/launch/clam_planning_environment.launch" />
-    <node pkg="arm_kinematics_constraint_aware" type="arm_kinematics_constraint_aware" name="clam_clam_arm_kinematics">
-        <param name="group" type="string" value="clam_arm" />
-        <param name="clam_arm/root_name" type="string" value="base_link" />
-        <param name="clam_arm/tip_name" type="string" value="gripper_roll_link" />
-        <param name="kinematics_solver" type="string" value="arm_kinematics_constraint_aware/KDLArmKinematicsPlugin" />
-	<param name="right_arm/max_solver_iterations" type="int" value="10000" />
-        <param name="right_arm/max_search_iterations" type="int" value="10" />
-    </node>
+  <include file="$(find clam_arm_navigation)/launch/clam_planning_environment.launch"/>
+  <node pkg="arm_kinematics_constraint_aware" type="arm_kinematics_constraint_aware" name="clam_clam_arm_kinematics">
+    <param name="group" type="string" value="clam_arm"/>
+    <param name="clam_arm/root_name" type="string" value="base_link"/>
+    <param name="clam_arm/tip_name" type="string" value="gripper_roll_link"/>
+    <param name="kinematics_solver" type="string" value="clam_clam_arm_kinematics/IKFastKinematicsPlugin"/>
+    <param name="use_plugin_fk" type="bool" value="true" />
+    <param name="right_arm/max_solver_iterations" type="int" value="10000"/>
+    <param name="right_arm/max_search_iterations" type="int" value="10"/>
+    <param name="OLDkinematics_solver" type="string" value="arm_kinematics_constraint_aware/KDLArmKinematicsPlugin"/>
+  </node>
 </launch>
