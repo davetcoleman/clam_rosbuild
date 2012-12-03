@@ -5,5 +5,7 @@
         <param name="clam_arm/root_name" type="string" value="base_link" />
         <param name="clam_arm/tip_name" type="string" value="gripper_roll_link" />
         <param name="kinematics_solver" type="string" value="arm_kinematics_constraint_aware/KDLArmKinematicsPlugin" />
+	<param name="right_arm/max_solver_iterations" type="int" value="10000" />
+        <param name="right_arm/max_search_iterations" type="int" value="10" />
     </node>
 </launch>
