@@ -145,22 +145,22 @@ public:
         switch( int(client_.getResult()->error_code.val) )
         {
         case -31:
-          ROS_ERROR("No IK Solution");
+          ROS_ERROR("[pick and place] No IK Solution");
           break;
         case -32:
-          ROS_ERROR("Invalid link name");
+          ROS_ERROR("[pick and place] Invalid link name");
           break;
         case -33:
-          ROS_ERROR("IK Link In Collision");
+          ROS_ERROR("[pick and place] IK Link In Collision");
           break;
         case -34:
-          ROS_ERROR("No FK Solution");
+          ROS_ERROR("[pick and place] No FK Solution");
           break;
         case -35:
-          ROS_ERROR("Kinematics state in collision");
+          ROS_ERROR("[pick and place] Kinematics state in collision");
           break;
         default:
-          ROS_ERROR_STREAM("Failed w/ error code (from arm_navigation_msgs/ArmNavigationErrorCodes):" 
+          ROS_ERROR_STREAM("[pick and place] Failed w/ error code (from arm_navigation_msgs/ArmNavigationErrorCodes):" 
                            << client_.getResult()->error_code.val );
         }
 
@@ -181,7 +181,6 @@ public:
     client_.waitForServer();
 
     // Open gripper -------------------------------------------------------------------------------
-    /*
     ROS_INFO("[pick and place] Opening gripper");
     clam_arm_goal_.command = "OPEN_GRIPPER";
     clam_arm_action_.sendGoal(clam_arm_goal_);
@@ -190,7 +189,6 @@ public:
       //ROS_INFO("[pick and place] Waiting for gripper to open");
       ros::Duration(0.1).sleep();
     }
-    */
 
     // Create goal ---------------------------------------------------------------------------------
     arm_navigation_msgs::MoveArmGoal goal;
@@ -205,13 +203,13 @@ public:
     desired_pose.header.frame_id = "base_link";
     desired_pose.link_name = "gripper_roll_link";
 
-    desired_pose.absolute_position_tolerance.x = 1; // 0.1
-    desired_pose.absolute_position_tolerance.y = 1;
-    desired_pose.absolute_position_tolerance.z = 1;
+    desired_pose.absolute_position_tolerance.x = 0.1; // 0.1
+    desired_pose.absolute_position_tolerance.y = 0.1;
+    desired_pose.absolute_position_tolerance.z = 0.1;
 
-    desired_pose.absolute_roll_tolerance = 10; // 0.1
-    desired_pose.absolute_pitch_tolerance = 10;
-    desired_pose.absolute_yaw_tolerance = 10;
+    desired_pose.absolute_roll_tolerance = 0.02; // 0.1
+    desired_pose.absolute_pitch_tolerance = 0.02;
+    desired_pose.absolute_yaw_tolerance = 0.02;
 
 
     // Create Approach------------------------------------------------------------------------------
@@ -219,16 +217,16 @@ public:
     // arm straight up
     tf::Quaternion temp;
     temp.setRPY(0,1.57,0);
-    desired_pose.pose.orientation.x = temp.getX();
-    desired_pose.pose.orientation.y = temp.getY();
-    desired_pose.pose.orientation.z = temp.getZ();
-    desired_pose.pose.orientation.w = temp.getW();
+    desired_pose.pose.orientation.x = 0.00; //temp.getX();
+    desired_pose.pose.orientation.y = 0.710502; //temp.getY();
+    desired_pose.pose.orientation.z = -0.01755; //temp.getZ();
+    desired_pose.pose.orientation.w = 0.703466; //temp.getW();
 
     // hover over
     // these are in m units, so 40cm = .40 m
-    desired_pose.pose.position.x = 0.20; //start_pose.position.x;
-    desired_pose.pose.position.y = 0.01;  //start_pose.position.y;
-    desired_pose.pose.position.z = 0.2; //0.2; // z_up;
+    desired_pose.pose.position.x = 0.2222066; //start_pose.position.x;
+    desired_pose.pose.position.y = -0.0088;  //start_pose.position.y;
+    desired_pose.pose.position.z = 0.197156; //0.2; // z_up;
 
     // Send command
     ROS_INFO("[pick and place] Sending arm to pre-grasp position");
@@ -243,7 +241,8 @@ public:
     // Lower over block ----------------------------------------------------------------------------
     
     // drop down - only modify z axis
-    desired_pose.pose.position.z = 0.19;
+    desired_pose.absolute_position_tolerance.z = 0.01;
+    desired_pose.pose.position.z = 0.17;
 
     // Send command
     ROS_INFO("[pick and place] Sending arm to grasp position");
@@ -265,6 +264,8 @@ public:
       //      ROS_INFO("[pick and place] Waiting for gripper to close");
       ros::Duration(0.1).sleep();
     }
+
+    ros::Duration(5).sleep();
 
     // Move Arm to new location --------------------------------------------------------------------
 

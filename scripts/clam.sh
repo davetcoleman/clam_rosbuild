@@ -12,8 +12,6 @@ echo "-----------------------------------";
 echo "Changing permissions:";
 sudo chmod 777 dynamixel_*;
 sudo chmod 777 ttyUSB*;
-#sudo chown root:admin ttyUSB*;
-roscd clam/scripts/;
 echo "-----------------------------------";
 #read -p "Press any key to continue";
-roslaunch clam_bringup clam.launch
+roslaunch clam_bringup clam_lowlevel.launch

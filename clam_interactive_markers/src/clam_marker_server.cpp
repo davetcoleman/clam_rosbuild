@@ -294,9 +294,13 @@ public:
     desired_pose.absolute_pitch_tolerance = 0.1;
     desired_pose.absolute_yaw_tolerance = 0.1;
 
+    
+
+
     arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose,goal);
 
-    ROS_INFO("Sending goal...");
+    ROS_INFO_STREAM("Sending pose goal:\n" << desired_pose);
+
     if (nh.ok())
     {
       bool finished_within_time = false;

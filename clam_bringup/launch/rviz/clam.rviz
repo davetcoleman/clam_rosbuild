@@ -130,11 +130,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        tabletop_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         wrist_pitch_link:
           Alpha: 1
           Show Axes: false
@@ -191,7 +186,7 @@ Visualization Manager:
       Decay Time: 0
       Depth Map Topic: /camera/depth_registered/image_rect
       Depth Map Transport Hint: raw
-      Enabled: false
+      Enabled: true
       Name: DepthCloud
       Position Transformer: XYZ
       Queue Size: 5
@@ -205,7 +200,7 @@ Visualization Manager:
         Max Color: 255; 255; 255
         Min Color: 0; 0; 0
         Value: true
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds:
         Max Intensity: 4096
@@ -251,7 +246,7 @@ Visualization Manager:
       Color: 0; 0; 255
       Color Transformer: FlatColor
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Name: DepthCloudTable
       Position Transformer: XYZ
       Queue Size: 10
@@ -265,7 +260,7 @@ Visualization Manager:
         Max Color: 255; 255; 255
         Min Color: 0; 0; 0
         Value: true
-      Value: false
+      Value: true
     - Arrow Length: 0.1
       Class: rviz/PoseArray
       Color: 255; 25; 0
@@ -293,22 +288,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.12052
+      Distance: 0.971858
       Focal Point:
-        Value: 0.17463; -0.028731; -1.1474e-06
-        X: 0.174626
-        Y: -0.0287309
+        Value: 0.36168; -0.21879; -1.1474e-06
+        X: 0.361682
+        Y: -0.218794
         Z: -1.14739e-06
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.0997957
+      Pitch: 0.634796
       Target Frame: /base_link
       Value: XYOrbit (rviz)
-      Yaw: 5.57311
+      Yaw: 5.10311
     Saved: ~
 Window Geometry:
   Height: 1024
   QMainWindow State: 000000ff00000000fd0000000100000000000001fd00000384fc0200000003fb000000100044006900730070006c0061007900730100000041000002a9000000dc00fffffffb0000000800480065006c00700000000342000000bb0000007900fffffffb0000000a0056006900650077007301000002f0000000d5000000a900ffffff000002fb0000038400000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1280
-  X: 3821
-  Y: -143
+  X: 3819
+  Y: -199

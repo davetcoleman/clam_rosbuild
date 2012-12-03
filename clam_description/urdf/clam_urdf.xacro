@@ -359,7 +359,7 @@ http://www.ros.org/wiki/xacro
   </link>
 
   <!-- TABLETOP MODEL -->
-  <joint name="tabletop_joint" type="fixed">
+  <!--joint name="tabletop_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="tabletop_link"/>
@@ -373,7 +373,7 @@ http://www.ros.org/wiki/xacro
       </geometry>
       <material name="Brown" />
     </visual>
-  </link>
+  </link-->
 
   <!-- FAKE CAMERA CALIBRATION POINT AT GRIPPER TIP  -->
   <joint name="gripper_link_joint" type="fixed">
