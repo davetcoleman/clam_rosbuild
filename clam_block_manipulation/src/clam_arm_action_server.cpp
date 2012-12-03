@@ -32,12 +32,13 @@
   Allows you to reset the arm to its default pose, as well as open and close the gripper
 */
 
-#include <ros/ros.h>
-#include <actionlib/server/simple_action_server.h>
-#include <actionlib/client/simple_action_client.h>
 #include <clam_block_manipulation/ClamArmAction.h>
-#include <control_msgs/FollowJointTrajectoryAction.h>
-#include <std_msgs/Float64.h>
+#include <ros/ros.h>
+#include <actionlib/server/simple_action_server.h> // For providing functionality
+#include <actionlib/client/simple_action_client.h> // For calling the joint trajectory action
+#include <dynamixel_hardware_interface/SetVelocity.h> // For changing servo velocities using service call
+#include <control_msgs/FollowJointTrajectoryAction.h> // for sending arm to home position
+#include <std_msgs/Float64.h> // For sending gripper joint position commands
 
 namespace clam_block_manipulation
 {
@@ -58,10 +59,13 @@ private:
   clam_block_manipulation::ClamArmGoalConstPtr goal_;
 
   ros::Publisher joint_pub_; // publish joint values to servos
+  ros::ServiceClient velocity_client_; // change gripper velocity
 
   // Constants that define the limits of the gripper
-  static const float GRIPPER_OPEN_VALUE = -1.0;
-  static const float GRIPPER_CLOSE_VALUE = -0.1;
+  //static const float GRIPPER_OPEN_VALUE = -1.0;
+  //static const float GRIPPER_CLOSE_VALUE = -0.1;
+  static const double GRIPPER_OPEN_VALUE = -1.0;
+  static const double GRIPPER_CLOSE_VALUE = -0.5;//-0.1;
 
   // Action client for the joint trajectory action used to trigger the arm movement action
   TrajClient* trajectory_client_;
@@ -75,7 +79,7 @@ public:
 
     // wait for action server to come up
     while(!trajectory_client_->waitForServer(ros::Duration(5.0))){
-      ROS_INFO("Waiting for the joint_trajectory_action server");
+      ROS_INFO("[clam arm] Waiting for the joint_trajectory_action server");
     }
 
     //register the goal and feeback callbacks
@@ -86,25 +90,37 @@ public:
 
     // Create publisher for gripper servo position
     joint_pub_ = nh_.advertise< std_msgs::Float64 >("/l_gripper_aft_controller/command", 1, true);
+
+    // Set the velocity for the gripper servo
+    ROS_INFO("[clam arm] Setting gripper servo velocity");
+    velocity_client_ = nh_.serviceClient< dynamixel_hardware_interface::SetVelocity >("/l_gripper_aft_controller/set_velocity");
+    dynamixel_hardware_interface::SetVelocity set_velocity_srv;
+    set_velocity_srv.request.velocity = double(0.1);
+    if( !velocity_client_.call(set_velocity_srv) )
+    {
+      ROS_ERROR("[clam arm] Failed to set the gripper servo velocity via service call");
+    }
+
   }
 
   // Recieve Action Goal Function
   void goalCB()
   {
-    ROS_INFO("[clam arm] Received goal!");
-
     goal_ = as_.acceptNewGoal();
 
     if( goal_->command == "RESET")
     {
+      ROS_INFO("[clam arm] Received reset arm goal");
       resetArm();
     }
     else if( goal_->command == "OPEN_GRIPPER" )
     {
+      ROS_INFO("[clam arm] Received open gripper goal");
       openGripper(true);
     }
     else if( goal_->command == "CLOSE_GRIPPER" )
     {
+      ROS_INFO("[clam arm] Received close gripper goal");
       openGripper(false);
     }
     else
@@ -129,8 +145,6 @@ public:
   */
   control_msgs::FollowJointTrajectoryGoal resetTrajectory()
   {
-    ROS_INFO("Creating trajectory");
-
     //our goal variable
     control_msgs::FollowJointTrajectoryGoal goal;
 
@@ -171,7 +185,6 @@ public:
     goal.trajectory.points[ind].time_from_start = ros::Duration(4.0);
 
     //we are done; return the goal
-    ROS_INFO("FINISHED CREATING GOAL");
     return goal;
   }
 
@@ -184,9 +197,11 @@ public:
   // Actually run the action
   void resetArm()
   {
+    // TODO: add code here to check if we are already in the desired arm position
+
     control_msgs::FollowJointTrajectoryGoal goal = resetTrajectory();
 
-    ROS_INFO("Starting trajectory");
+    ROS_INFO("[clam arm] Starting trajectory to reset arm");
 
     // When to start the trajectory: 1s from now
     goal.trajectory.header.stamp = ros::Time::now() + ros::Duration(1.0);
@@ -198,30 +213,30 @@ public:
       ros::Duration(0.5).sleep();
     }
 
+    ROS_INFO("[clam arm] Finished resetting arm action");
     as_.setSucceeded(result_);
   }
 
   // Open or close gripper
   void openGripper( bool open )
   {
-    /*
-  static const float GRIPPER_OPEN_VALUE = -1.0;
-  static const float GRIPPER_CLOSE_VALUE = -0.1;
-    */
     // Publish command to servos
+    std_msgs::Float64 joint_value;
     if(open)
     {
-      //      joint_pub_.publish(-1.0);
+      joint_value.data = GRIPPER_OPEN_VALUE;
     }
     else
     {
-      //      joint_pub_.publish(-0.1);
+      joint_value.data = GRIPPER_CLOSE_VALUE;
     }
+    joint_pub_.publish(joint_value);
 
     // Just a guess on how long to wait
-    ros::Duration(2).sleep();
+    ros::Duration(4).sleep();
 
     // Assume it works TODO don't assume?
+    ROS_INFO("[clam arm] Finished gripper action");
     as_.setSucceeded(result_);
   }
 };

@@ -96,8 +96,6 @@ public:
   {
     // Load parameters from the server.
     
-    std::cout << "BLOCK DETECTION ACTION SERVER" << std::endl;
-    
     // Register the goal and feeback callbacks.
     as_.registerGoalCallback(boost::bind(&BlockDetectionServer::goalCB, this));
     as_.registerPreemptCallback(boost::bind(&BlockDetectionServer::preemptCB, this));
@@ -106,19 +104,15 @@ public:
 
     // Subscribe to point cloud
     point_cloud_sub_ = nh_.subscribe("/camera/depth_registered/points", 1, &BlockDetectionServer::cloudCb, this);
-    std::cout << "PC Subscribed" << std::endl;
 
     // Publish a point cloud of filtered data that was not part of table
     filtered_pub_ = nh_.advertise< pcl::PointCloud<pcl::PointXYZRGB> >("block_output", 1);
-    std::cout << "Block point cloud output started" << std::endl;
 
     // Publish a point cloud of data that was considered part of the plane
     plane_pub_ = nh_.advertise< pcl::PointCloud<pcl::PointXYZRGB> >("plane_output", 1);
-    std::cout << "Plane point cloud output started" << std::endl;
     
     // Publish interactive markers for blocks
     block_pose_pub_ = nh_.advertise< geometry_msgs::PoseArray >("/clam_blocks", 1, true);
-    std::cout << "Block output started" << std::endl;
   }
 
   void goalCB()
@@ -191,7 +185,7 @@ public:
     }
     else
     {
-      ROS_INFO("Filtered, %d points left", (int) cloud_filtered->points.size());
+      ROS_INFO("[block detection] Filtered, %d points left", (int) cloud_filtered->points.size());
     }
 
     // Segment components --------------------------------------------------------------------------
@@ -213,7 +207,6 @@ public:
     // Segment cloud until there are less than 30% of points left? not sure why this is necessary
     while(cloud_filtered->points.size() > 0.3 * nr_points)
     {
-      ROS_INFO("while loop starts here"); // DTC
 
       // Segment the largest planar component from the remaining cloud (find the table)
       seg.setInputCloud(cloud_filtered);
@@ -221,11 +214,11 @@ public:
 
       if(inliers->indices.size() == 0)
       {
-        std::cout << "Could not estimate a planar model for the given dataset." << std::endl;
+        ROS_ERROR("[block detection] Could not estimate a planar model for the given dataset.");
         return;
       }
       
-      std::cout << "Inliers: " << (inliers->indices.size()) << std::endl;
+      //std::cout << "Inliers: " << (inliers->indices.size()) << std::endl;
 
       // Extract the planar inliers from the input cloud
       pcl::ExtractIndices<pcl::PointXYZRGB> extract;
@@ -235,7 +228,7 @@ public:
 
       // Write the planar inliers to disk
       extract.filter(*cloud_plane);
-      std::cout << "PointCloud representing the planar component: " << cloud_plane->points.size() << " data points." << std::endl;
+      //std::cout << "PointCloud representing the planar component: " << cloud_plane->points.size() << " data points." << std::endl;
 
       // Remove the planar inliers, extract the rest
       extract.setNegative(true);
@@ -257,8 +250,6 @@ public:
                   << cloud.points[inliers->indices[i]].z << std::endl;
                   }*/
     }
-
-    ROS_INFO("At DTC part");
 
     // DTC: Removed to make compatible with PCL 1.5
     // Creating the KdTree object for the search method of the extraction
@@ -327,9 +318,8 @@ public:
         if(yside < block_size)
           angle = 0.0;
         
-        ROS_INFO_STREAM("xside: " << xside << " yside: " << yside << " zside " << zside << " angle: " << angle);
+        ROS_INFO_STREAM("[block detection] xside: " << xside << " yside: " << yside << " zside " << zside << " angle: " << angle);
         // Then add it to our set
-        ROS_INFO("Adding a new block!");
         addBlock( xmin+(xside)/2.0, ymin+(yside)/2.0, zmax - block_size/2.0, angle);
       }
     }

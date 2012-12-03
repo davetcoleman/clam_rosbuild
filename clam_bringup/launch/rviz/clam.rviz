@@ -151,6 +151,13 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/InteractiveMarkers
+      Enabled: true
+      Name: Move Arm Control
+      Show Axes: false
+      Show Descriptions: true
+      Update Topic: /clam_marker_server/update
+      Value: true
     - Class: rviz/TF
       Enabled: false
       Frame Timeout: 15
@@ -164,13 +171,6 @@ Visualization Manager:
       Tree:
         {}
       Update Interval: 0
-      Value: false
-    - Class: rviz/InteractiveMarkers
-      Enabled: false
-      Name: Move Arm Control
-      Show Axes: false
-      Show Descriptions: true
-      Update Topic: /clam_marker_server/update
       Value: false
     - Alpha: 1
       Autocompute Intensity Bounds:
@@ -236,6 +236,36 @@ Visualization Manager:
         Min Color: 0; 0; 0
         Value: true
       Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds:
+        Max Intensity: 4096
+        Min Intensity: 0
+        Value: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 0; 0; 255
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: false
+      Name: DepthCloudTable
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.01
+      Style: Points
+      Topic: /block_detection_action_server/plane_output
+      Use Fixed Frame: true
+      Use rainbow:
+        Max Color: 255; 255; 255
+        Min Color: 0; 0; 0
+        Value: true
+      Value: false
     - Arrow Length: 0.1
       Class: rviz/PoseArray
       Color: 255; 25; 0
@@ -263,22 +293,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 0.596159
+      Distance: 1.12052
       Focal Point:
-        Value: 0.45556; -0.069036; -1.1474e-06
-        X: 0.455555
-        Y: -0.0690359
+        Value: 0.17463; -0.028731; -1.1474e-06
+        X: 0.174626
+        Y: -0.0287309
         Z: -1.14739e-06
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.534797
+      Pitch: 0.249796
       Target Frame: /base_link
       Value: XYOrbit (rviz)
-      Yaw: 5.55314
+      Yaw: 5.38811
     Saved: ~
 Window Geometry:
   Height: 1024
-  QMainWindow State: 000000ff00000000fd0000000100000000000001fd00000384fc0200000003fb000000100044006900730070006c0061007900730100000041000002aa000000dc00fffffffb0000000800480065006c00700000000342000000bb0000007900fffffffb0000000a0056006900650077007301000002f1000000d4000000a900ffffff000002fb0000038400000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000001fd00000385fc0200000003fb000000100044006900730070006c0061007900730100000041000002aa000000dc00fffffffb0000000800480065006c00700000000342000000bb0000007900fffffffb0000000a0056006900650077007301000002f1000000d5000000a900ffffff000002fd0000038500000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1280
-  X: 3827
-  Y: -3
+  X: 3823
+  Y: -87

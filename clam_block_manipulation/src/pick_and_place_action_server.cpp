@@ -35,7 +35,6 @@
 #include <clam_block_manipulation/PickAndPlaceAction.h>
 
 #include <actionlib/client/simple_action_client.h>
-//#include <simple_arm_server/MoveArmAction.h>
 #include <arm_navigation_msgs/MoveArmAction.h>
 #include <arm_navigation_msgs/utils.h> // is this necessary?
 #include <clam_block_manipulation/ClamArmAction.h> // for controlling the gripper
@@ -49,10 +48,9 @@ class PickAndPlaceServer
 private:
 
   ros::NodeHandle nh_;
-  std::string action_name_;
 
-  actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> client_;
   actionlib::SimpleActionServer<clam_block_manipulation::PickAndPlaceAction> as_;
+  actionlib::SimpleActionClient<arm_navigation_msgs::MoveArmAction> client_;
   actionlib::SimpleActionClient<ClamArmAction> clam_arm_action_;
 
   ClamArmGoal clam_arm_goal_; // sent to the clam_arm_action_server
@@ -71,7 +69,7 @@ private:
 
 public:
   PickAndPlaceServer(const std::string name) :
-    nh_("~"), as_(name, false), action_name_(name), 
+    nh_("~"), as_(name, false),
     client_("move_clam_arm", true),
     clam_arm_action_("clam_arm", true)
   {
@@ -86,7 +84,7 @@ public:
   // Recieve Action Goal Function
   void goalCB()
   {
-    ROS_INFO("[pick and place] Received goal!");
+    ROS_INFO("[pick and place] Received goal -----------------------------------------------");
 
     goal_ = as_.acceptNewGoal();
     arm_link = goal_->frame;
@@ -112,20 +110,81 @@ public:
   // Cancel the action
   void preemptCB()
   {
-    ROS_INFO("[%s] Preempted", action_name_.c_str());
+    ROS_INFO("[pick and place] Preempted");
     // set the action state to preempted
     as_.setPreempted();
+  }
+
+  // Helper function for sending goals 
+  bool sendGoal(arm_navigation_msgs::MoveArmGoal &goal)
+  {
+    client_.sendGoal(goal);
+    bool finished_within_time = client_.waitForResult(ros::Duration(200.0));
+    if (!finished_within_time)
+    {
+      client_.cancelGoal();
+      ROS_ERROR("[pick and place] Timed out achieving goal");
+      as_.setAborted(result_);
+      return false;
+    }
+    else
+    {
+      actionlib::SimpleClientGoalState state = client_.getState();
+      if(state == actionlib::SimpleClientGoalState::SUCCEEDED)
+      {
+        ROS_INFO("[pick and place] Goal position finished. State: %s",state.toString().c_str());
+      }
+      else
+      {
+        ROS_ERROR("[pick and place] Goal position failed. State: %s",state.toString().c_str());
+
+        switch( int(client_.getResult()->error_code.val) )
+        {
+        case 31:
+          ROS_ERROR("No IK Solution");
+          break;
+        case 32:
+          ROS_ERROR("Invalid link name");
+          break;
+        case 33:
+          ROS_ERROR("IK Link In Collision");
+          break;
+        case 34:
+          ROS_ERROR("No FK Solution");
+          break;
+        case 35:
+          ROS_ERROR("Kinematics state in collision");
+          break;
+        default:
+          ROS_ERROR_STREAM("Failed with error code (from arm_navigation_msgs/ArmNavigationErrorCodes):" 
+                           << client_.getResult()->error_code );
+        }
+
+        as_.setAborted(result_);
+        return false;
+      }
+    }    
+    
+    // Success
+    return true;
   }
 
   // Actually run the action
   void pickAndPlace(const geometry_msgs::Pose& start_pose, const geometry_msgs::Pose& end_pose)
   {
-    ROS_INFO("[pick and place] Picking and placing.");
-
     // Wait for MoveArmAction to be ready ----------------------------------------------------------
-    ROS_INFO("[pick and place] Waiting for server");
+    ROS_INFO("[pick and place] Waiting for move arm action server");
     client_.waitForServer();
-    ROS_INFO("[pick and place] Connected to server");
+
+    // Open gripper -------------------------------------------------------------------------------
+    ROS_INFO("[pick and place] Opening gripper");
+    clam_arm_goal_.command = "OPEN_GRIPPER";
+    clam_arm_action_.sendGoal(clam_arm_goal_);
+    while(!clam_arm_action_.getState().isDone() && ros::ok())
+    {
+      //ROS_INFO("[pick and place] Waiting for gripper to open");
+      ros::Duration(0.1).sleep();
+    }
 
     // Create goal ---------------------------------------------------------------------------------
     arm_navigation_msgs::MoveArmGoal goal;
@@ -158,49 +217,30 @@ public:
     desired_pose.pose.orientation.y = temp.getY();
     desired_pose.pose.orientation.z = temp.getZ();
     desired_pose.pose.orientation.w = temp.getW();
-    ROS_INFO_STREAM("Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
+    ROS_INFO_STREAM("[pick and place] Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
 
     // hover over
     desired_pose.pose.position.x = start_pose.position.x;
     desired_pose.pose.position.y = start_pose.position.y;
-    desired_pose.pose.position.z = 0.2; // z_up;
+    desired_pose.pose.position.z = 0.2; //0.2; // z_up;
 
-    ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
+    ROS_INFO_STREAM("[pick and place] Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
 
     // Send command
+    ROS_INFO("[pick and place] Sending arm to pre-grasp position");
     arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
-    client_.sendGoal(goal);
-    bool finished_within_time = client_.waitForResult(ros::Duration(200.0));
-    if (!finished_within_time)
-    {
-      client_.cancelGoal();
-      ROS_INFO("Timed out achieving goal");
-      as_.setAborted(result_);
+    if(!sendGoal(goal))
       return;
-    }
-    else
-    {
-      actionlib::SimpleClientGoalState state = client_.getState();
-      if(state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      {
-        ROS_INFO("Action 1 finished: %s",state.toString().c_str());
-      }
-      else
-      {
-        ROS_INFO("Action 1 failed: %s",state.toString().c_str());
-        as_.setAborted(result_);
-        return;
-      }
-    }
 
     // Close gripper -------------------------------------------------------------------------------
 
+    ROS_INFO("[pick and place] Closing gripper");
     clam_arm_goal_.command = "CLOSE_GRIPPER";
     clam_arm_action_.sendGoal(clam_arm_goal_);
     while(!clam_arm_action_.getState().isDone() && ros::ok())
     {
-      ROS_INFO("Waiting for gripper to close");
-      ros::Duration(0.5).sleep();
+      //      ROS_INFO("[pick and place] Waiting for gripper to close");
+      ros::Duration(0.1).sleep();
     }
 
     // Move Arm to new location --------------------------------------------------------------------
@@ -213,56 +253,37 @@ public:
     desired_pose.pose.orientation.z = temp2.getZ();
     desired_pose.pose.orientation.w = temp2.getW();
 
-    ROS_INFO_STREAM("Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
+    ROS_INFO_STREAM("[pick and place] Pose orientation: " << desired_pose.pose.orientation.x << "\t" << desired_pose.pose.orientation.y << "\t"  << desired_pose.pose.orientation.z << "\t"  << desired_pose.pose.orientation.w );
 
     // hover over
     desired_pose.pose.position.x = end_pose.position.x;
     desired_pose.pose.position.y = end_pose.position.y;
     desired_pose.pose.position.z = 0.2; // z_up;
 
-    ROS_INFO_STREAM("Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
+    ROS_INFO_STREAM("[pick and place] Pose position: " << desired_pose.pose.position.x << "\t" << desired_pose.pose.position.y << "\t"  << desired_pose.pose.position.z );
 
     // Send command
     arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose, goal);
-    client_.sendGoal(goal);
-    finished_within_time = client_.waitForResult(ros::Duration(200.0));
-    if (!finished_within_time)
-    {
-      client_.cancelGoal();
-      ROS_INFO("Timed out achieving goal");
-      as_.setAborted(result_);
+    ROS_INFO("[pick and place] Sending new location command to arm");
+    if(!sendGoal(goal))
       return;
-    }
-    else
-    {
-      actionlib::SimpleClientGoalState state = client_.getState();
-      if(state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      {
-        ROS_INFO("Action 1 finished: %s",state.toString().c_str());
-      }
-      else
-      {
-        ROS_INFO("Action 1 failed: %s",state.toString().c_str());
-        as_.setAborted(result_);
-        return;
-      }
-    }
 
     // Open gripper -------------------------------------------------------------------------------
-
+    ROS_INFO("[pick and place] Opening gripper");
     clam_arm_goal_.command = "OPEN_GRIPPER";
     clam_arm_action_.sendGoal(clam_arm_goal_);
     while(!clam_arm_action_.getState().isDone() && ros::ok())
     {
-      ROS_INFO("Waiting for gripper to open");
-      ros::Duration(0.5).sleep();
+      //ROS_INFO("[pick and place] Waiting for gripper to open");
+      ros::Duration(0.1).sleep();
     }
 
 
     // Done ---------------------------------------------------------------------------------------
     // Demo will automatically reset arm
-    
-    as_.setSucceeded(result_);    
+    ROS_INFO("[pick and place] Finished ------------------------------------------------");
+    ROS_INFO(" ");
+    as_.setSucceeded(result_);
   }
 };
 

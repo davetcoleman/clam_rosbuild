@@ -15,6 +15,7 @@
   <depend package="simple_arm_server"/>
   <depend package="simple_arm_actions"/>
   <depend package="arm_navigation_msgs"/>
+  <depend package="dynamixel_hardware_interface"/>
   <depend package="pcl_ros"/>
 
 </package>

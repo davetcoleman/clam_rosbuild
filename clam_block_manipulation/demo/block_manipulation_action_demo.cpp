@@ -115,25 +115,28 @@ public:
     interactive_manipulation_goal_.frame = arm_link;
 
     // Wait for servers -------------------------------------------------------------------
-    ROS_INFO("Finished initializing, waiting for servers...");
+    ROS_INFO("Finished initializing, waiting for servers:");
 
     block_detection_action_.waitForServer();
-    ROS_INFO("Found block detection server.");
+    ROS_INFO("- Found block detection server.");
 
     interactive_manipulation_action_.waitForServer();
-    ROS_INFO("Found interactive manipulation.");
+    ROS_INFO("- Found interactive manipulation.");
 
     pick_and_place_action_.waitForServer();
-    ROS_INFO("Found pick and place server.");
+    ROS_INFO("- Found pick and place server.");
 
-    ROS_INFO("Found servers.");
+    clam_arm_action_.waitForServer();
+    ROS_INFO("- Found clam arm server.");
 
-    ROS_INFO("Reseting arm action...");
+    ROS_INFO(" ");
     resetArm();
   }
 
   void resetArm()
   {
+    ROS_INFO("1. Sending arm to home position (reseting)");
+
     clam_arm_goal_.command = "RESET";
     clam_arm_action_.sendGoal(clam_arm_goal_,
                                boost::bind( &BlockManipulationAction::detectBlocks, this));
@@ -141,43 +144,38 @@ public:
 
   void detectBlocks()
   {
+    ROS_INFO("2. Detecting blocks using PCL");
     block_detection_action_.sendGoal(block_detection_goal_,
                                      boost::bind( &BlockManipulationAction::addBlocks, this, _1, _2));
   }
 
   void addBlocks(const actionlib::SimpleClientGoalState& state, const BlockDetectionResultConstPtr& result)
   {
-    ROS_INFO("Got block detection callback. Adding blocks.");
     geometry_msgs::Pose block;
 
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      ROS_INFO("Detected blocks successfully!");
+      ROS_INFO("3. Detected blocks, adding to Rviz. Waiting for user input.");
     else
     {
-      ROS_INFO("Did not succeed! %s",  state.toString().c_str());
+      ROS_ERROR("3. Failed to detect blocks: %s",  state.toString().c_str());
       ros::shutdown();
     }
 
     interactive_manipulation_action_.sendGoal(interactive_manipulation_goal_,
                                               boost::bind( &BlockManipulationAction::pickAndPlace,
                                                            this, _1, _2));
-    // DTC:
-    //interactive_manipulation_action_.cancelGoal();
-    //ros::shutdown();
   }
 
   void pickAndPlace(const actionlib::SimpleClientGoalState& state,
                     const InteractiveBlockManipulationResultConstPtr& result)
   {
-    ROS_INFO("Got interactive marker callback. Picking and placing.");
-
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
     {
-      ROS_INFO("Recieved user input successfully!");
+      ROS_INFO("4. Rviz interactive marker recieved, moving arm");
     }
     else
     {
-      ROS_INFO("Did not succeed! %s",  state.toString().c_str());
+      ROS_ERROR("4. Rviz interactive marker input did not succeed: %s",  state.toString().c_str());
       ros::shutdown();
     }
     pick_and_place_action_.sendGoal(pick_and_place_goal_,
@@ -186,16 +184,23 @@ public:
 
   void finish(const actionlib::SimpleClientGoalState& state, const PickAndPlaceResultConstPtr& result)
   {
-    ROS_INFO("Got pick and place callback. Finished!");
     if (state == actionlib::SimpleClientGoalState::SUCCEEDED)
-      ROS_INFO("Picked and placed successfully!");
+      ROS_INFO("5. Picked and place commands successfull");
     else
-      ROS_INFO("Did not succeed! %s",  state.toString().c_str());
+      ROS_ERROR("6. Pick and place did not succeed: %s",  state.toString().c_str());
 
     if (once)
+    {
+      ROS_INFO("Shutting down");
       ros::shutdown();
+    }
     else
+    {
+      ROS_INFO(" ");
+      ROS_INFO("Restarting Demo --------------------------------------------- ");
+
       resetArm();
+    }
   }
 };
 

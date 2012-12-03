@@ -116,7 +116,7 @@ public:
     server_.clear();
     server_.applyChanges();
   
-    ROS_INFO("Got block detection callback. Adding blocks.");
+    ROS_INFO("[interactive manipulation] Got block detection callback. Adding blocks.");
     geometry_msgs::Pose block;
     bool active = as_.isActive();
     
@@ -125,7 +125,7 @@ public:
       block = msg->poses[i];
       addBlock(block, i, active, msg->header.frame_id);
     }
-    ROS_INFO("Added %d blocks to Rviz", msg->poses.size());
+    ROS_INFO("[interactive manipulation] Added %d blocks to Rviz", int(msg->poses.size()));
     
     server_.applyChanges();
     
@@ -139,18 +139,18 @@ public:
   {
     if (!as_.isActive())
     {
-      ROS_INFO("Got feedback but not active!");
+      ROS_INFO("[interactive manipulation] Got feedback but not active!");
       return;
     }
     switch ( feedback->event_type )
     {
       case visualization_msgs::InteractiveMarkerFeedback::MOUSE_DOWN:
-        ROS_INFO_STREAM("Staging " << feedback->marker_name);     
+        ROS_INFO_STREAM("[interactive manipulation] Staging " << feedback->marker_name);     
           old_pose_ = feedback->pose;
         break;
    
       case visualization_msgs::InteractiveMarkerFeedback::MOUSE_UP:
-        ROS_INFO_STREAM("Now moving " << feedback->marker_name); 
+        ROS_INFO_STREAM("[interactive manipulation] Now moving " << feedback->marker_name); 
         moveBlock(old_pose_, feedback->pose);
         break;
     }
