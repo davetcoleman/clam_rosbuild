@@ -299,7 +299,7 @@ public:
 
     arm_navigation_msgs::addGoalConstraintToMoveArmGoal(desired_pose,goal);
 
-    ROS_INFO_STREAM("Sending pose goal:\n" << desired_pose);
+    ROS_INFO_STREAM("Sending pose goal:\n" << desired_pose.pose);
 
     if (nh.ok())
     {

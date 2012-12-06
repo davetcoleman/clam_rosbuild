@@ -147,12 +147,12 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/InteractiveMarkers
-      Enabled: false
+      Enabled: true
       Name: Move Arm Control
       Show Axes: false
       Show Descriptions: true
       Update Topic: /clam_marker_server/update
-      Value: false
+      Value: true
     - Class: rviz/TF
       Enabled: false
       Frame Timeout: 15
@@ -186,7 +186,7 @@ Visualization Manager:
       Decay Time: 0
       Depth Map Topic: /camera/depth_registered/image_rect
       Depth Map Transport Hint: raw
-      Enabled: true
+      Enabled: false
       Name: DepthCloud
       Position Transformer: XYZ
       Queue Size: 5
@@ -200,7 +200,7 @@ Visualization Manager:
         Max Color: 255; 255; 255
         Min Color: 0; 0; 0
         Value: true
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds:
         Max Intensity: 4096
@@ -246,7 +246,7 @@ Visualization Manager:
       Color: 0; 0; 255
       Color Transformer: FlatColor
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Name: DepthCloudTable
       Position Transformer: XYZ
       Queue Size: 10
@@ -260,7 +260,7 @@ Visualization Manager:
         Max Color: 255; 255; 255
         Min Color: 0; 0; 0
         Value: true
-      Value: true
+      Value: false
     - Arrow Length: 0.1
       Class: rviz/PoseArray
       Color: 255; 25; 0
@@ -288,22 +288,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 0.971858
+      Distance: 1.16403
       Focal Point:
-        Value: 0.36168; -0.21879; -1.1474e-06
-        X: 0.361682
-        Y: -0.218794
-        Z: -1.14739e-06
+        Value: 0.0028927; 0.23083; -1.2666e-06
+        X: 0.00289273
+        Y: 0.230831
+        Z: -1.2666e-06
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.634796
+      Pitch: 0.344797
       Target Frame: /base_link
       Value: XYOrbit (rviz)
-      Yaw: 5.10311
+      Yaw: 5.25311
     Saved: ~
 Window Geometry:
   Height: 1024
   QMainWindow State: 000000ff00000000fd0000000100000000000001fd00000384fc0200000003fb000000100044006900730070006c0061007900730100000041000002a9000000dc00fffffffb0000000800480065006c00700000000342000000bb0000007900fffffffb0000000a0056006900650077007301000002f0000000d5000000a900ffffff000002fb0000038400000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1280
-  X: 3819
-  Y: -199
+  X: 3817
+  Y: -255
