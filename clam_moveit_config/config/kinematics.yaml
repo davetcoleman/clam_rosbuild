@@ -1,9 +1,9 @@
-clam_arm:
+body:
   kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+clam_arm:
+  kinematics_solver: clam_clam_arm_kinematics/IKFastKinematicsPlugin
   kinematics_solver_search_resolution: 0.005
 gripper:
-  kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
-  kinematics_solver_search_resolution: 0.005
-body:
   kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
   kinematics_solver_search_resolution: 0.005
